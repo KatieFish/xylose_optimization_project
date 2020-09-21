@@ -612,8 +612,7 @@ pachysolen_tannophilus_augustus_masked-scaffold_2-processed-gene-20.301-mRNA-1_1
 candida_tanzawaensis_maker-scaffold_2-snap-gene-15.137-mRNA-1_1_gene=maker-scaffold_2-snap-gene-
 wickerhamomyces_anomalus_snap_masked-scaffold_5-processed-gene-0.0-mRNA-1_1_gene=snap_masked-scaffold_5-proc
 yHMPu5000035645_yarrowia_divulgata_160519_snap_masked-flattened_line_191-processed-gene-0.19-mRNA-1_1_gene=snap_masked-flattened_line_
-hanseniaspora_uvarum_snap_masked-APLS01000001.1-processed-gene-1.3-mRNA-1_1_gene=snap_masked-APLS01000001.1-
-yarrowia_deformans_-processed-gene-3.158-mRNA-1_1_gene=genemark-gi|1002317472|dbj|
+hanseniaspora_uvarum_snap_masked-APLS01000001.1-processed-gene-1.3-mRNA-1_1_gene=snap_masked-APLS01000001.1-yarrowia_deformans_-processed-gene-3.158-mRNA-1_1_gene=genemark-gi|1002317472|dbj|
 yHMPu5000035037_candida_montana_160519_augustus_masked-NODE_6_length_737178_cov_21.3816_ID_11-processed-gene-6.30-mRNA-1_1_gene=augustus_masked-NODE_6_leng
 yarrowia_lipolytica_genemark-YALI0F-processed-gene-24.85-mRNA-1_1_gene=genemark-YALI0F-processed-g
 yHMPu5000035302_candida_fragi_160928_maker-flattened_line_36-snap-gene-0.95-mRNA-1_1_gene=maker-flattened_line_36-sna
@@ -997,4 +996,4 @@ candida_sojae_snap_masked-LMTL01000060.1-processed-gene-0.20-mRNA-1_1_gene=snap_
 lipomyces_starkeyi_augustus_masked-scaffold_4-processed-gene-14.86-mRNA-1_1_gene=augustus_masked-scaffold_4-
 yHMPu5000035047_barnettozyma_pratensis_160519_genemark-flattened_line_54-processed-gene-0.222-mRNA-1_1_gene=genemark-flattened_line_54-
 cyberlindnera_jadinii_genemark-scaffold_7-processed-gene-4.184-mRNA-1_1_gene=genemark-scaffold_7-process
-eremothecium_sinecaudum_augustus_masked-CP014246.1-processed-gene-1.95-mRNA-1_1_gene=augustus_masked-CP014246.1-
+eremothecium_sinecaudum_augustus_masked-CP014246.1-processed-gene-1.95-mRNA-1_1_gene=augustus_masked-CP014246.1
