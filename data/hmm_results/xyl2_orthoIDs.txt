@@ -986,7 +986,7 @@ yHMPu5000034613_saturnispora_serradocipensis_160519_genemark-flattened_line_28-p
 yHMPu5000035335_candida_blattae_160928_augustus_masked-NODE_20_length_196270_cov_28.7591_ID_3288-processed-gene-0.24-mRNA-1_1_gene=augustus_masked-NODE_20_len
 yHMPu5000034636_ogataea_nitratoaversa_160519_augustus_masked-flattened_line_220-processed-gene-0.8-mRNA-1_1_gene=augustus_masked-flattened_l
 yHMPu5000035033_candida_cretensis_160519_genemark-NODE_3_length_1568754_cov_25.1773_ID_5-processed-gene-12.94-mRNA-1_1_gene=genemark-NODE_3_length_1568
-candida_versatilis_-processed-gene-13.44-mRNA-1_1_gene=snap_masked-gi|1002316101|d
+candida_versatilis_-processed-gene-13.44-mRNA-1_1_gene=snap_masked-gi|1002316101|d\
 pachysolen_tannophilus_maker-scaffold_2-augustus-gene-15.2-mRNA-1_1_gene=maker-scaffold_2-augustus-g
 alloascoidea_hylecoeti_-processed-gene-3.24-mRNA-1_1_gene=augustus_masked-gi|10023183
 yHMPu5000035659_saturnispora_dispora_160519_snap_masked-NODE_17_length_217078_cov_19.5731_ID_33-processed-gene-1.189-mRNA-1_1_gene=snap_masked-NODE_17_length_
@@ -997,4 +997,4 @@ yHMPu5000034660_diddensiella_caesifluorescens_160519_snap_masked-NODE_20_length_
 yHMPu5000034883_peterozyma_xylosa_160519_snap_masked-flattened_line_32-processed-gene-1.130-mRNA-1_1_gene=snap_masked-flattened_line_
 metschnikowia_hibisci_augustus_masked-hib_s93-processed-gene-18.181-mRNA-1_1_gene=augustus_masked-hib_s93-pro
 candida_orthopsilosis_genemark-NC_018301.1-processed-gene-8.145-mRNA-1_1_gene=genemark-NC_018301.1-proces
-scheffersomyces_lignosus_-processed-gene-21.37-mRNA-1_1_gene=genemark-gi|1002316371|dbj|
+scheffersomyces_lignosus_-processed-gene-21.37-mRNA-1_1_gene=genemark-gi|1002316371|dbj
