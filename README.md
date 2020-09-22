@@ -9,4 +9,4 @@
 3. Load the packages. 
 `library(swirl)`  
 4. Follow the prompts to complete the *R Programming - 1. Basic Building Blocks* course. 
-5. After completing lesson 1, work through lessons 2 through 7.
+5. After completing lesson 1, work through lessons R programming lessons 2 through 7. 
