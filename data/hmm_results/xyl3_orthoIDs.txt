@@ -347,4 +347,4 @@ metschnikowia_similis_snap_masked-sim-_s373-processed-gene-0.9-mRNA-1_1_gene=sna
 millerozyma_acaciae_-processed-gene-0.14-mRNA-1_1_gene=genemark-gi|1002316180|dbj|
 candida_homilentoma_-processed-gene-1.119-mRNA-1_1_gene=snap_masked-gi|1002316228|d
 yHMPu5000035318_hyphopichia_heimii_160928_snap_masked-NODE_49_length_85120_cov_22.9756_ID_22926-processed-gene-0.28-mRNA-1_1_gene=snap_masked-NODE_49_length_
-yHMPu5000035296_priceomyces_carsonii_160928_genemark-NODE_6_length_672321_cov_21.8377_ID_1603-processed-gene-5.112-mRNA-1_1_gene=genemark-NODE_6_length_6723
+yHMPu5000035296_priceomyces_carsonii_160928_genemark-NODE_6_length_672321_cov_21.8377_ID_1603-processed-gene-5.112-mRNA-1_1_gene=genemark-NODE_6_length_672
