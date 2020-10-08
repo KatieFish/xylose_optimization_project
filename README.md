@@ -14,6 +14,12 @@
 ## Part 2
 **ortholog trees**  
 *I created new protein alignments in data/alnmnts/pep_ortholog_alnmnts - use these for below.*
+*A few things before you can `git pull`*  
+         -Using file->save as in R, rename your "Processing_xylose_MSA_tsvs.R" to something different. It can be anything, just make sure you           remember what it is!  
+         -Delete your local copy of "Processing_xylose_MSA_tsvs.R". (Just drag in into the recyle bin).  
+         -`Git pull`   
+  
 1. Create maximum liklihood trees for the protein alignments in the xylose_optimization_project/data/alnmnts/pep_ortholog_alnmnts directory by uploading the fasta files to https://raxml-ng.vital-it.ch/#/. Be sure to reset Datatype to Protein/AA.  
 2. Finish writing your `for` loops to populate the ortholog binary matrix. I swapped out the tkl1_cds_MSA.tsv file for a new one that includes more orthologs. *Be sure to re-run all your code with the new, updated files!!* 
+ 
 
