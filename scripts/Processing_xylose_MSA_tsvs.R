@@ -22,15 +22,15 @@ tkl1<- read.delim("~/xylose_optimization_project/data/orthologs/cds/tkl1_cds_MSA
 #remove identical sequences using the unique() command
 #then, note which taxa remain duplicated with which() command
 xyl1<-unique(xyl1)
-xyl1_dups<-xyl1[which(duplicated(xyl1$V1)), 1]
+#xyl1_dups<-xyl1[which(duplicated(xyl1$V1)), 1]
 xyl2<-unique(xyl2)
-xyl2_dups<-xyl2[which(duplicated(xyl2$V1)), 1]
+#xyl2_dups<-xyl2[which(duplicated(xyl2$V1)), 1]
 xyl3<-unique(xyl3)
-xyl3_dups<-xyl3[which(duplicated(xyl3$V1)), 1]
+#xyl3_dups<-xyl3[which(duplicated(xyl3$V1)), 1]
 tal1<-unique(tal1)
-tal1_dups<-tal1[which(duplicated(tal1$V1)), 1]
+#tal1_dups<-tal1[which(duplicated(tal1$V1)), 1]
 tkl1<-unique(tkl1)
-tkl1_dups<-tkl1[which(duplicated(tkl1$V1)), 1]
+#tkl1_dups<-tkl1[which(duplicated(tkl1$V1)), 1]
 
 
 #make a master list of all taxa for all genes
@@ -123,8 +123,9 @@ stAI_dataframe$tkl1.2<-NA
 
 
 #iterate by row of the xylose_ut_df and check for values of 1
-for(i in 1:nrow(xylose_utilization_gene_presence)){ 
-  #check if xyl1 (column 2)==1
+#start 
+for(i in 1:nrow(xylose_utilization_gene_presence)){
+  #check if gene is present for species
   if(xylose_utilization_gene_presence[i,2]==1){
     # create x variable that refers to row number in xyl1 of species
     x<- which(xyl1[,1] == xylose_utilization_gene_presence[i,1])
@@ -170,18 +171,19 @@ for(i in 1:nrow(xylose_utilization_gene_presence)){
 
 
 
+
 ### copy 2 of loop
 for(i in 1:nrow(xylose_utilization_gene_presence)){ 
   #check if xyl1 (column 2)==1
-  if(xylose_utilization_gene_presence[i,2]==1){
+  if(xylose_utilization_gene_presence[i,3]==1){
     # create x variable that refers to row number in xyl1 of species
-    x<- which(xyl1[,1] == xylose_utilization_gene_presence[i,1])
+    x<- which(xyl2[,1] == xylose_utilization_gene_presence[i,1])
     # set up if statement to check if x has 2 numbers
     y<- which(wi_vals[,1] == xylose_utilization_gene_presence[i,1])
     #identify the gene sequence for the respective gene:
-    gene_x<-as.character(xyl1[x[1],(5:ncol(xyl1))])
+    gene_x<-as.character(xyl2[x[1],(5:ncol(xyl2))])
     #below if statement checks to see if NAs are at end of gene and then removes them
-    if(is.na(xyl1[x[1], ncol(xyl1)])){
+    if(is.na(xyl2[x[1], ncol(xyl2)])){
       z<-which(is.na(gene_x))
       gene_x<-gene_x[1:(z[1]-1)]
     }
@@ -194,11 +196,11 @@ for(i in 1:nrow(xylose_utilization_gene_presence)){
       gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
     }
     stAI<-geoMean(gene_x_wi_vals)
-    stAI_dataframe[i,2]<-stAI
+    stAI_dataframe[i,3]<-stAI
     # add an if statement for if there's a second copy
     if(length(x)>1){
-      gene_x<-as.character(xyl1[x[2],(5:ncol(xyl1))])
-      if(is.na(xyl1[x[2], ncol(xyl1)])){
+      gene_x<-as.character(xyl2[x[2],(5:ncol(xyl2))])
+      if(is.na(xyl2[x[2], ncol(xyl2)])){
         z<-which(is.na(gene_x))
         gene_x<-gene_x[1:(z[1]-1)]
       }
@@ -211,34 +213,276 @@ for(i in 1:nrow(xylose_utilization_gene_presence)){
         gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
       }
       stAI<-geoMean(gene_x_wi_vals)
-      stAI_dataframe[i,7]<-stAI
+      stAI_dataframe[i,8]<-stAI
+    }   
+  }
+}
+#copy 3 of loop - xyl3
+for(i in 1:nrow(xylose_utilization_gene_presence)){ 
+  #check if xyl1 (column 2)==1
+  if(xylose_utilization_gene_presence[i,4]==1){
+    # create x variable that refers to row number in xyl1 of species
+    x<- which(xyl3[,1] == xylose_utilization_gene_presence[i,1])
+    # set up if statement to check if x has 2 numbers
+    y<- which(wi_vals[,1] == xylose_utilization_gene_presence[i,1])
+    #identify the gene sequence for the respective gene:
+    gene_x<-as.character(xyl3[x[1],(5:ncol(xyl3))])
+    #below if statement checks to see if NAs are at end of gene and then removes them
+    if(is.na(xyl3[x[1], ncol(xyl3)])){
+      z<-which(is.na(gene_x))
+      gene_x<-gene_x[1:(z[1]-1)]
+    }
+    #create a vector to store the wi values
+    gene_x_wi_vals<-numeric()
+    for(j in seq(1,length(gene_x), 3)){
+      codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+      codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+      codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+      gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+    }
+    stAI<-geoMean(gene_x_wi_vals)
+    stAI_dataframe[i,4]<-stAI
+    # add an if statement for if there's a second copy
+    if(length(x)>1){
+      gene_x<-as.character(xyl3[x[2],(5:ncol(xyl3))])
+      if(is.na(xyl3[x[2], ncol(xyl3)])){
+        z<-which(is.na(gene_x))
+        gene_x<-gene_x[1:(z[1]-1)]
+      }
+      #create a vector to store the wi values
+      gene_x_wi_vals<-numeric()
+      for(j in seq(1,length(gene_x), 3)){
+        codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+        codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+        codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+        gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+      }
+      stAI<-geoMean(gene_x_wi_vals)
+      stAI_dataframe[i,9]<-stAI
     }   
   }
 }
 
+#copy 4 of loop - tkl1
+for(i in 1:nrow(xylose_utilization_gene_presence)){ 
+  #check if xyl1 (column 2)==1
+  if(xylose_utilization_gene_presence[i,5]==1){
+    # create x variable that refers to row number in xyl1 of species
+    x<- which(tkl1[,1] == xylose_utilization_gene_presence[i,1])
+    # set up if statement to check if x has 2 numbers
+    y<- which(wi_vals[,1] == xylose_utilization_gene_presence[i,1])
+    #identify the gene sequence for the respective gene:
+    gene_x<-as.character(tkl1[x[1],(5:ncol(tkl1))])
+    #below if statement checks to see if NAs are at end of gene and then removes them
+    if(is.na(tkl1[x[1], ncol(tkl1)])){
+      z<-which(is.na(gene_x))
+      gene_x<-gene_x[1:(z[1]-1)]
+    }
+    #create a vector to store the wi values
+    gene_x_wi_vals<-numeric()
+    for(j in seq(1,length(gene_x), 3)){
+      codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+      codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+      codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+      gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+    }
+    stAI<-geoMean(gene_x_wi_vals)
+    stAI_dataframe[i,5]<-stAI
+    # add an if statement for if there's a second copy
+    if(length(x)>1){
+      gene_x<-as.character(tkl1[x[2],(5:ncol(tkl1))])
+      if(is.na(tkl1[x[2], ncol(tkl1)])){
+        z<-which(is.na(gene_x))
+        gene_x<-gene_x[1:(z[1]-1)]
+      }
+      #create a vector to store the wi values
+      gene_x_wi_vals<-numeric()
+      for(j in seq(1,length(gene_x), 3)){
+        codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+        codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+        codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+        gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+      }
+      stAI<-geoMean(gene_x_wi_vals)
+      stAI_dataframe[i,10]<-stAI
+    }   
+  }
+}
 
-######## Taylor & Rishitha finished all orthos for stAI#####
+#copy 5 of loop - tal1
+for(i in 1:nrow(xylose_utilization_gene_presence)){ 
+  #check if xyl1 (column 2)==1
+  if(xylose_utilization_gene_presence[i,6]==1){
+    # create x variable that refers to row number in xyl1 of species
+    x<- which(tal1[,1] == xylose_utilization_gene_presence[i,1])
+    # set up if statement to check if x has 2 numbers
+    y<- which(wi_vals[,1] == xylose_utilization_gene_presence[i,1])
+    #identify the gene sequence for the respective gene:
+    gene_x<-as.character(tal1[x[1],(5:ncol(tal1))])
+    #below if statement checks to see if NAs are at end of gene and then removes them
+    if(is.na(tal1[x[1], ncol(tal1)])){
+      z<-which(is.na(gene_x))
+      gene_x<-gene_x[1:(z[1]-1)]
+    }
+    #create a vector to store the wi values
+    gene_x_wi_vals<-numeric()
+    for(j in seq(1,length(gene_x), 3)){
+      codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+      codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+      codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+      gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+    }
+    stAI<-geoMean(gene_x_wi_vals)
+    stAI_dataframe[i,6]<-stAI
+    # add an if statement for if there's a second copy
+    if(length(x)>1){
+      gene_x<-as.character(tal1[x[2],(5:ncol(tal1))])
+      if(is.na(tal1[x[2], ncol(tal1)])){
+        z<-which(is.na(gene_x))
+        gene_x<-gene_x[1:(z[1]-1)]
+      }
+      #create a vector to store the wi values
+      gene_x_wi_vals<-numeric()
+      for(j in seq(1,length(gene_x), 3)){
+        codon<-paste(gene_x[j], gene_x[j+1], gene_x[j+2], sep="")
+        codon_column<-which(grepl(codon, colnames(wi_vals), ignore.case=TRUE))
+        codon_wi_val<-as.numeric(wi_vals[y,codon_column])
+        gene_x_wi_vals<-append(gene_x_wi_vals, codon_wi_val)
+      }
+      stAI<-geoMean(gene_x_wi_vals)
+      stAI_dataframe[i,11]<-stAI
+    }   
+  }
+}
+rm(all_taxa, codon, codon_column, codon_wi_val, gene_x,
+   gene_x_wi_vals,i, j, stAI, x, y, z)
 
 #import genome-wide stAI values
 
-try<-read.delim("/Users/katiefisher/xylose_optimization_project/data/labella_et_al/cds_mito_processed_tAI_recalc/running_table.txt")
-try$taxa<-as.char
-
-##have to convert names to names in use in our dfs
-x<-try[,3]
+genome_wide_tAI<-read.delim("~/xylose_optimization_project/data/labella_et_al/cds_mito_processed_tAI_recalc/genome_wide_tAI_all_spp.txt")
+#after unzipping before import had to correct taxa names in file on command line using sed to replace 
+#underscores with spaces. 
+#have to fix taxa names
+x<-as.character(genome_wide_tAI$taxa)
 taxa_IDs<-x
 for (i in 1:length(x)){
   if (grepl("yHMP", x[i]) | grepl("yHAB", x[i])){
-    name<-paste(strsplit(x[i], "_")[[1]][2], strsplit(x[i], "_")[[1]][3], sep=" ")
+    name<-paste(strsplit(x[i], " ")[[1]][2], strsplit(x[i], " ")[[1]][3], sep=" ")
   }
   else{
-    name<-paste(strsplit(x[i], "_")[[1]][1], strsplit(x[i], "_")[[1]][2], sep=" ")
+    name<-paste(strsplit(x[i], " ")[[1]][1], strsplit(x[i], " ")[[1]][2], sep=" ")
   }
   taxa_IDs[i]<-name
 }
 ####
-alnmnt_matrix[,1]<-taxa_IDs
+genome_wide_tAI$taxa<-taxa_IDs
+###NAMES FIXED ABOVE
+#Hash out and import in the future. 
+write.table(genome_wide_tAI, "~/xylose_optimization_project/data/labella_et_al/cds_mito_processed_tAI_recalc/genome_wide_tAI_all_spp.txt", sep="\t", quote=FALSE, row.names=FALSE)
+
+#Create empty datafrme to populate with estAI values
+estAI_df<-stAI_dataframe
+for(i in 2:ncol(estAI_df)){
+  for(j in 1:nrow(estAI_df)){
+    estAI_df[j,i]<-NA
+  }
+}
+
+genome_wide_tAI$taxa<-as.character(genome_wide_tAI$taxa)
+stAI_dataframe$all_taxa<-as.character(stAI_dataframe$all_taxa)
+
+# iterate through stAI df and populate estAI df 
+for(i in 2:ncol(stAI_dataframe)){
+  for(j in 1:nrow(stAI_dataframe)){
+  # grab the species tAI vals for all genes 
+  if(!is.na(stAI_dataframe[j,i])){
+  species_tAI_vals<-genome_wide_tAI[which(genome_wide_tAI$taxa==stAI_dataframe$all_taxa[j]), 2]
+  ecdf_func<-ecdf(species_tAI_vals)
+  estAI_df[j,i]<-ecdf_func(stAI_dataframe[j,i])
+  }
+  }
+}
+
+rm(ecdf_func, i, j, name, species_tAI_vals, taxa_IDs, x)
+
+####writing tAI, estAI results as tables to import
+write.table(stAI_dataframe, "~/xylose_optimization_project/data/spp_by_gene_tAI_vals.txt", sep="\t", quote=FALSE, row.name=FALSE)
+write.table(estAI_df, "~/xylose_optimization_project/data/spp_by_gene_estAI_vals.txt", sep="\t", quote=FALSE, row.name=FALSE)
 
 
 
+###Abbe's paper uses the empirical distribution function to find
+#the percent of genes with lower tAI vals. Does this differ from 
+#our division function? 
+
+# create ecdf distribution function
+# ecdf_func<-ecdf(species_tAI_vals)
+# ecdf_func(stAI_dataframe[j,i])
+# I did a couple by hand and the numbers are the exact same. 
+# I guess there's no harm in doing EXACTLY what Abbe did, 
+# I'll adjust the code
+
+
+#Compare histograms of estAI vals between genes
+quartz()
+par(mar=c(2,2,2,2))
+par(mfrow=c(2,3))
+hist(estAI_df$xyl1)
+hist(estAI_df$xyl2)
+hist(estAI_df$xyl3)
+hist(estAI_df$tkl1)
+hist(estAI_df$tal1)
+
+#strategy for finding good xylose species - find species for which
+#all genes are in top 10% of respective distributions
+#we can't directly compare tAI values (raw data)
+#we have to compare estAI values (normalized data)
+
+#first just making a df of just the highest estAI 
+#for those spp with more than one. 
+max_estAI_df<-estAI_df
+for (i in 2:6){
+  for(j in 1:nrow(estAI_df)){
+    if(!is.na(estAI_df[j,i]) & !is.na(estAI_df[(j+5), i])){
+      max_estAI_df[j,i]<-max(estAI_df[j,i],estAI_df[(j+5),i]) 
+    }
+  }
+}
+max_estAI_df<-max_estAI_df[1:6]
+#can import from now on
+write.table(max_estAI_df, "~/xylose_optimization_project/data/spp_by_gene_maximum_paralog_estAI_vals.txt", sep="\t", quote=FALSE, row.names=FALSE)
+
+
+#now finding spp in top ten percent for all
+toptens<- as.character(unique(max_estAI_df$all_taxa))
+for (i in 2:ncol(max_estAI_df)){
+  vec<-sort(max_estAI_df[,i], decreasing = TRUE)
+  spp<-max_estAI_df[which(max_estAI_df[,i]>=
+                            quantile(vec, 0.90)), 1]
+  keep<-which(toptens %in% spp)
+  toptens<-toptens[keep]
+}
+##3 spp in 90th percentile for xyl1, xyl2, xyl3: 
+#spathaspora gorwiae
+#kluyveromyces aestuarii 
+#sugiyamaella lignohabitans
+##1 sp in 90th percentile for xyl1, xyl2, xyl3, tkl1:
+#spathaspora gorwiae
+#0 spp 
+
+#wider net of top 25% (75th percentile)
+top25s<- as.character(unique(max_estAI_df$all_taxa))
+for (i in 2:ncol(max_estAI_df)){
+  vec<-sort(max_estAI_df[,i], decreasing = TRUE)
+  spp<-max_estAI_df[which(max_estAI_df[,i]>=
+                            quantile(vec, 0.75)), 1]
+  keep<-which(top25s %in% spp)
+  top25s<-top25s[keep]
+}
+
+#in top 25 for all 5 genes: 
+# spathaspora gorwiae 
+# spathaspora hagerdaliae
+# spathaspora girioi
+# kodamaea ohmeri
 
