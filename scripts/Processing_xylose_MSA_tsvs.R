@@ -85,6 +85,8 @@ for (i in 1:nrow(xylose_utilization_gene_presence)){
   }
 }
 
+write.table(xylose_utilization_gene_presence, 
+            "~/xylose_optimization_project/data/XYLpthwy_gene_presence_absence_matrix.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
 
 
@@ -450,6 +452,7 @@ for (i in 2:6){
 }
 max_estAI_df<-max_estAI_df[1:6]
 #can import from now on
+max_estAI_df$all_taxa<-tolower(max_estAI_df$all_taxa)
 write.table(max_estAI_df, "~/xylose_optimization_project/data/spp_by_gene_maximum_paralog_estAI_vals.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
 
@@ -468,7 +471,7 @@ for (i in 2:ncol(max_estAI_df)){
 #sugiyamaella lignohabitans
 ##1 sp in 90th percentile for xyl1, xyl2, xyl3, tkl1:
 #spathaspora gorwiae
-#0 spp 
+#0 spp in top 10% for all 5 genes
 
 #wider net of top 25% (75th percentile)
 top25s<- as.character(unique(max_estAI_df$all_taxa))
@@ -485,4 +488,44 @@ for (i in 2:ncol(max_estAI_df)){
 # spathaspora hagerdaliae
 # spathaspora girioi
 # kodamaea ohmeri
+
+
+
+
+###EXAMINGING CORRELLATIONS BTW XYLOSE ESTAI AND XYLOSE GROWTH DATA
+#data from Dana Opulente 
+
+#have to merge spp. to keys. 
+key<-read.delim("~/xylose_optimization_project/data/Spp_indices.txt", strip.white = TRUE)
+key$Species<-tolower(key$Species)
+growth_data<-read.delim("~/xylose_optimization_project/data/Xylose_growth_data_DO.txt", strip.white = TRUE)
+x<-merge(growth_data, key[c(1,3)], by="PU.")
+
+which(!x$Species %in% max_estAI_df$all_taxa)->not_in_data
+
+#Ok - the spp. we have that are NOT in the tree mostly seem to be due to renaming. 
+#looking up possible new spp. names using second name of sp. 
+for (i in 1:length(not_in_data)){
+  x[(not_in_data[i]), 3]->old_sp
+  spName<-strsplit(old_sp, " ")[[1]][2]
+  possiblechange<-max_estAI_df$all_taxa[which(grepl(spName, max_estAI_df$all_taxa))]
+  if (length(possiblechange)==1){
+    x[(not_in_data[i]), 3]<-possiblechange
+  }
+}
+
+which(!x$Species %in% max_estAI_df$all_taxa)->not_in_data
+x[(not_in_data[1]), 3]<-"hanseniaspora vinae"
+x[(not_in_data[2]), 3]<-"spencermartinsiella europaea"
+x[(not_in_data[3]), 3]<-"martiniozyma abiesophila"
+x[(not_in_data[4]), 3]<-"nakaseomyces castellii"
+#x[(not_in_data[5]), 3]<-albicans - which we don't have
+x[(not_in_data[6]), 3]<-"suhomyces pyralidae"
+x[(not_in_data[7]), 3]<-"metschnikowia lockheadii"
+x[(not_in_data[8]), 3]<-"metschnikowia dekortum"
+#x[(not_in_data[9]), 3]<-"metschnikowia gruessii"-> not sure who this is. 
+colnames(x)[3]<-"all_taxa"
+
+growth_rates_df<-merge(max_estAI_df, x, by="all_taxa")
+write.table(growth_rates_df, "xylose_optimization_project/data/growth_rate_master_df.txt", sep="/t" quote=FALSE, row.names=FALSE)
 
