@@ -501,7 +501,7 @@ key$Species<-tolower(key$Species)
 growth_data<-read.delim("~/xylose_optimization_project/data/Xylose_growth_data_DO.txt", strip.white = TRUE)
 x<-merge(growth_data, key[c(1,3)], by="PU.")
 
-which(!x$Species %in% max_estAI_df$all_taxa)->not_in_data
+which(!x$all_taxa %in% max_estAI_df$all_taxa)->not_in_data
 
 #Ok - the spp. we have that are NOT in the tree mostly seem to be due to renaming. 
 #looking up possible new spp. names using second name of sp. 
@@ -514,7 +514,7 @@ for (i in 1:length(not_in_data)){
   }
 }
 
-which(!x$Species %in% max_estAI_df$all_taxa)->not_in_data
+which(!x$all_taxa %in% max_estAI_df$all_taxa)->not_in_data
 x[(not_in_data[1]), 3]<-"hanseniaspora vinae"
 x[(not_in_data[2]), 3]<-"spencermartinsiella europaea"
 x[(not_in_data[3]), 3]<-"martiniozyma abiesophila"
@@ -527,5 +527,135 @@ x[(not_in_data[8]), 3]<-"metschnikowia dekortum"
 colnames(x)[3]<-"all_taxa"
 
 growth_rates_df<-merge(max_estAI_df, x, by="all_taxa")
-write.table(growth_rates_df, "xylose_optimization_project/data/growth_rate_master_df.txt", sep="/t" quote=FALSE, row.names=FALSE)
+write.table(growth_rates_df, "xylose_optimization_project/data/growth_rate_master_df.txt", sep="\t", quote=FALSE, row.names=FALSE)
+
+
+#######work from above table from now on
+install.packages("ade4")
+require(ade4)
+library(ade4)
+growth_rates<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df.txt", stringsAsFactors = FALSE)
+
+plot(x=growth_rates$xyl1, y=growth_rates$Growth.Rate)
+filtered_growth_rates<-growth_rates[which(growth_rates$Growth.Rate>0), ]
+plot(x=filtered_growth_rates$xyl1, y=filtered_growth_rates$Growth.Rate)
+cor.test(x=filtered_growth_rates$xyl1, y=filtered_growth_rates$Growth.Rate, method = "pearson")
+cor.test(x=filtered_growth_rates$xyl2, y=filtered_growth_rates$Growth.Rate, method = "pearson")
+cor.test(x=filtered_growth_rates$xyl3, y=filtered_growth_rates$Growth.Rate, method = "pearson")
+cor.test(x=filtered_growth_rates$tkl1, y=filtered_growth_rates$Growth.Rate, method = "pearson")
+cor.test(x=filtered_growth_rates$tal1, y=filtered_growth_rates$Growth.Rate, method = "pearson")
+
+########
+library(ape)
+require(stringr)
+tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
+key<-read.delim("~/xylose_optimization_project/data/Spp_indices.txt", strip.white = TRUE, stringsAsFactors = FALSE)
+tree$tip.label
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree$tip.label<-tolower(tree$tip.label)
+tree$tip.label
+growth_data<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df.txt", stringsAsFactors = FALSE)
+x<-growth_data
+
+x$all_taxa[which(!x$all_taxa %in% tree$tip.label)]
+
+#Ok - the spp. we have that are NOT in the tree mostly seem to be due to renaming. 
+#looking up possible new spp. names using second name of sp. 
+which(!x$all_taxa %in% tree$tip.label)->not_in_data
+x[(not_in_data[1]), 1]<-"blastobotrys raffinosifermentans"
+#x[(not_in_data[2]), 1]<-"spencermartinsiella europaea"
+x[(not_in_data[3]), 1]<-"hanseniaspora vineae"
+x[(not_in_data[4]), 1]<-"lachancea fantastica_nom_nud"
+x[(not_in_data[5]), 1]<-"magnusiomyces tetraspermus"
+x[(not_in_data[6]), 1]<-"metschnikowia dekortorum"
+x[(not_in_data[7]), 1]<-"metschnikowia lochheadii"
+x[(not_in_data[8]), 1]<-"metschnikowia matae_var._matae"
+x[(not_in_data[9]), 1]<-"metschnikowia matae_var._maris"
+x[(not_in_data[10]), 1]<-"candida castellii"
+x[(not_in_data[11]), 1]<-"ogataea philodendri"
+x[(not_in_data[12]), 1]<-"ogataea populialbae"
+#pulling candida azyma out b/c it's not in the tree
+x<-x[-24, ]
+#now need NA rows for those in the tree but not in the data
+tree$tip.label[which(!tree$tip.label %in% x$all_taxa)]->all_taxa
+tobind<-data.frame(all_taxa)
+tobind$"xyl1"<-NA      
+tobind$"xyl2"<-NA
+tobind$"xyl3"<-NA   
+tobind$"tkl1"<-NA
+tobind$"tal1"<-NA
+tobind$"PU."<-NA
+tobind$"Growth.Rate"<-NA
+x<-rbind(x, tobind)
+labs<-data.frame(tree$tip.label, c(1:length(tree$tip.label)))
+colnames(labs)<-c("all_taxa", "phylo_order")
+x<-merge(x, labs, by="all_taxa")
+x<-x[order(x$phylo_order), ]
+
+####################################################################
+##IGNORE ABOVE -> fixed names in data to match 332 tree
+###############
+##Import the below written dataframe for PIC analysis
+###################################################################
+write.table(x, "~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", sep="\t", quote=FALSE, row.names = FALSE)
+#growth data and estAI vals
+growth_data<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt")
+#332 tree
+library(ape)
+require(stringr)
+require(ggpubr)
+tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
+tree$tip.label
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree$tip.label<-tolower(tree$tip.label)
+#
+require(ade4)
+require(adephylo)
+require(ape)
+#for each orthogram I need to drop the tree taxa that are missing data
+#they're in the same order - so should be easy
+removes<-which(is.na(growth_data$xyl1))
+xyl1_tree<-drop.tip(tree, tree$tip.label[removes])
+removes<-which(is.na(growth_data$xyl2))
+xyl2_tree<-drop.tip(tree, tree$tip.label[removes])
+removes<-which(is.na(growth_data$xyl3))
+xyl3_tree<-drop.tip(tree, tree$tip.label[removes])
+removes<-which(is.na(growth_data$tkl1))
+tkl1_tree<-drop.tip(tree, tree$tip.label[removes])
+removes<-which(is.na(growth_data$tal1))
+tal1_tree<-drop.tip(tree, tree$tip.label[removes])
+removes<-which(is.na(growth_data$Growth.Rate))
+growth_tree<-drop.tip(tree, tree$tip.label[removes])
+
+
+#phylo <- ape::read.tree(text = tree)
+xyl1<-as.numeric(na.omit(growth_data$xyl1))
+orthogram(xyl1, tre = xyl1_tree)
+#xyl1=diffuse dependence
+xyl2<-as.numeric(na.omit(growth_data$xyl2))
+orthogram(xyl2, tre=xyl2_tree)
+#xyl2= no phylogenetic dependence
+xyl3<-as.numeric(na.omit(growth_data$xyl3))
+orthogram(xyl3, tre=xyl3_tree)
+#xyl3=diffuse dependence and specific node importance
+tal1<-as.numeric(na.omit(growth_data$tal1))
+orthogram(tal1, tre=tal1_tree)
+#tal1 = no phylo dependence
+tkl1<-as.numeric(na.omit(growth_data$tkl1))
+orthogram(tkl1, tre=tkl1_tree)
+#tkl1 = no phylo dependence
+growth<-as.numeric(na.omit(growth_data$Growth.Rate))
+orthogram(growth, growth_tree)
+#growth = diffuse phylo dependence
+
+##PIC below: 
+PIC_df<-growth_data
+#PIC growth data x XYL1
+removes<-which(is.na(growth_data$xyl1) | is.na(growth_data$Growth.Rate))
+xyl1PICtree<-drop.tip(tree, tree$tip.label[removes])
+df<-growth_data[-removes, ]
+PIC.xyl1<-pic(df$xyl1, xyl1PICtree)
+PIC.growth<-pic(df$Growth.Rate, xyl1PICtree)
+cor.test(PIC.xyl1, PIC.growth)
+
 
