@@ -597,15 +597,15 @@ x<-x[order(x$phylo_order), ]
 ###############
 ##Import the below written dataframe for PIC analysis
 ###################################################################
-write.table(x, "~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", sep="\t", quote=FALSE, row.names = FALSE)
+#write.table(x, "~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", sep="\t", quote=FALSE, row.names = FALSE)
 #growth data and estAI vals
 growth_data<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt")
 #332 tree
 library(ape)
+install.packages("stringr")
 require(stringr)
 require(ggpubr)
 tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
-tree$tip.label
 tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
 tree$tip.label<-tolower(tree$tip.label)
 #
@@ -649,13 +649,79 @@ orthogram(growth, growth_tree)
 #growth = diffuse phylo dependence
 
 ##PIC below: 
-PIC_df<-growth_data
 #PIC growth data x XYL1
 removes<-which(is.na(growth_data$xyl1) | is.na(growth_data$Growth.Rate))
-xyl1PICtree<-drop.tip(tree, tree$tip.label[removes])
 df<-growth_data[-removes, ]
+df<-df[which(df$Growth.Rate>0), ]
+removes<-which(!tree$tip.label %in% df$all_taxa)
+xyl1PICtree<-drop.tip(tree, tree$tip.label[removes])
+#calculate and compare PIC values
 PIC.xyl1<-pic(df$xyl1, xyl1PICtree)
 PIC.growth<-pic(df$Growth.Rate, xyl1PICtree)
 cor.test(PIC.xyl1, PIC.growth)
+cordf<-data.frame(PIC.xyl1, PIC.growth)
+ggscatter(data=cordf, x="PIC.xyl1", y="PIC.growth",  
+          col="red", size=2, add="reg.line",add.params = list(color = "blue", fill = "gray"),
+          cor.coeff.args = list(method = "pearson", label.sep = "\n"), conf.int=TRUE, cor.coef=TRUE, cor.method="pearson",
+          xlab="PIC XYL1", ylab="PIC xylose growth rate")
+
+
+#PIC growth data x XYL2
+removes<-which(is.na(growth_data$xyl2) | is.na(growth_data$Growth.Rate))
+df<-growth_data[-removes, ]
+df<-df[which(df$Growth.Rate>0), ]
+#remove optical outliers
+#df<-df[which(df$xyl2 != min(df$xyl2)),]
+#df<-df[which(df$Growth.Rate != min(df$Growth.Rate)), ]
+removes<-which(!tree$tip.label %in% df$all_taxa)
+xyl2PICtree<-drop.tip(tree, tree$tip.label[removes])
+#calculate and compare PIC values
+PIC.xyl2<-pic(df$xyl2, xyl2PICtree)
+PIC.growth<-pic(df$Growth.Rate, xyl2PICtree)
+cor.test(PIC.xyl2, PIC.growth)
+cordf<-data.frame(PIC.xyl2, PIC.growth)
+ggscatter(data=cordf, x="PIC.xyl2", y="PIC.growth",  
+          col="red", size=2, add="reg.line",add.params = list(color = "blue", fill = "gray"),
+          cor.coeff.args = list(method = "pearson", label.sep = "\n"), conf.int=TRUE, cor.coef=TRUE, cor.method="pearson",
+          xlab="PIC xyl2", ylab="PIC xylose growth rate")
+
+
+#PIC growth data x XYL2
+removes<-which(is.na(growth_data$xyl3) | is.na(growth_data$Growth.Rate))
+df<-growth_data[-removes, ]
+df<-df[which(df$Growth.Rate>0), ]
+#remove optical outliers
+removes<-which(!tree$tip.label %in% df$all_taxa)
+xyl3PICtree<-drop.tip(tree, tree$tip.label[removes])
+#calculate and compare PIC values
+PIC.xyl3<-pic(df$xyl3, xyl3PICtree)
+PIC.growth<-pic(df$Growth.Rate, xyl3PICtree)
+cor.test(PIC.xyl3, PIC.growth)
+cordf<-data.frame(PIC.xyl3, PIC.growth)
+ggscatter(data=cordf, x="PIC.xyl3", y="PIC.growth",  
+          col="red", size=2, add="reg.line",add.params = list(color = "blue", fill = "gray"),
+          cor.coeff.args = list(method = "pearson", label.sep = "\n"), conf.int=TRUE, cor.coef=TRUE, cor.method="pearson",
+          xlab="PIC xyl3", ylab="PIC xylose growth rate")
+
+
+
+###### Comparison of growers and non-growers
+growers<-growth_data[which(growth_data$Growth.Rate>0), ]
+nongrowers<-growth_data[which(growth_data$Growth.Rate <= 0), ]
+
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data$growth.binary<-NA
+for(i in 1:nrow(growth_data)){
+  if(growth_data$Growth.Rate[i]>0){
+    growth_data$growth.binary[i]<-1
+  }
+  if(growth_data$Growth.Rate[i]==0){
+    growth_data$growth.binary[i]<-0
+  }
+}
+
+boxplot(growth_data$xyl1 ~ as.factor(growth_data$growth.binary),
+        col="lightblue", xlab="codon optimization")
+
 
 
