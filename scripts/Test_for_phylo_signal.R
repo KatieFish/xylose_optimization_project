@@ -52,3 +52,15 @@ gene_mat[(nrow(gene_mat)+1), ]<-c("nadsonia fulvescens_var._elongata", rep(NA, 5
 
 write.table(gene_mat, "~/xylose_optimization_project/data/XYLpthwy_gene_presence_absence_matrix.txt", sep="\t", quote=FALSE, row.names=FALSE)
 write.tree(tree, "~/xylose_optimization_project/data/332_Newick_tree_lowcaselabels.nwk")
+
+### same name matching for growth data: 
+
+growth_data<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt")
+library(ape)
+require(stringr)
+tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
+tree$tip.label<-tolower(tree$tip.label)
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree_taxa<-tree$tip.label
+which(!growth_data$all_taxa %in% tree_taxa)-> not_in_data
+growth_data[not_in_data, 1]

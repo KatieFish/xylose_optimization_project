@@ -1,0 +1,424 @@
+DATASET_BINARY
+#Binary datasets are visualized as filled or empty symbols, depending on the value associated with a node (0 or 1).
+#Each node can have multiple associated values, and each value will be represented by a symbol (defined in FIELD_SHAPES) with corresponding color and label (from FIELD_COLORS and FIELD_LABELS).
+#Possible values (defined under DATA below) for each node are 1 (filled shapes), 0 (empty shapes) and -1 (completely omitted).
+
+#lines starting with a hash are comments and ignored during parsing
+
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file (except in the SEPARATOR line, which uses space).
+SEPARATOR TAB
+#SEPARATOR SPACE
+#SEPARATOR COMMA
+
+#label is used in the legend table (can be changed later)
+DATASET_LABEL	S_value>.5
+
+#dataset color (can be changed later)
+COLOR	#ffff00
+
+#shapes for each field column; possible choices are
+#1: rectangle 
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: check mark
+FIELD_SHAPES	3
+
+#field labels
+FIELD_LABELS	S_value>.5
+
+#=================================================================#
+#                    OPTIONAL SETTINGS                            #
+#=================================================================#
+
+#define colors for each individual field column (if not defined all symbols will use the main dataset color, defined in COLOR above)
+#FIELD_COLORS,#ff0000
+
+
+#=================================================================#
+#     all other optional settings can be set or changed later     #
+#           in the web interface (under 'Datasets' tab)           #
+#=================================================================#
+
+#Each dataset can have a legend, which is defined using LEGEND_XXX fields below
+#For each row in the legend, there should be one shape, color and label.
+#Optionally, you can define an exact legend position using LEGEND_POSITION_X and LEGEND_POSITION_Y. To use automatic legend positioning, do NOT define these values
+#Optionally, shape scaling can be present (LEGEND_SHAPE_SCALES). For each shape, you can define a scaling factor between 0 and 1.
+#Shape should be a number between 1 and 6, or any protein domain shape definition.
+#1: square
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: checkmark
+
+#LEGEND_TITLE,Dataset legend
+#LEGEND_POSITION_X,100
+#LEGEND_POSITION_Y,100
+#LEGEND_SHAPES,1,2,3
+#LEGEND_COLORS,#ff0000,#00ff00,#0000ff
+#LEGEND_LABELS,value1,value2,value3
+#LEGEND_SHAPE_SCALES,1,1,0.5
+
+#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display.
+#SHOW_INTERNAL,0
+
+#show dashed lines between leaf labels and the dataset
+#DASHED_LINES,1
+
+#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap.
+#MARGIN,0
+#align symbols to the end of each leaf label (individual dataset field will not be aligned to each other)
+#ALIGN_TO_LABELS,1
+
+#symbol height factor; Default symbol height will be slightly less than the available space between leaves, but you can set a multiplication factor here to increase/decrease it (values from 0 to 1 will decrease it, values above 1 will increase it)
+#HEIGHT_FACTOR,1
+
+#increase/decrease the spacing between individual levels, when there is more than one binary level defined 
+#SYMBOL_SPACING,10
+
+#display or hide the text labels above each field column
+#SHOW_LABELS,1
+
+#Example dataset with 4 columns (circle, left triangle, right triangle and rectangle):
+#FIELD_SHAPES,2,4,5,1
+#FIELD_LABELS,f1,f2,f3,f4
+#FIELD_COLORS,#ff0000,#00ff00,#ffff00,#0000ff
+
+#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages
+#=================================================================#
+#       Actual data follows after the "DATA" keyword              #
+#=================================================================#
+DATA
+aciculoconidium_aculeatum	1
+alloascoidea_hylecoeti	-1
+ambrosiozyma_ambrosiae	1
+ambrosiozyma_kashinagacola	1
+ambrosiozyma_maleeae	1
+ambrosiozyma_monospora	1
+ambrosiozyma_oregonensis	1
+ambrosiozyma_philentoma	1
+ambrosiozyma_pseudovanderkliftii	1
+ambrosiozyma_vanderkliftii	1
+ascoidea_asiatica	-1
+ascoidea_rubescens	-1
+ashbya_aceri	-1
+babjeviella_inositovora	1
+barnettozyma_californica	1
+barnettozyma_hawaiiensis	1
+barnettozyma_populi	1
+barnettozyma_pratensis	1
+barnettozyma_salicaria	1
+blastobotrys_adeninivorans	1
+blastobotrys_americana	1
+blastobotrys_mokoenaii	1
+blastobotrys_muscicola	1
+blastobotrys_nivea	1
+blastobotrys_peoriensis	1
+blastobotrys_proliferans	1
+blastobotrys_raffinosifermentans	1
+blastobotrys_serpentis	1
+brettanomyces_anomalus	1
+brettanomyces_bruxellensis	1
+candida_albicans	-1
+starmerella_apicola	1
+candida_arabinofermentans	-1
+candida_ascalaphidarum	-1
+candida_athensensis	1
+candida_auris	1
+candida_blattae	1
+candida_boidinii	-1
+candida_bracarensis	1
+candida_carpophila	1
+candida_castellii	1
+candida_corydali	-1
+candida_dubliniensis	-1
+candida_fragi	1
+candida_freyschussii	1
+candida_fructus	1
+candida_glabrata	1
+candida_golubevii	1
+candida_gorgasii	-1
+candida_gotoi	1
+candida_hawaiiana	1
+candida_heveicola	1
+candida_hispaniensis	1
+candida_incommunis	-1
+candida_intermedia	1
+candida_montana	1
+candida_mycetangii	1
+candida_nivariensis	1
+candida_orba	1
+candida_oregonensis	1
+candida_orthopsilosis	-1
+candida_parapsilosis	1
+candida_ponderosae	1
+candida_restingae	1
+candida_rhagii	1
+candida_schatavii	1
+candida_sojae	-1
+candida_sorboxylosa	1
+candida_stellimalicola	-1
+candida_succiphila	-1
+candida_tammaniensis	-1
+candida_tropicalis	-1
+candida_vartiovaarae	1
+candida_wancherniae	-1
+cephaloascus_albidus	-1
+cephaloascus_fragrans	1
+citeromyces_hawaiiensis	1
+citeromyces_matritensis	1
+citeromyces_siamensis	-1
+clavispora_lusitaniae	1
+cyberlindnera_americana	1
+cyberlindnera_fabianii	1
+cyberlindnera_jadinii	1
+cyberlindnera_maclurae	1
+cyberlindnera_misumaiensis	1
+cyberlindnera_mrakii	1
+cyberlindnera_petersonii	1
+cyberlindnera_saturnus	1
+cyberlindnera_suaveolens	1
+cyberlindnera_xylosilytica	1
+danielozyma_ontarioensis	1
+deakozyma_indianensis	1
+debaryomyces_fabryi	1
+debaryomyces_hansenii	1
+debaryomyces_maramus	1
+debaryomyces_nepalensis	1
+debaryomyces_prosopidis	1
+debaryomyces_subglobosus	1
+diddensiella_caesifluorescens	1
+dipodascus_albidus	1
+dipodascus_geniculatus	1
+eremothecium_coryli	1
+eremothecium_cymbalariae	1
+eremothecium_gossypii	-1
+eremothecium_sinecaudum	1
+geotrichum_candidum	1
+groenewaldozyma_salmanticensis	1
+hanseniaspora_clermontiae	1
+hanseniaspora_osmophila	1
+hanseniaspora_pseudoguilliermondii	1
+hanseniaspora_singularis	1
+hanseniaspora_uvarum	1
+hanseniaspora_valbyensis	1
+hanseniaspora_vineae	1
+hyphopichia_burtonii	-1
+hyphopichia_heimii	1
+hyphopichia_homilentoma	1
+kazachstania_aerobia	1
+kazachstania_africana	1
+kazachstania_bromeliacearum	1
+kazachstania_intestinalis	1
+kazachstania_kunashirensis	1
+kazachstania_martiniae	1
+kazachstania_naganishii	1
+kazachstania_rosinii	1
+kazachstania_siamensis	1
+kazachstania_solicola	1
+kazachstania_spencerorum	-1
+kazachstania_taianensis	-1
+kazachstania_transvaalensis	1
+kazachstania_turicensis	1
+kazachstania_unispora	1
+kazachstania_viticola	1
+kazachstania_yakushimaensis	-1
+kloeckera_hatyaiensis	1
+kluyveromyces_aestuarii	1
+kluyveromyces_dobzhanskii	1
+kluyveromyces_lactis	1
+kluyveromyces_marxianus	1
+kodamaea_laetipori	1
+kodamaea_ohmeri	1
+komagataella_phaffii	1
+komagataella_populi	1
+komagataella_pseudopastoris	1
+kregervanrija_delftensis	-1
+kregervanrija_fluxuum	-1
+kuraishia_capsulata	1
+kuraishia_molischiana	-1
+kuraishia_ogatae	1
+kurtzmaniella_cleridarum	1
+lachancea_cidri	1
+lachancea_dasiensis	1
+lachancea_fantastica	1
+lachancea_fermentati	1
+lachancea_kluyveri	1
+lachancea_lanzarotensis	1
+lachancea_meyersii	1
+lachancea_mirantina	1
+lachancea_nothofagi	1
+lachancea_quebecensis	1
+lachancea_thermotolerans	-1
+lachancea_waltii	1
+lipomyces_arxii	-1
+lipomyces_doorenjongii	-1
+lipomyces_japonicus	1
+lipomyces_kononenkoae	-1
+lipomyces_lipofer	-1
+lipomyces_mesembrius	1
+lipomyces_oligophaga	1
+lipomyces_starkeyi	-1
+lipomyces_suomiensis	1
+lodderomyces_elongisporus	1
+magnusiomyces_tetraspermus	1
+metschnikowia_aberdeeniae	1
+metschnikowia_arizonensis	1
+metschnikowia_bicuspidata_var._bicuspidata	-1
+metschnikowia_borealis	-1
+metschnikowia_bowlesiae	-1
+metschnikowia_cerradonensis	1
+metschnikowia_continentalis	1
+metschnikowia_dekortorum	-1
+metschnikowia_drakensbergensis	1
+metschnikowia_hamakuensis	1
+metschnikowia_hawaiiensis	1
+metschnikowia_hibisci	1
+metschnikowia_ipomoeae	1
+metschnikowia_kamakouana	1
+metschnikowia_kipukae	1
+metschnikowia_lochheadii	1
+metschnikowia_matae_var._maris	1
+metschnikowia_matae_var._matae	1
+metschnikowia_mauinuiana	1
+metschnikowia_proteae	-1
+metschnikowia_santaceciliae	1
+metschnikowia_shivogae	1
+metschnikowia_similis	-1
+meyerozyma_caribbica	1
+meyerozyma_guilliermondii	1
+middelhovenomyces_tepae	1
+millerozyma_acaciae	1
+nadsonia_fulvescens_var._elongata	1
+nakaseomyces_bacillisporus	1
+nakaseomyces_delphensis	1
+nakazawaea_holstii	1
+nakazawaea_peltata	1
+naumovozyma_castellii	1
+naumovozyma_dairenensis	1
+ogataea_glucozyma	1
+ogataea_henricii	1
+ogataea_kodamae	1
+ogataea_methanolica	1
+ogataea_methylivora	-1
+ogataea_minuta	1
+ogataea_naganishii	1
+ogataea_nitratoaversa	-1
+ogataea_nonfermentans	1
+ogataea_parapolymorpha	-1
+ogataea_philodendri	1
+ogataea_pilisensis	1
+ogataea_pini	1
+ogataea_polymorpha	1
+ogataea_populialbae	1
+ogataea_ramenticola	-1
+ogataea_trehaloabstinens	1
+ogataea_trehalophila	1
+ogataea_zsoltii	1
+pachysolen_tannophilus	1
+peterozyma_toletana	1
+peterozyma_xylosa	1
+phaffomyces_antillensis	1
+phaffomyces_opuntiae	1
+phaffomyces_thermotolerans	-1
+pichia_exigua	1
+pichia_heedii	-1
+pichia_kudriavzevii	1
+pichia_membranifaciens	-1
+pichia_nakasei	-1
+pichia_norvegensis	-1
+pichia_occidentalis	1
+pichia_terricola	1
+priceomyces_carsonii	1
+priceomyces_castillae	1
+priceomyces_haplophilus	1
+priceomyces_medius	1
+saccharomyces_arboricola	1
+saccharomyces_cerevisiae	1
+saccharomyces_eubayanus	1
+saccharomyces_kudriavzevii	1
+saccharomyces_mikatae	1
+saccharomyces_paradoxus	1
+saccharomyces_uvarum	1
+saccharomycopsis_capsularis	1
+saccharomycopsis_malanga	1
+saprochaete_clavata	1
+saturnispora_dispora	1
+saturnispora_hagleri	1
+saturnispora_mendoncae	1
+saturnispora_saitoi	1
+saturnispora_serradocipensis	1
+saturnispora_silvae	1
+saturnispora_zaruensis	1
+scheffersomyces_lignosus	1
+scheffersomyces_stipitis	1
+spathaspora_arborariae	-1
+spathaspora_girioi	-1
+spathaspora_gorwiae	1
+spathaspora_hagerdaliae	1
+spathaspora_passalidarum	1
+spencermartinsiella_europaea	1
+sporopachydermia_lactativora	1
+sporopachydermia_quercuum	1
+starmera_amethionina	-1
+starmera_quercuum	1
+starmerella_bombicola	1
+sugiyamaella_lignohabitans	1
+suhomyces_canberraensis	1
+suhomyces_emberorum	1
+suhomyces_pyralidae	1
+suhomyces_tanzawaensis	1
+tetrapisispora_blattae	1
+tetrapisispora_fleetii	1
+tetrapisispora_iriomotensis	1
+tetrapisispora_namnaonensis	1
+tetrapisispora_phaffii	1
+teunomyces_cretensis	1
+teunomyces_gatunensis	1
+teunomyces_kruisii	1
+tortispora_caseinolytica	1
+tortispora_ganteri	1
+tortispora_starmeri	1
+torulaspora_delbrueckii	1
+torulaspora_franciscae	1
+torulaspora_maleeae	1
+torulaspora_microellipsoides	1
+torulaspora_pretoriensis	1
+trigonopsis_variabilis	1
+trigonopsis_vinaria	1
+vanderwaltozyma_polyspora	1
+wickerhamia_fluorescens	1
+wickerhamiella_cacticola	1
+wickerhamiella_domercqiae	1
+wickerhamiella_infanticola	1
+wickerhamiella_versatilis	1
+wickerhamomyces_alni	-1
+wickerhamomyces_anomalus	-1
+wickerhamomyces_bovis	1
+wickerhamomyces_canadensis	1
+wickerhamomyces_ciferrii	-1
+wickerhamomyces_hampshirensis	1
+wickerhamomyces_sp.	-1
+yamadazyma_nakazawae	1
+yamadazyma_philogaea	1
+yamadazyma_scolyti	1
+yamadazyma_tenuis	1
+yarrowia_bubula	1
+yarrowia_deformans	1
+yarrowia_divulgata	1
+yarrowia_keelungensis	-1
+yarrowia_lipolytica	1
+yueomyces_sinensis	1
+zygoascus_meyerae	1
+zygoascus_ofunaensis	1
+zygosaccharomyces_bailii	1
+zygosaccharomyces_bisporus	1
+zygosaccharomyces_kombuchaensis	1
+zygosaccharomyces_rouxii	1
+zygotorulaspora_florentina	1
+zygotorulaspora_mrakii	1

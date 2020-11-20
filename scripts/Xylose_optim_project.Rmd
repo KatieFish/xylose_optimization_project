@@ -1,0 +1,425 @@
+---
+title: "Xylose codon optimization project"
+output: html_document
+---
+WORKFLOW: 
+
+
+Part 1: Isolation of homologs
+
+HMMR (http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) was used to identify homologs for XYL1 (xylose reducase), XYL2 (Xylitol dehydrogenase), XYL3 (xylulokinase), TKL1 (transketolase), and TAL1 (transaldolase). We specifically queried the 332 genomes assembled and annotated in Shen et al. 2018 Cell. We compiled the coding sequences of these genes to analyze further. 
+
+This part of our analysis can be visualized in your iTOL trees. 
+
+Part 2: 
+Calculating the codon optimization index for each gene. 
+
+Step 1: We used Abbe's "wi values" (Labella et al. 2019 Plos Gen.). For each gene, we took the geometric mean of all codon's wi values (minus the start codon). This value was called the tAI value.
+
+```{r}
+tAI_dataframe<-read.delim("/Users/katiefisher/xylose_optimization_project/data/spp_by_gene_tAI_vals.txt")
+````
+ 
+```{r}
+par(mfrow=c(3,2))
+hist(append(tAI_dataframe$xyl1, tAI_dataframe$xyl1.2), xlab="tAI values", main="XYL1 tAI distribution", col="lightblue")
+hist(append(tAI_dataframe$xyl2, tAI_dataframe$xyl2.2), xlab="tAI values", main="XYL2 tAI distribution", col="plum3")
+hist(append(tAI_dataframe$xyl3, tAI_dataframe$xyl3.2), xlab="tAI values", main="XYL3 tAI distribution", col="firebrick1")
+hist(append(tAI_dataframe$tkl1, tAI_dataframe$tkl1.2), xlab="tAI values", main="TKL1 tAI distribution", col="sandybrown")
+hist(append(tAI_dataframe$tal1, tAI_dataframe$tal1.2), xlab="tAI values", main="TAL1 tAI distribution", col="lightyellow")
+```
+
+
+
+
+Step 2: We cannot compare the tAI values of genes between species without normalizing those tAI values to the rest of the genome for each species. We (again) used Abbe's data (Labella et al. 2019 Plos Gen.) to retrieve the distribution of tAI values for each species. 
+
+```{r}
+genome_wide_tAI<-read.delim("/Users/katiefisher/xylose_optimization_project/data/labella_et_al/cds_mito_processed_tAI_recalc/genome_wide_tAI_all_spp.txt")
+````
+
+Example: Torulaspora delbrueckii  
+
+```{r}
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="torulaspora delbrueckii")], xlab="tAI values", main="T. delbrueckii coding-sequence tAI distribution", col="darkolivegreen1")
+```
+
+Now we compare the tAI values of the gene's we're interested in and determine what % of all genes in the genome have LOWER tAI values than our genes of interest. We used the empirical distribution function to do so. We call this value the estAI value. 
+
+For example, T. delbrueckii 
+
+  -T. delbrueckii only has one copy of each gene. 
+    
+    estAI indicies
+    
+    xyl1 0.5271764 (52 % of genes have estAI values LOWER than xyl1) 
+    
+    xyl2 0.8774758
+    
+    xyl3 0.7618609
+    
+    tkl1 0.9760479	
+    
+    tal1 0.9847996
+
+```{r}
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="torulaspora delbrueckii")], xlab="tAI values", main="T. delbrueckii coding-sequence tAI distribution", col="darkolivegreen1")
+abline(v=tAI_dataframe$xyl1[which(tAI_dataframe$all_taxa=="torulaspora delbrueckii")], col="darkgreen", lwd=2)
+abline(v=tAI_dataframe$xyl2[which(tAI_dataframe$all_taxa=="torulaspora delbrueckii")], col="darkorange", lwd=2)
+abline(v=tAI_dataframe$xyl3[which(tAI_dataframe$all_taxa=="torulaspora delbrueckii")], col="darkorchid", lwd=2)
+abline(v=tAI_dataframe$tkl1[which(tAI_dataframe$all_taxa=="torulaspora delbrueckii")], col="dodgerblue4", lwd=2)
+abline(v=tAI_dataframe$tal1[which(tAI_dataframe$all_taxa=="torulaspora delbrueckii")], col="mediumvioletred", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3", "tkl1", "tkl2"), lwd=2, col=c("darkgreen", "darkorange", "darkorchid", "dodgerblue4", "mediumvioletred"))
+```
+
+The estAI values will allow us to better compare between species. We first found the maximum gene-estAI value for those species that have more than one copy of given genes. 
+
+
+```{r}
+spp_by_maximum_estAI<-read.delim("/Users/katiefisher/xylose_optimization_project/data/spp_by_gene_maximum_paralog_estAI_vals.txt")
+````
+
+```{r}
+par(mfrow=c(3,2))
+hist(spp_by_maximum_estAI$xyl1, xlab="estAI values", main="XYL1 estAI distribution", col="lightblue")
+hist(spp_by_maximum_estAI$xyl2, xlab="estAI values", main="XYL2 estAI distribution", col="plum3")
+hist(spp_by_maximum_estAI$xyl3, xlab="estAI values", main="XYL3 estAI distribution", col="firebrick1")
+hist(spp_by_maximum_estAI$tkl1, xlab="tAI values", main="TKL1 estAI distribution", col="sandybrown")
+hist(spp_by_maximum_estAI$tal1, xlab="tAI values", main="TAL1 estAI distribution", col="lightyellow")
+```
+
+The distributions of estAI values for these genes seem to be quite different. TAL1 and TKL1 are heavily right-shifted, indicating that most species have homologs for these genes that are highly codon optimized. XYL1 and XYL2 are also shifted right, but less extremely so. XYL3 appears to have more of a normal distibution, with some species having highly optomized homologs but most having a medium level of optimization. 
+
+We chose to take a closer look at the species that were best optimized across the whole pathway. We looked for species that possessed homologs for all 5 genes AND were in the top 25% (75th percentile) of estAI values for all 5 genes. We found 4 such species: 
+
+-Spathaspora gorwiae 
+
+-Spathaspora hagerdaliae
+
+-Spathaspora girioi
+
+-Kodamaea ohmeri
+
+```{r}
+par(mfrow=c(2,2))
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora gorwiae")], xlab="tAI values", main="S. gorwiae tAI distribution", col="darkolivegreen1")
+abline(v=tAI_dataframe$xyl1[which(tAI_dataframe$all_taxa=="spathaspora gorwiae")], col="darkgreen", lwd=2)
+abline(v=tAI_dataframe$xyl2[which(tAI_dataframe$all_taxa=="spathaspora gorwiae")], col="darkorange", lwd=2)
+abline(v=tAI_dataframe$xyl3[which(tAI_dataframe$all_taxa=="spathaspora gorwiae")], col="darkorchid", lwd=2)
+abline(v=tAI_dataframe$tkl1[which(tAI_dataframe$all_taxa=="spathaspora gorwiae")], col="dodgerblue4", lwd=2)
+abline(v=tAI_dataframe$tal1[which(tAI_dataframe$all_taxa=="spathaspora gorwiae")], col="mediumvioletred", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3", "tkl1", "tkl2"), lwd=2, col=c("darkgreen", "darkorange", "darkorchid", "dodgerblue4", "mediumvioletred"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora hagerdaliae")], xlab="tAI values", main="S.hagerdaliae tAI distribution", col="darkolivegreen1")
+abline(v=tAI_dataframe$xyl1[which(tAI_dataframe$all_taxa=="spathaspora hagerdaliae")], col="darkgreen", lwd=2)
+abline(v=tAI_dataframe$xyl2[which(tAI_dataframe$all_taxa=="spathaspora hagerdaliae")], col="darkorange", lwd=2)
+abline(v=tAI_dataframe$xyl3[which(tAI_dataframe$all_taxa=="spathaspora hagerdaliae")], col="darkorchid", lwd=2)
+abline(v=tAI_dataframe$tkl1[which(tAI_dataframe$all_taxa=="spathaspora hagerdaliae")], col="dodgerblue4", lwd=2)
+abline(v=tAI_dataframe$tal1[which(tAI_dataframe$all_taxa=="spathaspora hagerdaliae")], col="mediumvioletred", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3", "tkl1", "tkl2"), lwd=2, col=c("darkgreen", "darkorange", "darkorchid", "dodgerblue4", "mediumvioletred"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="kodamaea ohmeri")], xlab="tAI values", main="K. ohmeri tAI distribution", col="darkolivegreen1")
+abline(v=tAI_dataframe$xyl1[which(tAI_dataframe$all_taxa=="kodamaea ohmeri")], col="darkgreen", lwd=2)
+abline(v=tAI_dataframe$xyl2[which(tAI_dataframe$all_taxa=="kodamaea ohmeri")], col="darkorange", lwd=2)
+abline(v=tAI_dataframe$xyl3[which(tAI_dataframe$all_taxa=="kodamaea ohmeri")], col="darkorchid", lwd=2)
+abline(v=tAI_dataframe$tkl1[which(tAI_dataframe$all_taxa=="kodamaea ohmeri")], col="dodgerblue4", lwd=2)
+abline(v=tAI_dataframe$tal1[which(tAI_dataframe$all_taxa=="kodamaea ohmeri")], col="mediumvioletred", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3", "tkl1", "tkl2"), lwd=2, col=c("darkgreen", "darkorange", "darkorchid", "dodgerblue4", "mediumvioletred"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora girioi")], xlab="tAI values", main="S.girioi tAI distribution", col="darkolivegreen1")
+abline(v=tAI_dataframe$xyl1[which(tAI_dataframe$all_taxa=="spathaspora girioi")], col="darkgreen", lwd=2)
+abline(v=tAI_dataframe$xyl2[which(tAI_dataframe$all_taxa=="spathaspora girioi")], col="darkorange", lwd=2)
+abline(v=tAI_dataframe$xyl3[which(tAI_dataframe$all_taxa=="spathaspora girioi")], col="darkorchid", lwd=2)
+abline(v=tAI_dataframe$tkl1[which(tAI_dataframe$all_taxa=="spathaspora girioi")], col="dodgerblue4", lwd=2)
+abline(v=tAI_dataframe$tal1[which(tAI_dataframe$all_taxa=="spathaspora girioi")], col="mediumvioletred", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3", "tkl1", "tkl2"), lwd=2, col=c("darkgreen", "darkorange", "darkorchid", "dodgerblue4", "mediumvioletred"))
+
+```
+
+It is interesting that XYL3 always appears to drag behind - even in these species with otherwise high estAI values. 
+
+Does this tell us something about XYL3? 
+
+
+Step 3: Aquire growth data. This part was easy - we just emailed Dana! 
+
+
+You can generate a figure in tTol by dragging this file onto the tree. 
+
+/Users/katiefisher/xylose_optimization_project/data/iTol_files/Xylose_growth_rate_matrix.txt
+
+
+Step 4: Analyze! 
+
+Question 1) Do spp. that grow on xylose have higher estAI values than spp. that do not? 
+
+```{r}
+growth_data<-read.delim("/Users/katiefisher/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", stringsAsFactors = FALSE)
+
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data$growth.binary<-NA
+for(i in 1:nrow(growth_data)){
+  if(growth_data$Growth.Rate[i]>0){
+    growth_data$growth.binary[i]<-1
+  }
+  if(growth_data$Growth.Rate[i]==0){
+    growth_data$growth.binary[i]<-0
+  }
+}
+
+xyl1.test<-wilcox.test(data=growth_data, xyl1~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl2.test<-wilcox.test(data=growth_data, xyl2~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl3.test<-wilcox.test(data=growth_data, xyl3~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+tkl1.test<-wilcox.test(data=growth_data, tkl1~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+tal1.test<-wilcox.test(data=growth_data, tal1~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+
+
+par(mfrow=c(3,2))
+par(mar=c(3,4,3,2))
+
+boxplot(growth_data$xyl1 ~ as.factor(growth_data$growth.binary),
+        col="lightblue", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL1")
+legend("bottomleft", legend=paste("p=",xyl1.test$p.value))
+
+boxplot(growth_data$xyl2 ~ as.factor(growth_data$growth.binary),
+        col="plum3", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL2")
+legend("bottomleft", legend=paste("p=",xyl2.test$p.value))
+
+boxplot(growth_data$xyl3 ~ as.factor(growth_data$growth.binary),
+        col="firebrick1", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL3")
+legend("bottomleft", legend=paste("p=",xyl3.test$p.value))
+
+boxplot(growth_data$tkl1 ~ as.factor(growth_data$growth.binary),
+        col="sandybrown", ylab="estAI value",
+        names=c("no growth", "growth"), main="TKL1")
+legend("bottomleft", legend=paste("p=",tkl1.test$p.value))
+
+boxplot(growth_data$tal1 ~ as.factor(growth_data$growth.binary),
+        col="lightyellow", ylab="estAI value",
+        names=c("no growth", "growth"), main="TAL1")
+legend("bottomleft", legend=paste("p=",tal1.test$p.value))
+
+```
+
+
+XYL1 and XYL3 both have significantly higher distributions of estAI values amongst spp. that can consume xylose. The other genes show no significant difference. 
+
+
+Question 2) Do growth rates correlate with estAI values? 
+
+*Note - a file for iTOL that will indicate all spp. with an S value greater than .5 can be found here: /Users/katiefisher/xylose_optimization_project 
+
+
+Steps in this analysis 
+
+1 - get rid of all species with growth rates of 0. 
+
+2 - get rid of all species that do not have at least 1 copy of all 5 genes **THIS IS A NEW STEP**
+
+3 - using the S-values reported in Labella et al., get rid of all spp. with s values lower than .5. (This keeps only those species for which we are confident selection and not other processes are responsible for estAI values)
+
+4 - create trees for each gene that contain just those species that have the gene.
+
+5 - use the trees to create phylogenetically independent contrast (PIC) vectors for our values of growth and of estAI.
+
+6 - perform a corellation with the PIC vectors.
+
+
+*There are 65 species that meet all the criteria for analysis: xylose growth rates >0 0, have all 5 genes, have s-values > 0.5*
+
+```{r}
+s_values<-read.delim("~/xylose_optimization_project/data/labella_et_al/s_values.txt", stringsAsFactors = FALSE)
+#step 1
+growth_data<-read.delim("/Users/katiefisher/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", stringsAsFactors = FALSE)
+
+#Step 1
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data<-growth_data[which(growth_data$Growth.Rate>0), ]
+
+#Step 2
+removes<-which(is.na(growth_data$xyl1) | is.na(growth_data$xyl2) | is.na(growth_data$xyl3) | is.na(growth_data$tkl1) | is.na(growth_data$tal1))
+growth_data<-growth_data[-removes, ]
+
+#Step 3
+s_values<-s_values[which(s_values$species.name %in% growth_data$all_taxa), ]
+colnames(s_values)<-c("all_taxa", "s_value")
+growth_data<-merge(growth_data, s_values, by="all_taxa")
+growth_data<-growth_data[which(growth_data$s_value > .5),]
+df<-growth_data[order(growth_data$phylo_order), ]
+#looking for outliers with pgls in xyl1
+row.names(df)<-df$all_taxa
+
+#Step 4
+library(ape)
+require(stringr)
+require(ggpubr)
+require(ade4)
+require(adephylo)
+require(nlme)
+tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree$tip.label<-tolower(tree$tip.label)
+removes<-which(!tree$tip.label %in% df$all_taxa)
+PICtree<-drop.tip(tree, tree$tip.label[removes])
+#
+
+#Step 5
+fit1 <- gls(xyl1 ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL2
+fit2 <- gls(xyl2 ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL3
+fit3 <- gls(xyl3 ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in TKL1
+fit4 <- gls(tkl1 ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in TAL1
+fit5 <- gls(tal1 ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+
+plot(fit1, resid(., type="n")~fitted(.), main="XYL1 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for XYL1
+```{r}
+plot(fit2, resid(., type="n")~fitted(.), main="XYL2 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+1 obvious outlier for XYL2. Which species? 
+
+```{r}
+#identify the outlier
+res <- resid(fit2, type="n")
+res[which.max(res)]
+```
+
+```{r}
+plot(fit3, resid(., type="n")~fitted(.), main="XYL3 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for XYL3
+
+```{r}
+plot(fit4, resid(., type="n")~fitted(.), main="TKL1 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for TKL1
+
+```{r}
+plot(fit5, resid(., type="n")~fitted(.), main="TAL1 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+1 obvious outlier for TAL1. 1 obvious outlier for XYL2. Which species? 
+
+```{r}
+res <- resid(fit5, type="n")
+res[which.min(res)]
+```
+
+Outliers for XYL2 and TAL1 will be removed below. Now we can do correlation tests on the PIC vectors for each gene. 
+
+XYL1: 
+  
+```{r}
+#Step 6
+PIC.xyl1<-pic(df$xyl1, PICtree)
+PIC.growth.xyl1<-pic(df$Growth.Rate, PICtree)
+ctest<-cor.test(PIC.xyl1, PIC.growth.xyl1, method="pearson")
+ctest
+plot(x=PIC.xyl1, y=PIC.growth.xyl1, pch=16,cex=1.5,
+     col="lightblue", main="XYL1", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=paste("p=", ctest$p.value))
+abline(lm(PIC.growth.xyl1~PIC.xyl1))
+```
+
+No significant correlation between XYL1 codon optimization and xylose growth rate. 
+
+XYL2:
+  
+```{r}
+#according to pgls there is one outlier - blastobotrys raffinosifermentans
+df2<-df[-which(df$all_taxa=="blastobotrys raffinosifermentans"), ]
+removes<-which(!tree$tip.label %in% df2$all_taxa)
+xyl2PICtree<-drop.tip(tree, tree$tip.label[removes])
+df2<-df2[order(df2$phylo_order), ]
+
+#calculate and compare PIC values
+PIC.xyl2<-pic(df2$xyl2, xyl2PICtree)
+PIC.growth.xyl2<-pic(df2$Growth.Rate, xyl2PICtree)
+ctest<-cor.test(PIC.xyl2, PIC.growth.xyl2, method="pearson")
+ctest
+plot(x=PIC.xyl2, y=PIC.growth.xyl2, pch=16,cex=1.5,
+     col="plum3", main="XYL2", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=paste("p=", ctest$p.value))
+abline(lm(PIC.growth.xyl2~PIC.xyl2))
+```
+
+No significant correlation between XYL2 codon optimization and xylose growth rate. 
+
+XYL3: 
+  
+```{r}
+#calculate and compare PIC values
+PIC.xyl3<-pic(df$xyl3, PICtree)
+PIC.growth.xyl3<-pic(df$Growth.Rate, PICtree)
+#
+ctest<-cor.test(PIC.xyl3, PIC.growth.xyl3, method="pearson")
+ctest
+plot(x=PIC.xyl3, y=PIC.growth.xyl3, pch=16,cex=1.5,
+     col="firebrick1", main="XYL3", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=paste("p=", ctest$p.value))
+abline(lm(PIC.growth.xyl3~PIC.xyl3))
+```
+
+**There is a significant, positive correlation between XYL3 codon optimization and xylose growth rate.**
+
+*Note that we originally thought this correlation was negative, that was wrong.*
+
+TKL1:
+  
+```{r}
+PIC.tkl1<-pic(df$tkl1, PICtree)
+PIC.growth.tkl1<-pic(df$Growth.Rate, PICtree)
+#
+ctest<-cor.test(PIC.tkl1, PIC.growth.tkl1, method="pearson")
+ctest
+plot(x=PIC.tkl1, y=PIC.growth.tkl1, pch=16,cex=1.5,
+     col="sandybrown", main="TKL1", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=paste("p=", ctest$p.value))
+abline(lm(PIC.growth.tkl1~PIC.tkl1))
+```
+
+No significant correlation for TKL1. 
+
+TAL1:
+  
+```{r}
+#according to pgls there is one outlier - ambrosiozyma philentoma 
+df5<-df[-which(df$all_taxa=="ambrosiozyma philentoma"), ]
+removes<-which(!tree$tip.label %in% df5$all_taxa)
+tal1PICtree<-drop.tip(tree, tree$tip.label[removes])
+df5<-df5[order(df5$phylo_order), ]
+#calculate and compare PIC values
+PIC.tal1<-pic(df5$tal1, tal1PICtree)
+PIC.growth.tal1<-pic(df5$Growth.Rate, tal1PICtree)
+
+ctest<-cor.test(PIC.tal1, PIC.growth.tal1, method="pearson")
+ctest
+plot(x=PIC.tal1, y=PIC.growth.tal1, pch=16,cex=1.5,
+     col="yellow", main="TAL1", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=paste("p=", ctest$p.value))
+abline(lm(PIC.growth.tal1~PIC.tal1))
+```
+
+TAL1 and xylose growth rate are not correlated.
+

@@ -91,8 +91,6 @@ write.table(xylose_utilization_gene_presence,
 
 
 
-
-# ignore for now
 wi_vals<-read.delim("~/xylose_optimization_project/data/labella_et_al/wi_values.txt",
                     stringsAsFactors=FALSE)
 
@@ -600,9 +598,16 @@ x<-x[order(x$phylo_order), ]
 #write.table(x, "~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt", sep="\t", quote=FALSE, row.names = FALSE)
 #growth data and estAI vals
 growth_data<-read.delim("~/xylose_optimization_project/data/growth_rate_master_df_treematchednames.txt")
+#S values supplied by abbe's supp data
+s_values<-read.delim("~/xylose_optimization_project/data/labella_et_al/s_values.txt", stringsAsFactors = FALSE)
+#only taking spp with s values greater than .5
+s_values<-s_values[which(s_values$species.name %in% growth_data$all_taxa), ]
+colnames(s_values)<-c("all_taxa", "s_value")
+growth_data<-merge(growth_data, s_values, by="all_taxa")
+growth_data<-growth_data[which(growth_data$s_value > .5),]
+
 #332 tree
 library(ape)
-install.packages("stringr")
 require(stringr)
 require(ggpubr)
 tree<-read.tree("~/xylose_optimization_project/data/iTol_files/332_Newick_tree.txt")
@@ -611,7 +616,6 @@ tree$tip.label<-tolower(tree$tip.label)
 #
 require(ade4)
 require(adephylo)
-require(ape)
 #for each orthogram I need to drop the tree taxa that are missing data
 #they're in the same order - so should be easy
 removes<-which(is.na(growth_data$xyl1))
@@ -652,7 +656,6 @@ orthogram(growth, growth_tree)
 #PIC growth data x XYL1
 removes<-which(is.na(growth_data$xyl1) | is.na(growth_data$Growth.Rate))
 df<-growth_data[-removes, ]
-df<-df[which(df$Growth.Rate>0), ]
 removes<-which(!tree$tip.label %in% df$all_taxa)
 xyl1PICtree<-drop.tip(tree, tree$tip.label[removes])
 #calculate and compare PIC values
@@ -669,10 +672,7 @@ ggscatter(data=cordf, x="PIC.xyl1", y="PIC.growth",
 #PIC growth data x XYL2
 removes<-which(is.na(growth_data$xyl2) | is.na(growth_data$Growth.Rate))
 df<-growth_data[-removes, ]
-df<-df[which(df$Growth.Rate>0), ]
 #remove optical outliers
-#df<-df[which(df$xyl2 != min(df$xyl2)),]
-#df<-df[which(df$Growth.Rate != min(df$Growth.Rate)), ]
 removes<-which(!tree$tip.label %in% df$all_taxa)
 xyl2PICtree<-drop.tip(tree, tree$tip.label[removes])
 #calculate and compare PIC values
@@ -686,10 +686,9 @@ ggscatter(data=cordf, x="PIC.xyl2", y="PIC.growth",
           xlab="PIC xyl2", ylab="PIC xylose growth rate")
 
 
-#PIC growth data x XYL2
+#PIC growth data x XYL3
 removes<-which(is.na(growth_data$xyl3) | is.na(growth_data$Growth.Rate))
 df<-growth_data[-removes, ]
-df<-df[which(df$Growth.Rate>0), ]
 #remove optical outliers
 removes<-which(!tree$tip.label %in% df$all_taxa)
 xyl3PICtree<-drop.tip(tree, tree$tip.label[removes])
@@ -725,3 +724,7 @@ boxplot(growth_data$xyl1 ~ as.factor(growth_data$growth.binary),
 
 
 
+
+getwd()
+
+length(which(!s_values$all_taxa %in% tree$tip.label))
