@@ -17,7 +17,7 @@ SEPARATOR TAB
 DATASET_LABEL	S_value>.5
 
 #dataset color (can be changed later)
-COLOR	#ffff00
+COLOR	#301934
 
 #shapes for each field column; possible choices are
 #1: rectangle 

@@ -331,14 +331,39 @@ PIC.xyl1<-pic(df$xyl1, PICtree)
 PIC.growth.xyl1<-pic(df$Growth.Rate, PICtree)
 ctest<-cor.test(PIC.xyl1, PIC.growth.xyl1, method="pearson")
 ctest
+linmod<-lm(PIC.growth.xyl1 ~ PIC.xyl1)
+linmod
 plot(x=PIC.xyl1, y=PIC.growth.xyl1, pch=16,cex=1.5,
      col="lightblue", main="XYL1", xlab="PIC estAI",
      ylab="PIC xylose growth rate")
-legend("topleft", legend=paste("p=", ctest$p.value))
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
 abline(lm(PIC.growth.xyl1~PIC.xyl1))
 ```
 
 No significant correlation between XYL1 codon optimization and xylose growth rate. 
+
+**NEW ADDITION**
+We talked about how the XYL1 data looked like it could have been better fit by a quadratic model. I did that below and it does fit slightly better. Feel free to add this to the talk if you'd like.
+
+This may speak to Rishitha's hypothesis that XYL1 expression levels may be optimal when they are intermediate. Sort of a "Goldilocks" hypothesis. 
+
+```{r}
+PIC.xyl1.2<-PIC.xyl1^2
+
+quadratic_model<-lm(PIC.growth.xyl1 ~ PIC.xyl1 + PIC.xyl1.2)
+ 
+PIC.growth.xyl1.quads<-seq(min(PIC.growth.xyl1), max(PIC.growth.xyl1), .01)
+
+predictedcounts <- predict(quadratic_model,list(PIC.xyl1=PIC.growth.xyl1.quads, PIC.xyl1.2=PIC.growth.xyl1.quads^2))
+
+plot(x=PIC.xyl1, y=PIC.growth.xyl1, pch=16,cex=1.5,
+     col="lightblue", main="XYL1", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+lines(PIC.growth.xyl1.quads, predictedcounts, col = "darkgreen", lwd = 3)
+legend("topleft", legend=c("p=0.06171243",
+                           paste("r2=", summary(quadratic_model)$r.squared)))
+```
 
 XYL2:
   
@@ -354,10 +379,13 @@ PIC.xyl2<-pic(df2$xyl2, xyl2PICtree)
 PIC.growth.xyl2<-pic(df2$Growth.Rate, xyl2PICtree)
 ctest<-cor.test(PIC.xyl2, PIC.growth.xyl2, method="pearson")
 ctest
+linmod<-lm(PIC.growth.xyl2 ~ PIC.xyl2)
+linmod
 plot(x=PIC.xyl2, y=PIC.growth.xyl2, pch=16,cex=1.5,
      col="plum3", main="XYL2", xlab="PIC estAI",
      ylab="PIC xylose growth rate")
-legend("topleft", legend=paste("p=", ctest$p.value))
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
 abline(lm(PIC.growth.xyl2~PIC.xyl2))
 ```
 
@@ -372,10 +400,13 @@ PIC.growth.xyl3<-pic(df$Growth.Rate, PICtree)
 #
 ctest<-cor.test(PIC.xyl3, PIC.growth.xyl3, method="pearson")
 ctest
+linmod<-lm(PIC.growth.xyl3 ~ PIC.xyl3)
+linmod
 plot(x=PIC.xyl3, y=PIC.growth.xyl3, pch=16,cex=1.5,
      col="firebrick1", main="XYL3", xlab="PIC estAI",
      ylab="PIC xylose growth rate")
-legend("topleft", legend=paste("p=", ctest$p.value))
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
 abline(lm(PIC.growth.xyl3~PIC.xyl3))
 ```
 
@@ -391,10 +422,13 @@ PIC.growth.tkl1<-pic(df$Growth.Rate, PICtree)
 #
 ctest<-cor.test(PIC.tkl1, PIC.growth.tkl1, method="pearson")
 ctest
+linmod<-lm(PIC.growth.tkl1 ~ PIC.tkl1)
+linmod
 plot(x=PIC.tkl1, y=PIC.growth.tkl1, pch=16,cex=1.5,
      col="sandybrown", main="TKL1", xlab="PIC estAI",
      ylab="PIC xylose growth rate")
-legend("topleft", legend=paste("p=", ctest$p.value))
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
 abline(lm(PIC.growth.tkl1~PIC.tkl1))
 ```
 
@@ -414,10 +448,13 @@ PIC.growth.tal1<-pic(df5$Growth.Rate, tal1PICtree)
 
 ctest<-cor.test(PIC.tal1, PIC.growth.tal1, method="pearson")
 ctest
+linmod<-lm(PIC.growth.tal1 ~ PIC.tal1)
+linmod
 plot(x=PIC.tal1, y=PIC.growth.tal1, pch=16,cex=1.5,
      col="yellow", main="TAL1", xlab="PIC estAI",
      ylab="PIC xylose growth rate")
-legend("topleft", legend=paste("p=", ctest$p.value))
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
 abline(lm(PIC.growth.tal1~PIC.tal1))
 ```
 
