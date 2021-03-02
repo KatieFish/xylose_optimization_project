@@ -1,9 +1,9 @@
 
 require("seqinr")
 
-alnmnt<-read.alignment("~/xylose_optimization_project/data/orthologs/cds/xyl2_cds_MSA.fsa", format="fasta")
+alnmnt<-read.alignment("~/xylose_optimization_project/spring_2021/xyl_gene_subgroups/xyl3.subgroup.fasta", format="fasta")
 #also reading in fasta
-fs<- read.fasta("~/xylose_optimization_project/data/orthologs/cds/xyl2_cds_MSA.fsa")
+fs<- read.fasta("~/xylose_optimization_project/spring_2021/xyl_gene_subgroups/xyl3.subgroup.fasta")
 
 bp<-max(getLength(fs))
 
@@ -31,7 +31,7 @@ taxa_IDs[i]<-name
 ####
 alnmnt_matrix[,1]<-taxa_IDs
 
-write.table(alnmnt_matrix, "~/xylose_optimization_project/data/orthologs/cds/xyl2_cds_MSA.tsv",
+write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/xyl_gene_subgroups/xyl3.subgroup.txt",
             sep="\t", quote=FALSE, row.names=FALSE)
 
 
