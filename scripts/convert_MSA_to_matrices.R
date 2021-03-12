@@ -31,7 +31,7 @@ taxa_IDs[i]<-name
 ####
 alnmnt_matrix[,1]<-taxa_IDs
 
-write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/xyl_gene_subgroups/xyl3.subgroup.txt",
+write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/xyl_gene_subgroups/xyl1.subgroup.txt",
             sep="\t", quote=FALSE, row.names=FALSE)
 
 
