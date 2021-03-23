@@ -1,12 +1,12 @@
-KO	COLOR
-K18097	#FF0000
-NA	#000000
-K00062	#FFFF00
-K17743	#808000
-K05275	#00FF00
-K00002	#008000
-K04882	#00FFFF
-K15303	#008080
-K00011	#0000FF
-K18107	#000080
-K01469	#FF00FF
+KO	annotation	COLOR
+K18097	glycerol 2-dehydrogenase (NADP+)	#FF0000
+NA	No annotation	#000000
+K00062	D-arabinose 1-dehydrogenase	#FFFF00
+K17743	D-xylose reductase	#808000
+K05275	pyridoxine 4-dehydrogenase	#00FF00
+K00002	alcohol dehydrogenase (NADP+)	#008000
+K04882	"potassium voltage-gated channel Shaker-related subfamily A, beta member 1"	#00FFFF
+K15303	aflatoxin B1 aldehyde reductase	#008080
+K00011	aldehyde reductase	#0000FF
+K18107	L-glyceraldehyde reductase	#000080
+K01469	5-oxoprolinase (ATP-hydrolysing)	#FF00FF
