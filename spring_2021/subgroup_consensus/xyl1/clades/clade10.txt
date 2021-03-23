@@ -1,0 +1,99 @@
+Sporopachydermia quercuum x gi|1002316351|dbj|BCGN01000002.1| 1271237 1272193 gi|1002316351|dbj|BCGN01000002.1| 1271237-1272193
+Sporopachydermia lactativora 34604 x lcl|NODE 108 length 50177 cov 35.5015 ID 215 26739 27806 lcl|NODE 108 length 50177 cov 35.5015 ID 215 26739-27806
+Sporopachydermia quercuum x gi|1002316346|dbj|BCGN01000007.1| c1468 506 gi|1002316346|dbj|BCGN01000007.1| c1468-506
+Sporopachydermia lactativora 34604 x lcl|NODE 155 length 29692 cov 48.7379 ID 309 20611 21612 lcl|NODE 155 length 29692 cov 48.7379 ID 309 20611-21612
+Sporopachydermia lactativora 34604 x lcl|NODE 149 length 30729 cov 50.9773 ID 297 22194 23168 lcl|NODE 149 length 30729 cov 50.9773 ID 297 22194-23168
+Sporopachydermia lactativora 34604 x lcl|NODE 22 length 148056 cov 28.3308 ID 43 c60053 59088 lcl|NODE 22 length 148056 cov 28.3308 ID 43 c60053-59088
+Sporopachydermia quercuum x gi|1002316352|dbj|BCGN01000001.1| 1255856 1256827 gi|1002316352|dbj|BCGN01000001.1| 1255856-1256827
+Nadsonia fulvescens var elongata x lcl|scaffold 3 c605721 604753 lcl|scaffold 3 c605721-604753
+Nadsonia fulvescens 34635 x lcl|flattened line 124 c8668 7700 lcl|flattened line 124 c8668-7700
+Alloascoidea hylecoeti x gi|1002318378|dbj|BCKZ01000005.1| 1065860 1066837 gi|1002318378|dbj|BCKZ01000005.1| 1065860-1066837
+Alloascoidea hylecoeti x gi|1002318375|dbj|BCKZ01000008.1| 556796 557773 gi|1002318375|dbj|BCKZ01000008.1| 556796-557773
+Alloascoidea hylecoeti x gi|1002318375|dbj|BCKZ01000008.1| 553106 554086 gi|1002318375|dbj|BCKZ01000008.1| 553106-554086
+Alloascoidea hylecoeti x gi|1002318378|dbj|BCKZ01000005.1| c436940 435951 gi|1002318378|dbj|BCKZ01000005.1| c436940-435951
+Alloascoidea hylecoeti x gi|1002318375|dbj|BCKZ01000008.1| 226776 227750 gi|1002318375|dbj|BCKZ01000008.1| 226776-227750
+Alloascoidea hylecoeti x gi|1002318380|dbj|BCKZ01000003.1| c1554746 1553757 gi|1002318380|dbj|BCKZ01000003.1| c1554746-1553757
+Geotrichum candidum x lcl|CCBN010000006.1 393563 394534 lcl|CCBN010000006.1 393563-394534
+Dipodascus geniculatus 41822 x lcl|flattened line 10 237283 238269 lcl|flattened line 10 237283-238269
+Dipodascus albidus 34661 x lcl|flattened line 40 202015 203130 lcl|flattened line 40 202015-203130
+Middelhovenomyces tepae 35665 x lcl|NODE 1 length 1691314 cov 23.5033 ID 3491 1532963 1534036 lcl|NODE 1 length 1691314 cov 23.5033 ID 3491 1532963-1534036
+Deakozyma indianensis 34974 x lcl|NODE 20 length 253619 cov 23.9657 ID 39 c140148 139108 lcl|NODE 20 length 253619 cov 23.9657 ID 39 c140148-139108
+Candida incommunis 35244 x lcl|NODE 6 length 501818 cov 23.4458 ID 4631 c413022 411862 lcl|NODE 6 length 501818 cov 23.4458 ID 4631 c413022-411862
+Blastobotrys muscicola 34674 x lcl|NODE 78 length 32170 cov 15.6102 ID 155 c20112 19144 lcl|NODE 78 length 32170 cov 15.6102 ID 155 c20112-19144
+Zygoascus meyerae 35243 x lcl|NODE 3 length 863959 cov 18.7832 ID 1457 c529980 529018 lcl|NODE 3 length 863959 cov 18.7832 ID 1457 c529980-529018
+Zygoascus ofunaensis 35242 x lcl|NODE 7 length 719086 cov 18.6268 ID 7498 417829 418884 lcl|NODE 7 length 719086 cov 18.6268 ID 7498 417829-418884
+Candida salmanticensis 35691 x lcl|flattened line 30 c99168 98113 lcl|flattened line 30 c99168-98113
+Spencermartinsiella europaea 34605 x lcl|NODE 35 length 134487 cov 28.4228 ID 69 33981 35105 lcl|NODE 35 length 134487 cov 28.4228 ID 69 33981-35105
+Diddensiella caesifluorescens 34660 x lcl|NODE 1 length 2279773 cov 38.2437 ID 1 c1213685 1212684 lcl|NODE 1 length 2279773 cov 38.2437 ID 1 c1213685-1212684
+Sugiyamaella lignohabitans x lcl|CP014503.1 3407965 3408936 lcl|CP014503.1 3407965-3408936
+Blastobotrys proliferans 34670 x lcl|NODE 30 length 176852 cov 13.847 ID 59 23592 24557 lcl|NODE 30 length 176852 cov 13.847 ID 59 23592-24557
+Blastobotrys nivea 34673 x lcl|NODE 1489 length 3261 cov 2.68808 ID 2977 c872 3 lcl|NODE 1489 length 3261 cov 2.68808 ID 2977 c872-3
+Spencermartinsiella europaea 34605 x lcl|NODE 16 length 303609 cov 28.553 ID 31 c112068 110998 lcl|NODE 16 length 303609 cov 28.553 ID 31 c112068-110998
+Blastobotrys mokoenaii 34675 x lcl|NODE 7 length 514569 cov 35.9165 ID 13 c51851 50880 lcl|NODE 7 length 514569 cov 35.9165 ID 13 c51851-50880
+Blastobotrys serpentis 34667 x lcl|flattened line 167 3899 4996 lcl|flattened line 167 3899-4996
+Arxula adeninivorans x lcl|Arad1C 2330743 2331789 lcl|Arad1C 2330743-2331789
+Blastobotrys raffinofermentans 34669 x lcl|flattened line 0 1431978 1433036 lcl|flattened line 0 1431978-1433036
+Blastobotrys americana 34681 x lcl|flattened line 98 52029 53144 lcl|flattened line 98 52029-53144
+Blastobotrys peoriensis 34671 x lcl|NODE 80 length 63433 cov 11.8645 ID 159 c12893 11934 lcl|NODE 80 length 63433 cov 11.8645 ID 159 c12893-11934
+Tortispora starmeri 35279 x lcl|NODE 5 length 385981 cov 13.3379 ID 9389 c136873 135866 lcl|NODE 5 length 385981 cov 13.3379 ID 9389 c136873-135866
+Tortispora ganteri 35654 x lcl|flattened line 10 c207275 206301 lcl|flattened line 10 c207275-206301
+Tortispora caseinolytica x lcl|scaffold 1 c1993633 1992641 lcl|scaffold 1 c1993633-1992641
+Lipomyces kononenkoae 34760 x lcl|NODE 5 length 380752 cov 19.4279 ID 9 c328362 327994 lcl|NODE 5 length 380752 cov 19.4279 ID 9 c328362-327994
+Lipomyces kononenkoae 34760 x lcl|NODE 2 length 758014 cov 19.0229 ID 3 462272 462628 lcl|NODE 2 length 758014 cov 19.0229 ID 3 462272-462628
+Lipomyces starkeyi x lcl|scaffold 11 c702690 702289 lcl|scaffold 11 c702690-702289
+Lipomyces arxii 34754 x lcl|NODE 155 length 31338 cov 10.7597 ID 309 25053 25454 lcl|NODE 155 length 31338 cov 10.7597 ID 309 25053-25454
+Lipomyces mesembrius 34749 x lcl|NODE 13 length 358725 cov 30.8807 ID 25 68922 69221 lcl|NODE 13 length 358725 cov 30.8807 ID 25 68922-69221
+Cyberlindnera suaveolens 35687 x lcl|NODE 101 length 19163 cov 19.4412 ID 10895 141 374 lcl|NODE 101 length 19163 cov 19.4412 ID 10895 141-374
+Lipomyces japonicus 34758 x lcl|flattened line 0 c373182 372154 lcl|flattened line 0 c373182-372154
+Lipomyces suomiensis 34742 x lcl|NODE 14 length 355574 cov 21.8046 ID 27 134323 135402 lcl|NODE 14 length 355574 cov 21.8046 ID 27 134323-135402
+Lipomyces oligophaga 34748 x lcl|NODE 2 length 1995911 cov 28.209 ID 3 1330127 1331095 lcl|NODE 2 length 1995911 cov 28.209 ID 3 1330127-1331095
+Lipomyces lipofer 34761 x lcl|flattened line 36 c42700 41579 lcl|flattened line 36 c42700-41579
+Lipomyces doorenjongii 34757 x lcl|NODE 5 length 661308 cov 39.7071 ID 9 563948 564922 lcl|NODE 5 length 661308 cov 39.7071 ID 9 563948-564922
+Lipomyces kononenkoae 34760 x lcl|NODE 5 length 380752 cov 19.4279 ID 9 c327966 327274 lcl|NODE 5 length 380752 cov 19.4279 ID 9 c327966-327274
+Lipomyces kononenkoae 34760 x lcl|NODE 2 length 758014 cov 19.0229 ID 3 462679 463395 lcl|NODE 2 length 758014 cov 19.0229 ID 3 462679-463395
+Lipomyces starkeyi x lcl|scaffold 11 c702285 701569 lcl|scaffold 11 c702285-701569
+Lipomyces arxii 34754 x lcl|NODE 155 length 31338 cov 10.7597 ID 309 25458 26174 lcl|NODE 155 length 31338 cov 10.7597 ID 309 25458-26174
+Lipomyces mesembrius 34749 x lcl|NODE 13 length 358725 cov 30.8807 ID 25 69225 69941 lcl|NODE 13 length 358725 cov 30.8807 ID 25 69225-69941
+Lipomyces lipofer 34761 x lcl|flattened line 36 c42593 42330 lcl|flattened line 36 c42593-42330
+Candida boidinii JCM9604 x gi|1002316617|dbj|BCGP01000003.1| 659629 660231 gi|1002316617|dbj|BCGP01000003.1| 659629-660231
+Lipomyces doorenjongii 34757 x lcl|NODE 5 length 661308 cov 39.7071 ID 9 563836 564192 lcl|NODE 5 length 661308 cov 39.7071 ID 9 563836-564192
+Lipomyces starkeyi x lcl|scaffold 20 c44751 44005 lcl|scaffold 20 c44751-44005
+Candida hispaniensis 35633 x lcl|NODE 2 length 2227012 cov 87.1037 ID 3 c652667 651708 lcl|NODE 2 length 2227012 cov 87.1037 ID 3 c652667-651708
+Yarrowia lipolytica x lcl|YALI0D c986857 985862 lcl|YALI0D c986857-985862
+Yarrowia keelungensis x gi|1002317713|dbj|BCJD01000002.1| c2029047 2028097 gi|1002317713|dbj|BCJD01000002.1| c2029047-2028097
+Yarrowia bubula 35643 x lcl|flattened line 117 c3487 2537 lcl|flattened line 117 c3487-2537
+Yarrowia divulgata 35645 x lcl|flattened line 39 207545 208495 lcl|flattened line 39 207545-208495
+Yarrowia deformans x gi|1002317488|dbj|BCIW01000001.1| 1528851 1529828 gi|1002317488|dbj|BCIW01000001.1| 1528851-1529828
+Candida vartiovaarae 35690 x lcl|NODE 11 length 425465 cov 33.8237 ID 2463 408457 408936 lcl|NODE 11 length 425465 cov 33.8237 ID 2463 408457-408936
+Cyberlindnera mrakii 34978 x lcl|NODE 47 length 63773 cov 12.9252 ID 93 52541 53398 lcl|NODE 47 length 63773 cov 12.9252 ID 93 52541-53398
+Cyberlindnera saturnus 35686 x lcl|flattened line 82 c37598 36741 lcl|flattened line 82 c37598-36741
+Cyberlindnera suaveolens 35687 x lcl|NODE 101 length 19163 cov 19.4412 ID 10895 130 996 lcl|NODE 101 length 19163 cov 19.4412 ID 10895 130-996
+Barnettozyma hawaiiensis 35045 x lcl|flattened line 8 c63585 62560 lcl|flattened line 8 c63585-62560
+Barnettozyma californica 35044 x lcl|flattened line 32 c211343 210348 lcl|flattened line 32 c211343-210348
+Barnettozyma populi 35046 x lcl|NODE 7 length 436048 cov 13.5576 ID 3675 c207378 206401 lcl|NODE 7 length 436048 cov 13.5576 ID 3675 c207378-206401
+Candida montana 35037 x lcl|NODE 4 length 770689 cov 28.8974 ID 7 c54058 53078 lcl|NODE 4 length 770689 cov 28.8974 ID 7 c54058-53078
+Phaffomyces antillensis 35671 x lcl|flattened line 22 c12538 11561 lcl|flattened line 22 c12538-11561
+Phaffomyces opuntiae 35670 x lcl|NODE 93 length 47230 cov 63.3808 ID 10519 38697 39731 lcl|NODE 93 length 47230 cov 63.3808 ID 10519 38697-39731
+Candida orba 35673 x lcl|NODE 4 length 747051 cov 106.202 ID 3507 c9986 9003 lcl|NODE 4 length 747051 cov 106.202 ID 3507 c9986-9003
+Phaffomyces thermotolerans 35672 x lcl|flattened line 34 183750 184727 lcl|flattened line 34 183750-184727
+Priceomyces carsonii 35296 x lcl|NODE 16 length 317400 cov 23.6874 ID 1729 c5094 4111 lcl|NODE 16 length 317400 cov 23.6874 ID 1729 c5094-4111
+Peterozyma toletana 34884 x lcl|flattened line 36 c172276 171290 lcl|flattened line 36 c172276-171290
+Peterozyma xylosa 34883 x lcl|flattened line 48 80067 81053 lcl|flattened line 48 80067-81053
+Debaryomyces hansenii x lcl|Deha2B 41239 42258 lcl|Deha2B 41239-42258
+Debaryomyces fabryi 41829 x lcl|NODE 25 length 45109 cov 18.3657 ID 4421 c25509 24502 lcl|NODE 25 length 45109 cov 18.3657 ID 4421 c25509-24502
+Debaryomyces subglobosus 41824 x lcl|NODE 24 length 56889 cov 66.0018 ID 6734 c23952 22945 lcl|NODE 24 length 56889 cov 66.0018 ID 6734 c23952-22945
+Debaryomyces nepalensis 41693 x lcl|NODE 6 length 798714 cov 13.4079 ID 1713 768651 769652 lcl|NODE 6 length 798714 cov 13.4079 ID 1713 768651-769652
+Ogataea naganishii 34903 x lcl|NODE 10 length 515802 cov 76.8733 ID 19 492962 493945 lcl|NODE 10 length 515802 cov 76.8733 ID 19 492962-493945
+Wickerhamomyces alni 35274 x lcl|NODE 23 length 158662 cov 14.2458 ID 5533 69570 70547 lcl|NODE 23 length 158662 cov 14.2458 ID 5533 69570-70547
+Starmera amethionina 35658 x lcl|flattened line 196 c17820 16837 lcl|flattened line 196 c17820-16837
+Starmera quercuum 34594 x lcl|flattened line 11 364747 365730 lcl|flattened line 11 364747-365730
+Candida gotoi 35681 x lcl|NODE 18 length 296463 cov 85.1512 ID 35 c10777 9773 lcl|NODE 18 length 296463 cov 85.1512 ID 35 c10777-9773
+Candida rhagii 35679 x lcl|NODE 6 length 723125 cov 44.3351 ID 1383 c23608 22634 lcl|NODE 6 length 723125 cov 44.3351 ID 1383 c23608-22634
+Hyphopichia heimii 35318 x lcl|NODE 109 length 36606 cov 24.7757 ID 19931 c9118 8075 lcl|NODE 109 length 36606 cov 24.7757 ID 19931 c9118-8075
+Wickerhamomyces hampshirensis 35268 x lcl|NODE 3 length 1364554 cov 21.9612 ID 3295 567707 568684 lcl|NODE 3 length 1364554 cov 21.9612 ID 3295 567707-568684
+Cyberlindnera maclurae 35699 x lcl|NODE 890 length 386 cov 1.39033 ID 24939 c264 1 lcl|NODE 890 length 386 cov 1.39033 ID 24939 c264-1
+Cyberlindnera americana 35703 x lcl|NODE 19 length 227830 cov 99.5677 ID 3649 191997 192710 lcl|NODE 19 length 227830 cov 99.5677 ID 3649 191997-192710
+Cyberlindnera fabianii JCM3601 x gi|1002316264|dbj|BCGI01000006.1| c34856 33846 gi|1002316264|dbj|BCGI01000006.1| c34856-33846
+Cyberlindnera xylosilytica 35688 x lcl|flattened line 116 59451 60455 lcl|flattened line 116 59451-60455
+Cyberlindnera petersonii 35325 x lcl|NODE 103 length 6828 cov 19.3552 ID 323961 c6448 5399 lcl|NODE 103 length 6828 cov 19.3552 ID 323961 c6448-5399
+

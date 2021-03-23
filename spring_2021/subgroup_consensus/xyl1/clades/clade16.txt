@@ -1,0 +1,50 @@
+Lipomyces oligophaga 34748 x lcl|NODE 2 length 1995911 cov 28.209 ID 3 c984029 983070 lcl|NODE 2 length 1995911 cov 28.209 ID 3 c984029-983070
+Lipomyces suomiensis 34742 x lcl|NODE 15 length 346321 cov 21.575 ID 29 c130716 129763 lcl|NODE 15 length 346321 cov 21.575 ID 29 c130716-129763
+Lipomyces suomiensis 34742 x lcl|NODE 15 length 346321 cov 21.575 ID 29 c79317 78361 lcl|NODE 15 length 346321 cov 21.575 ID 29 c79317-78361
+Lipomyces japonicus 34758 x lcl|flattened line 153 34666 35622 lcl|flattened line 153 34666-35622
+Lipomyces lipofer 34761 x lcl|flattened line 124 96691 97638 lcl|flattened line 124 96691-97638
+Lipomyces doorenjongii 34757 x lcl|NODE 4 length 728525 cov 39.2039 ID 7 124962 125936 lcl|NODE 4 length 728525 cov 39.2039 ID 7 124962-125936
+Lipomyces kononenkoae 34760 x lcl|NODE 9 length 328160 cov 18.9397 ID 17 158325 159269 lcl|NODE 9 length 328160 cov 18.9397 ID 17 158325-159269
+Lipomyces starkeyi x lcl|scaffold 17 c16962 16018 lcl|scaffold 17 c16962-16018
+Lipomyces mesembrius 34749 x lcl|NODE 4 length 601463 cov 15.82 ID 7 c410864 409920 lcl|NODE 4 length 601463 cov 15.82 ID 7 c410864-409920
+Lipomyces arxii 34754 x lcl|NODE 137 length 37560 cov 11.0685 ID 273 20097 21041 lcl|NODE 137 length 37560 cov 11.0685 ID 273 20097-21041
+Lipomyces oligophaga 34748 x lcl|NODE 6 length 1161583 cov 24.6584 ID 11 c512182 511589 lcl|NODE 6 length 1161583 cov 24.6584 ID 11 c512182-511589
+Lipomyces starkeyi x lcl|scaffold 9 279010 279414 lcl|scaffold 9 279010-279414
+Lipomyces arxii 34754 x lcl|NODE 291 length 8506 cov 13.2754 ID 581 c1017 403 lcl|NODE 291 length 8506 cov 13.2754 ID 581 c1017-403
+Lipomyces mesembrius 34749 x lcl|NODE 67 length 60484 cov 17.8945 ID 133 41853 42254 lcl|NODE 67 length 60484 cov 17.8945 ID 133 41853-42254
+Lipomyces mesembrius 34749 x lcl|NODE 67 length 60484 cov 17.8945 ID 133 41542 41856 lcl|NODE 67 length 60484 cov 17.8945 ID 133 41542-41856
+Lipomyces starkeyi x lcl|scaffold 9 278695 279009 lcl|scaffold 9 278695-279009
+Trigonopsis variabilis 35650 x lcl|NODE 4 length 1082171 cov 45.4179 ID 1480 377530 378447 lcl|NODE 4 length 1082171 cov 45.4179 ID 1480 377530-378447
+Trigonopsis vinaria 35282 x lcl|NODE 24 length 163241 cov 27.3507 ID 3210 c74045 73143 lcl|NODE 24 length 163241 cov 27.3507 ID 3210 c74045-73143
+Trigonopsis variabilis 35650 x lcl|NODE 4 length 1082171 cov 45.4179 ID 1480 375796 376848 lcl|NODE 4 length 1082171 cov 45.4179 ID 1480 375796-376848
+Trigonopsis variabilis 35650 x lcl|NODE 2 length 1838899 cov 46.6078 ID 1253 220526 221599 lcl|NODE 2 length 1838899 cov 46.6078 ID 1253 220526-221599
+Lipomyces lipofer 34761 x lcl|flattened line 0 c254106 253924 lcl|flattened line 0 c254106-253924
+Lipomyces lipofer 34761 x lcl|flattened line 0 229014 229196 lcl|flattened line 0 229014-229196
+Lipomyces japonicus 34758 x lcl|flattened line 131 23037 23231 lcl|flattened line 131 23037-23231
+Lipomyces kononenkoae 34760 x lcl|NODE 24 length 201069 cov 18.7772 ID 47 135334 135576 lcl|NODE 24 length 201069 cov 18.7772 ID 47 135334-135576
+Lipomyces mesembrius 34749 x lcl|NODE 25 length 224029 cov 16.3037 ID 49 c15490 15269 lcl|NODE 25 length 224029 cov 16.3037 ID 49 c15490-15269
+Lipomyces starkeyi x lcl|scaffold 5 302945 303412 lcl|scaffold 5 302945-303412
+Lipomyces arxii 34754 x lcl|NODE 36 length 135873 cov 11.6034 ID 71 c134974 134756 lcl|NODE 36 length 135873 cov 11.6034 ID 71 c134974-134756
+Blastobotrys proliferans 34670 x lcl|NODE 73 length 74869 cov 14.3415 ID 145 61390 61722 lcl|NODE 73 length 74869 cov 14.3415 ID 145 61390-61722
+Lipomyces oligophaga 34748 x lcl|NODE 1 length 2488267 cov 24.9357 ID 1 c162151 161459 lcl|NODE 1 length 2488267 cov 24.9357 ID 1 c162151-161459
+Lipomyces suomiensis 34742 x lcl|NODE 16 length 344319 cov 21.9001 ID 31 238055 238693 lcl|NODE 16 length 344319 cov 21.9001 ID 31 238055-238693
+Lipomyces lipofer 34761 x lcl|flattened line 138 66998 67243 lcl|flattened line 138 66998-67243
+Lipomyces doorenjongii 34757 x lcl|NODE 1 length 894220 cov 39.3355 ID 1 c102438 101794 lcl|NODE 1 length 894220 cov 39.3355 ID 1 c102438-101794
+Lipomyces japonicus 34758 x lcl|flattened line 9 c131734 131087 lcl|flattened line 9 c131734-131087
+Lipomyces lipofer 34761 x lcl|flattened line 186 26505 27140 lcl|flattened line 186 26505-27140
+Lipomyces kononenkoae 34760 x lcl|NODE 20 length 225737 cov 18.5558 ID 39 c104789 104097 lcl|NODE 20 length 225737 cov 18.5558 ID 39 c104789-104097
+Lipomyces starkeyi x lcl|scaffold 14 548855 549286 lcl|scaffold 14 548855-549286
+Lipomyces arxii 34754 x lcl|NODE 80 length 75781 cov 11.369 ID 159 c64400 63708 lcl|NODE 80 length 75781 cov 11.369 ID 159 c64400-63708
+Lipomyces mesembrius 34749 x lcl|NODE 33 length 172057 cov 17.0907 ID 65 c145043 144351 lcl|NODE 33 length 172057 cov 17.0907 ID 65 c145043-144351
+Lipomyces arxii 34754 x lcl|NODE 192 length 21431 cov 13.4539 ID 383 c17423 16818 lcl|NODE 192 length 21431 cov 13.4539 ID 383 c17423-16818
+Lipomyces doorenjongii 34757 x lcl|NODE 21 length 198108 cov 39.0493 ID 41 c23178 22597 lcl|NODE 21 length 198108 cov 39.0493 ID 41 c23178-22597
+Lipomyces arxii 34754 x lcl|NODE 192 length 21431 cov 13.4539 ID 383 c17659 17435 lcl|NODE 192 length 21431 cov 13.4539 ID 383 c17659-17435
+Lipomyces lipofer 34761 x lcl|flattened line 521 c1592 816 lcl|flattened line 521 c1592-816
+Lipomyces doorenjongii 34757 x lcl|NODE 21 length 198108 cov 39.0493 ID 41 c23429 23214 lcl|NODE 21 length 198108 cov 39.0493 ID 41 c23429-23214
+Lipomyces suomiensis 34742 x lcl|NODE 57 length 14472 cov 21.0481 ID 113 c7699 7046 lcl|NODE 57 length 14472 cov 21.0481 ID 113 c7699-7046
+Lipomyces oligophaga 34748 x lcl|NODE 6 length 1161583 cov 24.6584 ID 11 c806471 805473 lcl|NODE 6 length 1161583 cov 24.6584 ID 11 c806471-805473
+Lipomyces lipofer 34761 x lcl|flattened line 176 10981 11421 lcl|flattened line 176 10981-11421
+Lipomyces starkeyi x lcl|scaffold 13 641283 641594 lcl|scaffold 13 641283-641594
+Lipomyces kononenkoae 34760 x lcl|NODE 102 length 28203 cov 23.3702 ID 203 23339 23584 lcl|NODE 102 length 28203 cov 23.3702 ID 203 23339-23584
+Lipomyces kononenkoae 34760 x lcl|NODE 130 length 16087 cov 18.149 ID 259 c13226 12834 lcl|NODE 130 length 16087 cov 18.149 ID 259 c13226-12834
+
