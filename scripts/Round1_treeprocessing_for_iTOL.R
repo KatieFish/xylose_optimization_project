@@ -65,3 +65,44 @@ key<-unique(allclades[c(2,5)])
 write.table(key, "~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1_KO_annotations_iTOLkey.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
 write.tree(xyl1.fastTree, "~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1.hits.TreeFileForItol.tree")
+
+#########
+#read in clades
+clade1<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade1.txt", header=FALSE)
+clade1$clade<-1
+clade2<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade2.txt", header=FALSE)
+clade2$clade<-2
+clade3<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade3.txt", header=FALSE)
+clade3$clade<-3
+clade4<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade4.txt", header=FALSE)
+clade4$clade<-4
+clade5<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade5.txt", header=FALSE)
+clade5$clade<-5
+clade6<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade6.txt", header=FALSE)
+clade6$clade<-6
+clade7<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade7.txt", header=FALSE)
+clade7$clade<-7
+clade8<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade8.txt", header=FALSE)
+clade8$clade<-8
+clade9<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade9.txt", header=FALSE)
+clade9$clade<-9
+clade10<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade10.txt", header=FALSE)
+clade10$clade<-10
+clade11<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade11.txt", header=FALSE)
+clade11$clade<-11
+clade12<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade12.txt", header=FALSE)
+clade12$clade<-12
+clade13<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade13.txt", header=FALSE)
+clade13$clade<-13
+clade14<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade14.txt", header=FALSE)
+clade14$clade<-14
+clade15<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade15.txt", header=FALSE)
+clade15$clade<-15
+clade16<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/clades/clade16.txt", header=FALSE)
+clade16$clade<-16
+
+catclades<-rbind(clade1, clade2, clade3, clade4, clade5, clade6,
+                 clade7, clade8, clade9, clade10, clade11, clade12, 
+                 clade13, clade14, clade15, clade16)
+
+

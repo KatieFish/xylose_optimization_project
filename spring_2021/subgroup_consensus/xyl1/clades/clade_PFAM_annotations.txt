@@ -1,0 +1,17 @@
+clade	cons_Pfam_ann
+1	Pfam aldo-keto reductase
+2	Pfam aldo-keto reductase
+3	Pfam aldo-keto reductase
+4	Pfam aldo-keto reductase
+5	Pfam aldo-keto reductase
+6	Pfam aldo-keto reductase
+7	Pfam aldo-keto reductase
+8	Pfam aldo-keto reductase
+9	Pfam aldo-keto reductase
+10	Pfam aldo-keto reductase
+11	Pfam aldo-keto reductase
+12	Pfam aldo-keto reductase
+13	Pfam aldo-keto reductase
+14	Pfam aldo-keto reductase
+15	Pfam aldo-keto reductase
+16	Pfam aldo-keto reductase

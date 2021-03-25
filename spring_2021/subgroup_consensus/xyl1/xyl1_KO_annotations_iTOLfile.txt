@@ -37,7 +37,7 @@ LEGEND_TITLE	KEGG orthology annotation
 #LEGEND_POSITION_Y,100
 LEGEND_SHAPES	1	1	1	1	1	1	1	1	1	1	1
 LEGEND_COLORS	#FF0000	#000000	#FFFF00	#808000	#00FF00	#008000	#00FFFF	#008080	#0000FF	#000080	#FF00FF
-LEGEND_LABELS	glycerol 2-dehydrogenase (NADP+)	No annotation	D-arabinose 1-dehydrogenase	D-xylose reductase	pyridoxine 4-dehydrogenase	alcohol dehydrogenase (NADP+)	potassium voltage-gated channel Shaker-related subfamily A, beta member 1	aflatoxin B1 aldehyde reductase	aldehyde reductase	L-glyceraldehyde reductase	5-oxoprolinase (ATP-hydrolysing)
+LEGEND_LABELS	glycerol 2-dehydrogenase (NADP+)	No KO- Pfam aldo/keto reductase	D-arabinose 1-dehydrogenase	D-xylose reductase	pyridoxine 4-dehydrogenase	alcohol dehydrogenase (NADP+)	potassium voltage-gated channel Shaker-related subfamily A, beta member 1	aflatoxin B1 aldehyde reductase	aldehyde reductase	L-glyceraldehyde reductase	5-oxoprolinase (ATP-hydrolysing)
 #LEGEND_SHAPE_SCALES,1,1,0.5
 
 #Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages
