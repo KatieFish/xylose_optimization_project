@@ -2,6 +2,13 @@
 sequence_mat<-read.delim("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1.subgroup.matrix.txt",
                          header=TRUE, stringsAsFactors=FALSE)
 
+#fix names in sequence mat
+taxon_name_switches <- read.delim("~/xylose_optimization_project/spring_2021/data/taxon_name_switches.txt", stringsAsFactors=FALSE)
+
+
+
+
+
 #how many sequences do not begin with methionine? 
 length(which(!sequence_mat[,2] == "m"))
 
