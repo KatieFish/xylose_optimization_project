@@ -1,9 +1,9 @@
 
 require("seqinr")
 
-alnmnt<-read.alignment("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1_subgroup.fasta", format="fasta")
+alnmnt<-read.alignment("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/xyl3_subgroup.fasta", format="fasta")
 #also reading in fasta
-fs<- read.fasta("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1_subgroup.fasta")
+fs<- read.fasta("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/xyl3_subgroup.fasta")
 
 bp<-max(getLength(fs))
 
@@ -31,7 +31,7 @@ taxa_IDs[i]<-name
 ####
 alnmnt_matrix[,1]<-taxa_IDs
 
-write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl1/xyl1.subgroup.matrix.txt",
+write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/xyl3.subgroup.matrix.txt",
             sep="\t", quote=FALSE, row.names=FALSE)
 
 
