@@ -1,0 +1,13 @@
+growth_data_name	sequences_name
+blastobotrys adeninivorans	arxula adeninivorans
+hyphopichia homilentoma	candida homilentoma
+suhomyces pyralidae	candida pyralidae
+teunomyces cretensis	candida cretensis
+teunomyces kruisii	candida kruisii
+yamadazyma tenuis	candida tenuis
+candida bracarensis	nakaseomyces bracarensis
+candida nivariensis	nakaseomyces nivariensis
+groenewaldozyma salmanticensis	candida salmanticensis
+metschnikowia bicuspidata_var._bicuspidata	metschnikowia bicuspidata
+suhomyces canberraensis	candida canberraensis
+suhomyces tanzawaensis	candida tanzawaensis

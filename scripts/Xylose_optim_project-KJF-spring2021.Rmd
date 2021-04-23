@@ -1,0 +1,357 @@
+---
+title: "Xylose codon optimization project"
+output: html_document
+---
+**Project updated 04-21-21 by KJF to reflect new homolog ID pipeline**
+
+WORKFLOW: 
+
+
+Part 1: Isolation of homologs
+
+We used a pipeline in which we first took the assemblies of the 332 genomes in Shen et al. 2018 Cell and generated gene annotations using orfFinder. HMMR (http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) was used to identify homologs for XYL1 (xylose reducase), XYL2 (Xylitol dehydrogenase), and XYL3 (xylulokinase) from those annotations. 
+
+We then used phylogenetic trees (https://bio.tools/fasttree) combined with KEGG orthology (https://www.kegg.jp/blastkoala/) to isolate clades of XYL1, XYL2, and XYL3 homologs. 
+
+To apply some quality control to the annotations we picked up as relevant homologs, we generated codon-aware alignments of the coding sequences for the XYL homologs based on amino acid alignments using Pal2Nal (http://www.bork.embl.de/pal2nal/ , http://manpages.ubuntu.com/manpages/groovy/man1/pal2nal.pl.1.html). We chose to only retain codon positions with >80% occupancy (Phyutility). Therefore we are only comparing optimization of codons for which the homologous codon position is shared by at least 80% of the sequences in the data. 
+
+We then removed any sequences that were either completely identical, or an identical fragment, of another sequence belonging to the SAME SPECIES. 
+
+This part of our analysis can be visualized in your iTOL trees. 
+
+Part 2: 
+Calculating the codon optimization index for each gene. 
+
+Step 1: We used Abbe's "wi values" (Labella et al. 2019 Plos Gen.). For each gene, we took the geometric mean of all codon's wi values (minus the start codon). This value was called the tAI value.
+
+**This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
+
+Step 2: We cannot compare the tAI values of genes between species without normalizing those tAI values to the rest of the genome for each species. We (again) used Abbe's data (Labella et al. 2019 Plos Gen.) to retrieve the distribution of tAI values for each species. 
+
+**This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
+
+
+```{r}
+spp_by_maximum_stAI<-read.delim("~/xylose_optimization_project/spring_2021/data/spp_by_gene_maximum_paralog_stAI_vals.txt", stringsAsFactors = FALSE)
+
+genome_wide_tAI<-read.delim("~/xylose_optimization_project/fall_2020/data/labella_et_al/cds_mito_processed_tAI_recalc/genome_wide_tAI_all_spp.txt")
+````
+
+Now we compare the tAI values of the gene's we're interested in and determine what % of all genes in the genome have LOWER tAI values than our genes of interest. We used the empirical distribution function to do so. We call this value the estAI value. 
+
+The estAI values will allow us to better compare between species. We first found the maximum gene-estAI value for those species that have more than one copy of given genes.
+
+**Note that our more recent orfFinder based homolog search yeilded more species with multiple paralogs per gene. Using the max estAI solves this problem for codon optimization analyses, but we may still want to emply some filters for annotations.**
+
+
+```{r}
+
+spp_by_maximum_estAI<-read.delim("~/xylose_optimization_project/spring_2021/data/spp_by_gene_maximum_paralog_estAI_vals.txt")
+````
+
+
+```{r}
+par(mfrow=c(2,2))
+hist(spp_by_maximum_estAI$max_xyl1_estAI, xlab="estAI values", main="XYL1 estAI distribution", col="lightblue", breaks = 50)
+hist(spp_by_maximum_estAI$max_xyl2_estAI, xlab="estAI values", main="XYL2 estAI distribution", col="plum3", breaks = 50)
+hist(spp_by_maximum_estAI$max_xyl3_estAI, xlab="estAI values", main="XYL3 estAI distribution", col="firebrick1", breaks = 50)
+```
+
+The distributions of estAI values for these genes seem to be quite different.  XYL1 and XYL2 are shifted right, a repeated finding from our original homolog search using maker annotations. The fact that two different homolog ID pipelines turned up the same patterns is reassuring. XYL3 appears to have more of a normal distibution, with some species having highly optomized homologs but most having a medium level of optimization. 
+
+We chose to take a closer look at the species that were best optimized across the whole pathway. We looked for species that possessed homologs for all 3 genes AND were in the top 10 (90th percentile) of estAI values for all 3 genes (Note - this code is found in Processing_xylose_MSA_tsvs-KJF-spring2021). We found 9 such species: 
+
+"spathaspora passalidarum" 
+"spathaspora gorwiae"      
+"scheffersomyces stipitis"
+"lipomyces doorenjongii"   
+"spathaspora arborariae"   
+"spathaspora girioi"      
+"spathaspora hagerdaliae"  
+"ogataea nitratoaversa"    
+"scheffersomyces lignosus"
+
+#Most of these are known to be good xylose consumers - so this is a good finding!# 
+
+
+```{r}
+par(mfrow=c(3,3))
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora passalidarum")], xlab="tAI values", main="Spath.passalidarum tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora gorwiae")], xlab="tAI values", main="Spath.gorwiae tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces stipitis")], xlab="tAI values", main="Sch.stipitis tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="lipomyces doorenjongii")], xlab="tAI values", main="Lip.doorenjongii tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora arborariae")], xlab="tAI values", main="Spath.arborariae tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora girioi")], xlab="tAI values", main="Spath.girioi tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora hagerdaliae")], xlab="tAI values", main="Spath.hagerdaliae tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="ogataea nitratoaversa")], xlab="tAI values", main="Og.nitratoaversa tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces lignosus")], xlab="tAI values", main="Sch.lignosus tAI distribution", col="darkolivegreen1")
+abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkgreen", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkorange", lwd=2)
+abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkorchid", lwd=2)
+legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
+```
+
+It is interesting that XYL3 always appears to drag behind - even in these species with otherwise high stAI values. 
+
+Does this tell us something about XYL3? 
+
+
+Step 3: Aquire growth data. This part was easy - we just emailed Dana! 
+
+
+You can generate a figure in tTol by dragging this file onto the tree. 
+
+~/xylose_optimization_project/data/iTol_files/Xylose_growth_rate_matrix.txt
+
+
+Step 4: Analyze! 
+
+Question 1) Do spp. that grow on xylose have higher estAI values than spp. that do not? 
+
+```{r}
+growth_data<-read.delim("~/xylose_optimization_project/spring_2021/data/growth_rate_master_df.txt", stringsAsFactors = FALSE)
+
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data$growth.binary<-NA
+for(i in 1:nrow(growth_data)){
+  if(growth_data$Growth.Rate[i]>0){
+    growth_data$growth.binary[i]<-1
+  }
+  if(growth_data$Growth.Rate[i]==0){
+    growth_data$growth.binary[i]<-0
+  }
+}
+
+xyl1.test<-wilcox.test(data=growth_data, max_xyl1_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl2.test<-wilcox.test(data=growth_data, max_xyl2_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl3.test<-wilcox.test(data=growth_data, max_xyl3_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+
+
+par(mfrow=c(2,2))
+par(mar=c(3,4,3,2))
+
+boxplot(growth_data$max_xyl1_estAI ~ as.factor(growth_data$growth.binary),
+        col="lightblue", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL1")
+legend("bottomleft", legend=paste("p=",xyl1.test$p.value))
+
+boxplot(growth_data$max_xyl2_estAI ~ as.factor(growth_data$growth.binary),
+        col="plum3", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL2")
+legend("bottomleft", legend=paste("p=",xyl2.test$p.value))
+
+boxplot(growth_data$max_xyl3_estAI ~ as.factor(growth_data$growth.binary),
+        col="firebrick1", ylab="estAI value",
+        names=c("no growth", "growth"), main="XYL3")
+legend("bottomleft", legend=paste("p=",xyl3.test$p.value))
+
+```
+
+
+Last semester, we only found XYL1 and XYL3 to have significantly higher distributions of estAI values amongst spp. that can consume xylose. 
+
+However - our more robust search for homologs has resulted in all 3 xyl genes having significnatly higher estAI values amongst spp. that can consume xylose! 
+
+Question 2) Do growth rates correlate with estAI values? 
+
+*Note - a file for iTOL that will indicate all spp. with an S value greater than .5 can be found here: ~/xylose_optimization_project 
+
+
+Steps in this analysis 
+
+1 - get rid of all species with growth rates of 0. 
+
+2 - get rid of all species that do not have at least 1 copy of all 3 genes.
+
+3 - using the S-values reported in Labella et al., get rid of all spp. with s values lower than .5. (This keeps only those species for which we are confident selection and not other processes are responsible for estAI values)
+
+4 - create trees for each gene that contain just those species that have the gene.
+
+5 - use the trees to create phylogenetically independent contrast (PIC) vectors for our values of growth and of estAI.
+
+6 - perform a corellation with the PIC vectors.
+
+
+*There are 89 species (last semester we only had 65 - so we increased our n by over 30%!) that meet all the criteria for analysis: xylose growth rates >0 0, have all 3 genes, have s-values > 0.5*
+
+```{r}
+growth_data<-read.delim("~/xylose_optimization_project/spring_2021/data/growth_rate_master_df.txt", stringsAsFactors = FALSE)
+
+s_values<-read.delim("~/xylose_optimization_project/fall_2020/data/labella_et_al/s_values.txt", stringsAsFactors = FALSE)
+
+#Step 1
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data<-growth_data[which(growth_data$Growth.Rate>0), ]
+
+#Step 2
+removes<-which(is.na(growth_data$max_xyl1_estAI) | is.na(growth_data$max_xyl2_estAI) | is.na(growth_data$max_xyl3_estAI))
+growth_data<-growth_data[-removes, ]
+
+#Step 3
+s_values<-s_values[which(s_values$species.name %in% growth_data$all_taxa), ]
+colnames(s_values)<-c("all_taxa", "s_value")
+growth_data<-merge(growth_data, s_values, by="all_taxa")
+growth_data<-growth_data[which(growth_data$s_value > .5),]
+
+#Step 4
+library(ape)
+require(stringr)
+require(ggpubr)
+require(ade4)
+require(adephylo)
+require(nlme)
+tree<-read.tree("~/xylose_optimization_project/fall_2020/data/iTol_files/332_Newick_tree.txt")
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree$tip.label<-tolower(tree$tip.label)
+name_swaps<-read.delim("~/xylose_optimization_project/spring_2021/data/tree_to_seq_data_nameswaps.txt", stringsAsFactors = FALSE, header=TRUE)
+#setting the tree taxa names to the names of our sequence data, which will differ from the 332 paper and their correct names. We can fix that later. 
+for (i in 1:length(tree$tip.label)){
+  if(tree$tip.label[i] %in% name_swaps$tree_name){
+    tree$tip.label[i]<-name_swaps$data_name[which(name_swaps$tree_name == tree$tip.label[i])]
+  }
+}
+
+phylo_order_df<-data.frame(tree$tip.label)
+phylo_order_df$phylo_order<-c(1:nrow(phylo_order_df))
+colnames(phylo_order_df)<-c("all_taxa", "phylo_order")
+growth_data<-merge(growth_data, phylo_order_df, by="all_taxa")
+df<-growth_data[order(growth_data$phylo_order), ]
+row.names(df)<-df$all_taxa
+
+
+#remove taxa from tree that are not present in our data 
+removes<-which(!tree$tip.label %in% df$all_taxa)
+PICtree<-drop.tip(tree, tree$tip.label[removes])
+#
+
+#Step 5
+fit1 <- gls(max_xyl1_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL2
+fit2 <- gls(max_xyl2_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL3
+fit3 <- gls(max_xyl3_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+
+plot(fit1, resid(., type="n")~fitted(.), main="XYL1 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for XYL1
+```{r}
+plot(fit2, resid(., type="n")~fitted(.), main="XYL2 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for XYL2. 
+
+```{r}
+plot(fit3, resid(., type="n")~fitted(.), main="XYL3 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+No obvious outliers for XYL3
+
+We did not have to remove any outliers. Now we can do correlation tests on the PIC vectors for each gene. 
+
+XYL1: 
+  
+```{r}
+#Step 6
+PIC.xyl1<-pic(df$max_xyl1_estAI, PICtree)
+PIC.growth.xyl1<-pic(df$Growth.Rate, PICtree)
+ctest<-cor.test(PIC.xyl1, PIC.growth.xyl1, method="pearson")
+ctest
+linmod<-lm(PIC.growth.xyl1 ~ PIC.xyl1)
+linmod
+plot(x=PIC.xyl1, y=PIC.growth.xyl1, pch=16,cex=1.5,
+     col="lightblue", main="XYL1", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
+abline(lm(PIC.growth.xyl1~PIC.xyl1))
+```
+
+No significant correlation between XYL1 codon optimization and xylose growth rate. 
+
+
+XYL2:
+  
+```{r}
+#calculate and compare PIC values
+PIC.xyl2<-pic(df$max_xyl2_estAI, PICtree)
+PIC.growth.xyl2<-pic(df$Growth.Rate, PICtree)
+ctest<-cor.test(PIC.xyl2, PIC.growth.xyl2, method="pearson")
+ctest
+linmod<-lm(PIC.growth.xyl2 ~ PIC.xyl2)
+linmod
+plot(x=PIC.xyl2, y=PIC.growth.xyl2, pch=16,cex=1.5,
+     col="plum3", main="XYL2", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
+abline(lm(PIC.growth.xyl2~PIC.xyl2))
+```
+
+No significant correlation between XYL2 codon optimization and xylose growth rate. 
+
+XYL3: 
+  
+```{r}
+#calculate and compare PIC values
+PIC.xyl3<-pic(df$max_xyl3_estAI, PICtree)
+PIC.growth.xyl3<-pic(df$Growth.Rate, PICtree)
+#
+ctest<-cor.test(PIC.xyl3, PIC.growth.xyl3, method="pearson")
+ctest
+linmod<-lm(PIC.growth.xyl3 ~ PIC.xyl3)
+linmod
+plot(x=PIC.xyl3, y=PIC.growth.xyl3, pch=16,cex=1.5,
+     col="firebrick1", main="XYL3", xlab="PIC estAI",
+     ylab="PIC xylose growth rate")
+legend("topleft", legend=c(paste("p=", ctest$p.value),
+                           paste("r2=", summary(linmod)$r.squared)))
+abline(lm(PIC.growth.xyl3~PIC.xyl3))
+```
+
+No significant correlation between XYL2 codon optimization and xylose growth rate. 
+

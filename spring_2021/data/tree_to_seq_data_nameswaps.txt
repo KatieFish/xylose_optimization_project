@@ -1,0 +1,24 @@
+tree_name	data_name
+blastobotrys adeninivorans	arxula adeninivorans
+blastobotrys raffinosifermentans	blastobotrys raffinofermentans
+suhomyces canberraensis	candida canberraensis
+teunomyces cretensis	candida cretensis
+hyphopichia homilentoma	candida homilentoma
+teunomyces kruisii	candida kruisii
+suhomyces pyralidae	candida pyralidae
+groenewaldozyma salmanticensis	candida salmanticensis
+suhomyces tanzawaensis	candida tanzawaensis
+yamadazyma tenuis	candida tenuis
+hanseniaspora vineae	hanseniaspora vinae
+lachancea fantastica_nom_nud	lachancea fantastica
+magnusiomyces tetraspermus	magnusiomyces tetrasperma
+metschnikowia bicuspidata_var._bicuspidata	metschnikowia bicuspidata
+metschnikowia dekortorum	metschnikowia dekortum
+metschnikowia lochheadii	metschnikowia lockheadii
+metschnikowia matae_var._matae	metschnikowia matae
+metschnikowia matae_var._maris	metschnikowia matae maris
+candida bracarensis	nakaseomyces bracarensis
+candida castellii	nakaseomyces castellii
+candida nivariensis	nakaseomyces nivariensis
+ogataea philodendri	ogataea philodendra
+ogataea populialbae	ogataea populiabae
