@@ -22,11 +22,11 @@ This part of our analysis can be visualized in your iTOL trees.
 Part 2: 
 Calculating the codon optimization index for each gene. 
 
-Step 1: We used Abbe's "wi values" (Labella et al. 2019 Plos Gen.). For each gene, we took the geometric mean of all codon's wi values (minus the start codon). This value was called the tAI value.
+Step 1: We used Abbe's "wi values" (Labella et al. 2019 Plos Gen.). For each gene, we took the geometric mean of all codon's wi values (minus the start codon). This value was called the stAI value.
 
 **This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
 
-Step 2: We cannot compare the tAI values of genes between species without normalizing those tAI values to the rest of the genome for each species. We (again) used Abbe's data (Labella et al. 2019 Plos Gen.) to retrieve the distribution of tAI values for each species. 
+Step 2: We cannot compare the stAI values of genes between species without normalizing those stAI values to the rest of the genome for each species. We (again) used Abbe's data (Labella et al. 2019 Plos Gen.) to retrieve the distribution of tAI values for each species. 
 
 **This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
 
@@ -37,7 +37,7 @@ spp_by_maximum_stAI<-read.delim("~/xylose_optimization_project/spring_2021/data/
 genome_wide_tAI<-read.delim("~/xylose_optimization_project/fall_2020/data/labella_et_al/cds_mito_processed_tAI_recalc/genome_wide_tAI_all_spp.txt")
 ````
 
-Now we compare the tAI values of the gene's we're interested in and determine what % of all genes in the genome have LOWER tAI values than our genes of interest. We used the empirical distribution function to do so. We call this value the estAI value. 
+Now we compare the stAI values of the gene's we're interested in and determine what % of all genes in the genome have LOWER tAI values than our genes of interest. We used the empirical distribution function to do so. We call this value the estAI value. 
 
 The estAI values will allow us to better compare between species. We first found the maximum gene-estAI value for those species that have more than one copy of given genes.
 
@@ -75,57 +75,59 @@ We chose to take a closer look at the species that were best optimized across th
 
 
 ```{r}
+toptens<-read.delim("~/xylose_optimization_project/spring_2021/data/spp_in_90th_percentile_codon_opt.txt")
+
 par(mfrow=c(3,3))
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora passalidarum")], xlab="tAI values", main="Spath.passalidarum tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora passalidarum")], xlab="stAI values", main="Spath.passalidarum stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora passalidarum")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora gorwiae")], xlab="tAI values", main="Spath.gorwiae tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora gorwiae")], xlab="stAI values", main="Spath.gorwiae stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora gorwiae")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces stipitis")], xlab="tAI values", main="Sch.stipitis tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces stipitis")], xlab="stAI values", main="Sch.stipitis stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces stipitis")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="lipomyces doorenjongii")], xlab="tAI values", main="Lip.doorenjongii tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="lipomyces doorenjongii")], xlab="stAI values", main="Lip.doorenjongii stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="lipomyces doorenjongii")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora arborariae")], xlab="tAI values", main="Spath.arborariae tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora arborariae")], xlab="stAI values", main="Spath.arborariae stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora arborariae")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora girioi")], xlab="tAI values", main="Spath.girioi tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora girioi")], xlab="stAI values", main="Spath.girioi stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora girioi")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora hagerdaliae")], xlab="tAI values", main="Spath.hagerdaliae tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="spathaspora hagerdaliae")], xlab="stAI values", main="Spath.hagerdaliae stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="spathaspora hagerdaliae")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="ogataea nitratoaversa")], xlab="tAI values", main="Og.nitratoaversa tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="ogataea nitratoaversa")], xlab="stAI values", main="Og.nitratoaversa stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="ogataea nitratoaversa")], col="darkorchid", lwd=2)
 legend("topleft", legend=c("xyl1", "xyl2", "xyl3"), pch=20, col=c("darkgreen", "darkorange", "darkorchid"))
 
-hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces lignosus")], xlab="tAI values", main="Sch.lignosus tAI distribution", col="darkolivegreen1")
+hist(genome_wide_tAI$V2[which(genome_wide_tAI$taxa=="scheffersomyces lignosus")], xlab="stAI values", main="Sch.lignosus stAI distribution", col="darkolivegreen1")
 abline(v=spp_by_maximum_stAI$max_xyl1_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkgreen", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl2_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkorange", lwd=2)
 abline(v=spp_by_maximum_stAI$max_xyl3_stAI[which(spp_by_maximum_stAI$all_taxa=="scheffersomyces lignosus")], col="darkorchid", lwd=2)
@@ -353,5 +355,31 @@ legend("topleft", legend=c(paste("p=", ctest$p.value),
 abline(lm(PIC.growth.xyl3~PIC.xyl3))
 ```
 
-No significant correlation between XYL2 codon optimization and xylose growth rate. 
+No significant correlation between XYL3 codon optimization and xylose growth rate. 
 
+
+Does the growth rate assay data capture what we know about good xylose-consumers?
+
+```{r}
+hist(growth_data$max_xyl1_estAI, col="lightblue", xlab="XYL1 estAI", main="XYL1 estAI", breaks=25, xlim=c(.85,1))
+abline(v=growth_data$max_xyl1_estAI[which(growth_data$all_taxa %in% toptens[,1])], col=c("red", "blue", "green"))
+legend("topleft", legend = growth_data$all_taxa[which(growth_data$all_taxa %in% toptens[,1])], pch=20 ,col=c("red", "blue", "green"))
+
+hist(growth_data$max_xyl2_estAI, col="plum3", xlab="XYL2 estAI", main="XYL2 estAI", breaks=25, xlim=c(0,1.1))
+abline(v=growth_data$max_xyl2_estAI[which(growth_data$all_taxa %in% toptens[,1])], col=c("red", "blue", "green"))
+legend("topleft", legend = growth_data$all_taxa[which(growth_data$all_taxa %in% toptens[,1])], pch=20 ,col=c("red", "blue", "green"))
+
+hist(growth_data$max_xyl3_estAI, col="firebrick1", xlab="XYL3 estAI", main="XYL3 estAI", breaks=25, xlim=c(0,1.1))
+abline(v=growth_data$max_xyl3_estAI[which(growth_data$all_taxa %in% toptens[,1])], col=c("red", "blue", "green"))
+legend("topleft", legend = growth_data$all_taxa[which(growth_data$all_taxa %in% toptens[,1])], pch=20 ,col=c("red", "blue", "green"))
+
+
+hist(growth_data$Growth.Rate, col="darkorange", xlab="xylose growth rate", main= "Growth rates in xylose", breaks=25)
+abline(v=growth_data$Growth.Rate[which(growth_data$all_taxa %in% toptens[,1])], col=c("red", "blue", "green"))
+legend("topleft", legend = growth_data$all_taxa[which(growth_data$all_taxa %in% toptens[,1])], pch=20 ,col=c("red", "blue", "green"))
+```
+
+
+Maybe codon optimization does matter - but the trait we are measuring (aerobic growth in 96 well plates) does not reflect that?
+
+Would xylose fermentation be a better assay? 

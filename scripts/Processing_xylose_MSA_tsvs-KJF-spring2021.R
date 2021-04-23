@@ -429,6 +429,8 @@ for (i in 2:ncol(max_estAI_df)){
   keep<-which(toptens %in% spp)
   toptens<-toptens[keep]
 }
+write.table(toptens, "~/xylose_optimization_project/spring_2021/data/spp_in_90th_percentile_codon_opt.txt",
+            sep="\t", row.names=FALSE, quote=FALSE)
 ## 9 spp in 90th percentile for xyl1, xyl2, xyl3: 
 "spathaspora passalidarum" "spathaspora gorwiae"      "scheffersomyces stipitis"
 "lipomyces doorenjongii"   "spathaspora arborariae"   "spathaspora girioi"      
