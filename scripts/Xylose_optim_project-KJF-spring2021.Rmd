@@ -256,6 +256,7 @@ for (i in 1:length(tree$tip.label)){
     tree$tip.label[i]<-name_swaps$data_name[which(name_swaps$tree_name == tree$tip.label[i])]
   }
 }
+#write.tree(tree, "~/xylose_optimization_project/spring_2021/data/332_tree.nwk")
 
 phylo_order_df<-data.frame(tree$tip.label)
 phylo_order_df$phylo_order<-c(1:nrow(phylo_order_df))

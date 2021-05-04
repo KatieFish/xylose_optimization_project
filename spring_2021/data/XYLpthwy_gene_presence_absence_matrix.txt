@@ -1,330 +1,330 @@
 all_taxa	xyl1	xyl2	xyl3
-peterozyma xylosa	1	1	1
-barnettozyma californica	1	1	1
-ogataea pini	1	1	1
-lipomyces starkeyi	1	1	1
-zygosaccharomyces rouxii	1	1	1
-kazachstania yakushimaensis	1	0	1
-metschnikowia kamakouana	1	1	1
-candida schatavii	1	1	1
-ogataea populiabae	1	1	1
-barnettozyma hawaiiensis	1	1	1
-martiniozyma abiesophila	1	1	1
-metschnikowia matae maris	1	1	1
-metschnikowia mauinuiana	1	1	1
-lachancea cidri	1	1	1
-sporopachydermia lactativora	1	1	1
-ambrosiozyma vanderkliftii	1	1	1
-kazachstania bromeliacearum	1	0	1
-cyberlindnera jadinii	1	1	1
-cyberlindnera saturnus	1	1	1
-ogataea methanolica	1	1	1
-hyphopichia heimii	1	1	1
-metschnikowia similis	1	1	1
-blastobotrys americana	1	1	1
-candida freyschussii	1	1	1
-metschnikowia drakensbergensis	1	1	1
-kluyveromyces dobzhanskii	1	1	1
-kluyveromyces lactis	1	1	1
-nakaseomyces castellii	1	0	1
-debaryomyces hansenii	1	1	1
-spathaspora passalidarum	1	1	1
-lachancea meyersii	1	1	1
-wickerhamomyces hampshirensis	1	1	1
-cyberlindnera fabianii	1	1	1
-meyerozyma caribbica	1	1	1
-metschnikowia bowlesiae	1	1	1
-saccharomycopsis malanga	1	1	1
-zygosaccharomyces bisporus	1	1	1
-candida gotoi	1	1	1
-ambrosiozyma maleeae	1	1	1
-ogataea naganishii	1	1	1
-saturnispora silvae	1	1	0
-barnettozyma populi	1	1	1
-starmera amethionina	1	1	1
-tetrapisispora namnaonensis	1	0	0
-lachancea thermotolerans	1	1	1
-candida fructus	1	1	1
-kazachstania transvaalensis	1	0	1
-saccharomycopsis capsularis	1	1	1
-kazachstania kunashirensis	1	0	1
-dekkera bruxellensis	1	0	0
-arxula adeninivorans	1	1	1
-kazachstania rosinii	1	1	1
-clavispora lusitaniae	1	1	1
-ambrosiozyma philentoma	1	1	1
-metschnikowia cerradonensis	1	1	1
-lachancea quebecensis	1	1	1
-kazachstania naganishii	1	0	1
-alloascoidea hylecoeti	1	1	1
-ogataea parapolymorpha	1	1	1
-yamadazyma philogaea	1	1	1
-cephaloascus fragrans	1	1	1
-lachancea waltii	1	1	1
-ambrosiozyma ambrosiae	1	1	1
-candida intermedia	1	1	1
-cyberlindnera petersonii	1	1	1
-cyberlindnera mrakii	1	1	1
-kazachstania taianensis	1	0	1
-ambrosiozyma oregonensis	1	1	1
-citeromyces siamensis	1	1	1
-komagataella populi	1	1	1
-phaffomyces opuntiae	1	1	1
-cyberlindnera suaveolens	1	1	1
-candida tropicalis	1	1	1
-naumovozyma castellii	1	1	1
-kazachstania martiniae	1	0	1
-candida ascalaphidarum	1	1	1
-candida orba	1	1	1
-lachancea fermentati	1	1	1
-zygotorulaspora florentina	1	1	1
-kodamaea laetipori	1	1	1
-candida boidinii	1	1	1
-spathaspora gorwiae	1	1	1
-tetrapisispora blattae	1	0	0
-phaffomyces thermotolerans	1	1	1
-metschnikowia shivogae	1	1	1
-kazachstania spencerorum	1	1	1
-kuraishia ogatae	1	1	1
-diddensiella caesifluorescens	1	1	1
-ogataea zsoltii	1	1	1
-phaffomyces antillensis	1	1	1
-pichia membranifaciens	1	1	1
-saccharomyces cerevisiae	1	1	1
-blastobotrys nivea	1	1	1
-candida corydali	1	1	1
-debaryomyces prosopidis	1	1	1
-candida athensensis	1	1	1
-wickerhamomyces alni	1	1	1
-candida rhagii	1	1	1
-kazachstania humatica	1	0	1
-babjeviella inositovora	1	1	1
-middelhovenomyces tepae	1	1	1
-candida gorgasii	1	1	1
-wickerhamia fluorescens	1	1	1
-yarrowia bubula	1	0	1
-ambrosiozyma kashinagacola	1	1	1
-candida mycetangii	1	1	1
-candida emberorum	1	1	1
-ogataea trehalophila	1	1	1
-peterozyma toletana	1	1	1
-torulaspora microellipsoides	1	1	1
-saturnispora dispora	1	1	1
-saturnispora serradocipensis	1	1	1
-cyberlindnera misumaiensis	1	1	1
-barnettozyma pratensis	1	1	1
-geotrichum candidum	1	1	1
-kazachstania aerobia	1	0	1
-kazachstania viticola	1	0	1
-metschnikowia hibisci	1	1	1
-lipomyces kononenkoae	1	1	1
-ambrosiozyma pseudovanderkliftii	1	1	1
-ogataea glucozyma	1	1	1
-lachancea kluyveri	1	1	1
-nakazawaea peltata	1	1	1
-lipomyces suomiensis	1	1	1
-metschnikowia matae	1	1	1
-sporopachydermia quercuum	1	1	1
-ascoidea rubescens	1	1	1
-cyberlindnera americana	1	1	1
-lachancea nothofagi	1	1	1
-candida carpophila	1	1	1
-kazachstania turicensis	1	1	1
-blastobotrys proliferans	1	1	1
-metschnikowia borealis	1	1	1
-kazachstania unispora	1	0	1
-saccharomyces kudriavzevii	1	1	1
-ogataea trehaloabstinens	1	1	1
-kluyveromyces aestuarii	1	1	1
-eremothecium gossypii	1	1	1
-hyphopichia burtonii	1	1	1
-nakaseomyces bracarensis	1	0	1
-candida blattae	1	1	1
-nakaseomyces nivariensis	1	0	1
-yarrowia keelungensis	1	1	1
-lachancea fantastica	1	1	1
-candida orthopsilosis	1	1	1
-debaryomyces fabryi	1	1	1
-hanseniaspora vinae	1	0	1
-ogataea minuta	1	1	1
-metschnikowia aberdeeniae	1	1	1
-candida arabinofermentans	1	1	1
-cyberlindnera xylosilytica	1	1	1
-hanseniaspora clermontiae	1	0	0
-ogataea philodendra	1	1	1
-lipomyces mesembrius	1	1	1
-torulaspora franciscae	1	1	1
-saccharomyces uvarum	1	1	1
-zygoascus meyerae	1	1	1
-saturnispora mendoncae	1	1	1
-metschnikowia lockheadii	1	1	1
-candida hispaniensis	1	1	1
-wickerhamomyces anomalus	1	1	1
-yamadazyma nakazawae	1	1	1
-priceomyces carsonii	1	1	1
-candida kruisii	1	1	1
-kazachstania solicola	1	0	1
-wickerhamomyces canadensis	1	1	1
-scheffersomyces stipitis	1	1	1
-candida homilentoma	1	1	1
-citeromyces hawaiiensis	1	1	1
-blastobotrys muscicola	1	1	1
-candida vartiovaarae	1	1	1
-blastobotrys raffinofermentans	1	1	1
-cyberlindnera maclurae	1	1	1
-saturnispora saitoi	1	1	1
-pichia terricola	1	1	1
-ogataea ramenticola	1	1	1
-pichia occidentalis	1	1	1
-danielozyma ontarioensis	1	1	1
-candida albicans	1	1	1
-metschnikowia kipukae	1	1	1
-sugiyamaella lignohabitans	1	1	1
-lachancea dasiensis	1	1	1
-eremothecium cymbalariae	1	0	1
-candida fragi	1	1	1
-saccharomyces mikatae	1	1	1
-debaryomyces nepalensis	1	1	1
-saccharomyces paradoxus	1	1	1
-candida auris	1	1	1
-zygosaccharomyces bailii	1	1	1
-debaryomyces maramus	1	1	1
-saccharomyces eubayanus	1	1	1
-nadsonia fulvescens	1	1	1
-ogataea nonfermentans	1	1	1
-millerozyma acaciae	1	1	1
-pichia norvegensis	1	1	1
-priceomyces haplophilus	1	1	1
-pichia nakasei	1	1	1
-candida oregonensis	1	1	1
-nadsonia fulvescens var elongata	1	1	1
-metschnikowia hawaiiensis	1	1	1
-candida parapsilosis	1	1	1
-candida sorboxylosa	1	1	1
-candida azyma	1	1	1
-metschnikowia arizonensis	1	1	1
-kodamaea ohmeri	1	1	1
-candida canberraensis	1	1	1
-komagataella pastoris	1	1	1
-candida montana	1	1	1
-hanseniaspora uvarum	1	0	0
-wickerhamomyces bovis	1	1	1
-naumovozyma dairenensis	1	0	1
-spencermartinsiella europaea	1	1	1
-dipodascus geniculatus	1	1	1
-pachysolen tannophilus	1	1	1
-kazachstania siamensis	1	0	1
-tetrapisispora iriomotensis	1	0	1
-lipomyces doorenjongii	1	1	1
-nakaseomyces bacillisporus	1	0	1
-yarrowia lipolytica	1	1	1
-brettanomyces custersianus	1	1	1
-nakaseomyces delphensis	1	0	1
-pichia exigua	1	1	1
-kurtzmaniella cleridarum	1	1	1
-kazachstania africana	1	0	1
-eremothecium coryli	1	0	0
-cephaloascus albidus	1	1	1
-candida cretensis	1	1	1
-yamadazyma scolyti	1	1	1
-ogataea pilisensis	1	1	1
-ogataea kodamae	1	1	1
-zygosaccharomyces kombuchaensis	1	1	1
-wickerhamiella domercqiae	1	0	0
-komagataella pseudopastoris	1	1	1
-candida restingae	1	1	1
-lipomyces lipofer	1	1	0
-yarrowia divulgata	1	1	1
-saccharomyces arboricola	1	1	1
-ogataea henricii	1	1	1
-lipomyces arxii	1	1	1
-meyerozyma guilliermondii	1	1	1
-metschnikowia ipomoeae	1	1	1
-pichia heedii	1	1	1
-tetrapisispora phaffii	1	0	1
-ogataea polymorpha	1	1	1
-spathaspora arborariae	1	1	1
-candida wancherniae	1	1	1
-ambrosiozyma monospora	1	1	1
-candida glabrata	1	0	1
-debaryomyces subglobosus	1	1	1
-metschnikowia dekortum	1	1	1
-blastobotrys serpentis	1	1	1
-hanseniaspora osmophila	1	0	1
-candida succiphila	1	1	1
-metschnikowia santaceciliae	1	1	1
-citeromyces matritensis	1	1	1
-candida versatilis	1	0	0
-brettanomyces anomalus	1	1	1
-spathaspora girioi	1	1	1
-candida tanzawaensis	1	1	1
-metschnikowia continentalis	1	1	1
-torulaspora delbrueckii	1	1	1
-spathaspora hagerdaliae	1	1	1
-zygoascus ofunaensis	1	1	1
-kregervanrija delftensis	1	1	1
-hanseniaspora pseudoguilliermondii	1	0	0
-zygotorulaspora mrakii	1	1	1
-lipomyces oligophaga	1	1	1
-kloeckera hatyaiensis	1	0	0
-starmera quercuum	1	1	1
-ashbya aceri	1	1	1
-candida incommunis	1	1	1
-metschnikowia hamakuensis	1	1	1
-kuraishia capsulata	1	1	1
-saturnispora hagleri	1	1	1
-kluyveromyces marxianus	1	1	1
-wickerhamomyces ciferrii	1	1	1
-blastobotrys mokoenaii	1	1	1
-ascoidea asiatica	1	1	1
-saturnispora zaruensis	1	1	1
-candida hawaiiana	1	1	1
-deakozyma indianensis	1	1	1
-tetrapisispora fleetii	1	0	0
-blastobotrys peoriensis	1	1	1
-metschnikowia proteae	1	1	1
-candida golubevii	1	1	1
-candida gatunensis	1	1	1
-pichia kudriavzevii	1	1	1
-yueomyces sinensis	1	0	0
-priceomyces medius	1	1	1
-yarrowia deformans	1	1	1
-ogataea nitratoaversa	1	1	1
-metschnikowia bicuspidata	1	1	1
-candida ponderosae	1	1	1
-ogataea methylivora	1	1	1
-hanseniaspora valbyensis	1	0	0
-torulaspora maleeae	1	1	1
-candida tenuis	1	1	1
-scheffersomyces lignosus	1	1	1
-hanseniaspora singularis	1	0	0
-kazachstania intestinalis	1	0	1
-tortispora starmeri	1	1	1
-candida dubliniensis	1	1	1
-tortispora ganteri	1	1	1
-candida salmanticensis	1	1	1
-aciculoconidium aculeatum	1	1	1
-barnettozyma salicaria	1	1	1
-candida stellimalicola	1	1	1
-priceomyces castillae	1	1	1
-dipodascus albidus	1	1	1
-candida pyralidae	1	1	1
-nakazawaea holstii	1	1	1
-lipomyces japonicus	1	1	1
-lachancea lanzarotensis	1	1	1
-kregervanrija fluxuum	1	1	1
-kuraishia molischiana	1	1	1
-lachancea mirantina	1	1	1
-tortispora caseinolytica	1	1	1
-candida heveicola	1	1	1
-candida tammaniensis	1	1	1
-trigonopsis variabilis	0	1	1
-vanderwaltozyma polyspora	0	1	1
-eremothecium sinecaudum	0	1	1
-torulaspora pretoriensis	0	1	1
-candida sojae	0	1	1
-trigonopsis vinaria	0	1	1
-botryozyma nematodophila	0	1	1
-lodderomyces elongisporus	0	1	1
-saprochaete clavata	0	1	1
-magnusiomyces tetrasperma	0	1	1
+peterozyma_xylosa	1	1	1
+barnettozyma_californica	1	1	1
+ogataea_pini	1	1	1
+lipomyces_starkeyi	1	1	1
+zygosaccharomyces_rouxii	1	1	1
+kazachstania_yakushimaensis	1	0	1
+metschnikowia_kamakouana	1	1	1
+candida_schatavii	1	1	1
+ogataea_populiabae	1	1	1
+barnettozyma_hawaiiensis	1	1	1
+martiniozyma_abiesophila	1	1	1
+metschnikowia_matae_maris	1	1	1
+metschnikowia_mauinuiana	1	1	1
+lachancea_cidri	1	1	1
+sporopachydermia_lactativora	1	1	1
+ambrosiozyma_vanderkliftii	1	1	1
+kazachstania_bromeliacearum	1	0	1
+cyberlindnera_jadinii	1	1	1
+cyberlindnera_saturnus	1	1	1
+ogataea_methanolica	1	1	1
+hyphopichia_heimii	1	1	1
+metschnikowia_similis	1	1	1
+blastobotrys_americana	1	1	1
+candida_freyschussii	1	1	1
+metschnikowia_drakensbergensis	1	1	1
+kluyveromyces_dobzhanskii	1	1	1
+kluyveromyces_lactis	1	1	1
+nakaseomyces_castellii	1	0	1
+debaryomyces_hansenii	1	1	1
+spathaspora_passalidarum	1	1	1
+lachancea_meyersii	1	1	1
+wickerhamomyces_hampshirensis	1	1	1
+cyberlindnera_fabianii	1	1	1
+meyerozyma_caribbica	1	1	1
+metschnikowia_bowlesiae	1	1	1
+saccharomycopsis_malanga	1	1	1
+zygosaccharomyces_bisporus	1	1	1
+candida_gotoi	1	1	1
+ambrosiozyma_maleeae	1	1	1
+ogataea_naganishii	1	1	1
+saturnispora_silvae	1	1	0
+barnettozyma_populi	1	1	1
+starmera_amethionina	1	1	1
+tetrapisispora_namnaonensis	1	0	0
+lachancea_thermotolerans	1	1	1
+candida_fructus	1	1	1
+kazachstania_transvaalensis	1	0	1
+saccharomycopsis_capsularis	1	1	1
+kazachstania_kunashirensis	1	0	1
+dekkera_bruxellensis	1	0	0
+arxula_adeninivorans	1	1	1
+kazachstania_rosinii	1	1	1
+clavispora_lusitaniae	1	1	1
+ambrosiozyma_philentoma	1	1	1
+metschnikowia_cerradonensis	1	1	1
+lachancea_quebecensis	1	1	1
+kazachstania_naganishii	1	0	1
+alloascoidea_hylecoeti	1	1	1
+ogataea_parapolymorpha	1	1	1
+yamadazyma_philogaea	1	1	1
+cephaloascus_fragrans	1	1	1
+lachancea_waltii	1	1	1
+ambrosiozyma_ambrosiae	1	1	1
+candida_intermedia	1	1	1
+cyberlindnera_petersonii	1	1	1
+cyberlindnera_mrakii	1	1	1
+kazachstania_taianensis	1	0	1
+ambrosiozyma_oregonensis	1	1	1
+citeromyces_siamensis	1	1	1
+komagataella_populi	1	1	1
+phaffomyces_opuntiae	1	1	1
+cyberlindnera_suaveolens	1	1	1
+candida_tropicalis	1	1	1
+naumovozyma_castellii	1	1	1
+kazachstania_martiniae	1	0	1
+candida_ascalaphidarum	1	1	1
+candida_orba	1	1	1
+lachancea_fermentati	1	1	1
+zygotorulaspora_florentina	1	1	1
+kodamaea_laetipori	1	1	1
+candida_boidinii	1	1	1
+spathaspora_gorwiae	1	1	1
+tetrapisispora_blattae	1	0	0
+phaffomyces_thermotolerans	1	1	1
+metschnikowia_shivogae	1	1	1
+kazachstania_spencerorum	1	1	1
+kuraishia_ogatae	1	1	1
+diddensiella_caesifluorescens	1	1	1
+ogataea_zsoltii	1	1	1
+phaffomyces_antillensis	1	1	1
+pichia_membranifaciens	1	1	1
+saccharomyces_cerevisiae	1	1	1
+blastobotrys_nivea	1	1	1
+candida_corydali	1	1	1
+debaryomyces_prosopidis	1	1	1
+candida_athensensis	1	1	1
+wickerhamomyces_alni	1	1	1
+candida_rhagii	1	1	1
+kazachstania_humatica	1	0	1
+babjeviella_inositovora	1	1	1
+middelhovenomyces_tepae	1	1	1
+candida_gorgasii	1	1	1
+wickerhamia_fluorescens	1	1	1
+yarrowia_bubula	1	0	1
+ambrosiozyma_kashinagacola	1	1	1
+candida_mycetangii	1	1	1
+candida_emberorum	1	1	1
+ogataea_trehalophila	1	1	1
+peterozyma_toletana	1	1	1
+torulaspora_microellipsoides	1	1	1
+saturnispora_dispora	1	1	1
+saturnispora_serradocipensis	1	1	1
+cyberlindnera_misumaiensis	1	1	1
+barnettozyma_pratensis	1	1	1
+geotrichum_candidum	1	1	1
+kazachstania_aerobia	1	0	1
+kazachstania_viticola	1	0	1
+metschnikowia_hibisci	1	1	1
+lipomyces_kononenkoae	1	1	1
+ambrosiozyma_pseudovanderkliftii	1	1	1
+ogataea_glucozyma	1	1	1
+lachancea_kluyveri	1	1	1
+nakazawaea_peltata	1	1	1
+lipomyces_suomiensis	1	1	1
+metschnikowia_matae	1	1	1
+sporopachydermia_quercuum	1	1	1
+ascoidea_rubescens	1	1	1
+cyberlindnera_americana	1	1	1
+lachancea_nothofagi	1	1	1
+candida_carpophila	1	1	1
+kazachstania_turicensis	1	1	1
+blastobotrys_proliferans	1	1	1
+metschnikowia_borealis	1	1	1
+kazachstania_unispora	1	0	1
+saccharomyces_kudriavzevii	1	1	1
+ogataea_trehaloabstinens	1	1	1
+kluyveromyces_aestuarii	1	1	1
+eremothecium_gossypii	1	1	1
+hyphopichia_burtonii	1	1	1
+nakaseomyces_bracarensis	1	0	1
+candida_blattae	1	1	1
+nakaseomyces_nivariensis	1	0	1
+yarrowia_keelungensis	1	1	1
+lachancea_fantastica	1	1	1
+candida_orthopsilosis	1	1	1
+debaryomyces_fabryi	1	1	1
+hanseniaspora_vinae	1	0	1
+ogataea_minuta	1	1	1
+metschnikowia_aberdeeniae	1	1	1
+candida_arabinofermentans	1	1	1
+cyberlindnera_xylosilytica	1	1	1
+hanseniaspora_clermontiae	1	0	0
+ogataea_philodendra	1	1	1
+lipomyces_mesembrius	1	1	1
+torulaspora_franciscae	1	1	1
+saccharomyces_uvarum	1	1	1
+zygoascus_meyerae	1	1	1
+saturnispora_mendoncae	1	1	1
+metschnikowia_lockheadii	1	1	1
+candida_hispaniensis	1	1	1
+wickerhamomyces_anomalus	1	1	1
+yamadazyma_nakazawae	1	1	1
+priceomyces_carsonii	1	1	1
+candida_kruisii	1	1	1
+kazachstania_solicola	1	0	1
+wickerhamomyces_canadensis	1	1	1
+scheffersomyces_stipitis	1	1	1
+candida_homilentoma	1	1	1
+citeromyces_hawaiiensis	1	1	1
+blastobotrys_muscicola	1	1	1
+candida_vartiovaarae	1	1	1
+blastobotrys_raffinofermentans	1	1	1
+cyberlindnera_maclurae	1	1	1
+saturnispora_saitoi	1	1	1
+pichia_terricola	1	1	1
+ogataea_ramenticola	1	1	1
+pichia_occidentalis	1	1	1
+danielozyma_ontarioensis	1	1	1
+candida_albicans	1	1	1
+metschnikowia_kipukae	1	1	1
+sugiyamaella_lignohabitans	1	1	1
+lachancea_dasiensis	1	1	1
+eremothecium_cymbalariae	1	0	1
+candida_fragi	1	1	1
+saccharomyces_mikatae	1	1	1
+debaryomyces_nepalensis	1	1	1
+saccharomyces_paradoxus	1	1	1
+candida_auris	1	1	1
+zygosaccharomyces_bailii	1	1	1
+debaryomyces_maramus	1	1	1
+saccharomyces_eubayanus	1	1	1
+nadsonia_fulvescens	1	1	1
+ogataea_nonfermentans	1	1	1
+millerozyma_acaciae	1	1	1
+pichia_norvegensis	1	1	1
+priceomyces_haplophilus	1	1	1
+pichia_nakasei	1	1	1
+candida_oregonensis	1	1	1
+nadsonia_fulvescens_var_elongata	1	1	1
+metschnikowia_hawaiiensis	1	1	1
+candida_parapsilosis	1	1	1
+candida_sorboxylosa	1	1	1
+candida_azyma	1	1	1
+metschnikowia_arizonensis	1	1	1
+kodamaea_ohmeri	1	1	1
+candida_canberraensis	1	1	1
+komagataella_pastoris	1	1	1
+candida_montana	1	1	1
+hanseniaspora_uvarum	1	0	0
+wickerhamomyces_bovis	1	1	1
+naumovozyma_dairenensis	1	0	1
+spencermartinsiella_europaea	1	1	1
+dipodascus_geniculatus	1	1	1
+pachysolen_tannophilus	1	1	1
+kazachstania_siamensis	1	0	1
+tetrapisispora_iriomotensis	1	0	1
+lipomyces_doorenjongii	1	1	1
+nakaseomyces_bacillisporus	1	0	1
+yarrowia_lipolytica	1	1	1
+brettanomyces_custersianus	1	1	1
+nakaseomyces_delphensis	1	0	1
+pichia_exigua	1	1	1
+kurtzmaniella_cleridarum	1	1	1
+kazachstania_africana	1	0	1
+eremothecium_coryli	1	0	0
+cephaloascus_albidus	1	1	1
+candida_cretensis	1	1	1
+yamadazyma_scolyti	1	1	1
+ogataea_pilisensis	1	1	1
+ogataea_kodamae	1	1	1
+zygosaccharomyces_kombuchaensis	1	1	1
+wickerhamiella_domercqiae	1	0	0
+komagataella_pseudopastoris	1	1	1
+candida_restingae	1	1	1
+lipomyces_lipofer	1	1	0
+yarrowia_divulgata	1	1	1
+saccharomyces_arboricola	1	1	1
+ogataea_henricii	1	1	1
+lipomyces_arxii	1	1	1
+meyerozyma_guilliermondii	1	1	1
+metschnikowia_ipomoeae	1	1	1
+pichia_heedii	1	1	1
+tetrapisispora_phaffii	1	0	1
+ogataea_polymorpha	1	1	1
+spathaspora_arborariae	1	1	1
+candida_wancherniae	1	1	1
+ambrosiozyma_monospora	1	1	1
+candida_glabrata	1	0	1
+debaryomyces_subglobosus	1	1	1
+metschnikowia_dekortum	1	1	1
+blastobotrys_serpentis	1	1	1
+hanseniaspora_osmophila	1	0	1
+candida_succiphila	1	1	1
+metschnikowia_santaceciliae	1	1	1
+citeromyces_matritensis	1	1	1
+candida_versatilis	1	0	0
+brettanomyces_anomalus	1	1	1
+spathaspora_girioi	1	1	1
+candida_tanzawaensis	1	1	1
+metschnikowia_continentalis	1	1	1
+torulaspora_delbrueckii	1	1	1
+spathaspora_hagerdaliae	1	1	1
+zygoascus_ofunaensis	1	1	1
+kregervanrija_delftensis	1	1	1
+hanseniaspora_pseudoguilliermondii	1	0	0
+zygotorulaspora_mrakii	1	1	1
+lipomyces_oligophaga	1	1	1
+kloeckera_hatyaiensis	1	0	0
+starmera_quercuum	1	1	1
+ashbya_aceri	1	1	1
+candida_incommunis	1	1	1
+metschnikowia_hamakuensis	1	1	1
+kuraishia_capsulata	1	1	1
+saturnispora_hagleri	1	1	1
+kluyveromyces_marxianus	1	1	1
+wickerhamomyces_ciferrii	1	1	1
+blastobotrys_mokoenaii	1	1	1
+ascoidea_asiatica	1	1	1
+saturnispora_zaruensis	1	1	1
+candida_hawaiiana	1	1	1
+deakozyma_indianensis	1	1	1
+tetrapisispora_fleetii	1	0	0
+blastobotrys_peoriensis	1	1	1
+metschnikowia_proteae	1	1	1
+candida_golubevii	1	1	1
+candida_gatunensis	1	1	1
+pichia_kudriavzevii	1	1	1
+yueomyces_sinensis	1	0	0
+priceomyces_medius	1	1	1
+yarrowia_deformans	1	1	1
+ogataea_nitratoaversa	1	1	1
+metschnikowia_bicuspidata	1	1	1
+candida_ponderosae	1	1	1
+ogataea_methylivora	1	1	1
+hanseniaspora_valbyensis	1	0	0
+torulaspora_maleeae	1	1	1
+candida_tenuis	1	1	1
+scheffersomyces_lignosus	1	1	1
+hanseniaspora_singularis	1	0	0
+kazachstania_intestinalis	1	0	1
+tortispora_starmeri	1	1	1
+candida_dubliniensis	1	1	1
+tortispora_ganteri	1	1	1
+candida_salmanticensis	1	1	1
+aciculoconidium_aculeatum	1	1	1
+barnettozyma_salicaria	1	1	1
+candida_stellimalicola	1	1	1
+priceomyces_castillae	1	1	1
+dipodascus_albidus	1	1	1
+candida_pyralidae	1	1	1
+nakazawaea_holstii	1	1	1
+lipomyces_japonicus	1	1	1
+lachancea_lanzarotensis	1	1	1
+kregervanrija_fluxuum	1	1	1
+kuraishia_molischiana	1	1	1
+lachancea_mirantina	1	1	1
+tortispora_caseinolytica	1	1	1
+candida_heveicola	1	1	1
+candida_tammaniensis	1	1	1
+trigonopsis_variabilis	0	1	1
+vanderwaltozyma_polyspora	0	1	1
+eremothecium_sinecaudum	0	1	1
+torulaspora_pretoriensis	0	1	1
+candida_sojae	0	1	1
+trigonopsis_vinaria	0	1	1
+botryozyma_nematodophila	0	1	1
+lodderomyces_elongisporus	0	1	1
+saprochaete_clavata	0	1	1
+magnusiomyces_tetrasperma	0	1	1

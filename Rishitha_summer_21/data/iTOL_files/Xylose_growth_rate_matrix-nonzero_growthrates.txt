@@ -1,0 +1,445 @@
+DATASET_HEATMAP
+#In heatmaps, each ID is associated to multiple numeric values, which are displayed as a set of colored boxes defined by a color gradient
+#lines starting with a hash are comments and ignored during parsing
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file (except in the SEPARATOR line, which uses space).
+SEPARATOR TAB
+#SEPARATOR SPACE
+#SEPARATOR COMMA
+
+#label is used in the legend table (can be changed later)
+DATASET_LABEL	Xylose_growth_rate
+
+#dataset color (can be changed later)
+#COLOR #ff0000
+
+#define labels for each individual field column
+FIELD_LABELS	Growth
+
+#=================================================================#
+#                    OPTIONAL SETTINGS                            #
+#=================================================================#
+
+
+#Heatmaps can have an optional Newick formatted tree assigned. Its leaf IDs must exactly match the dataset FIELD_LABELS.
+#The tree will be used to sort the dataset fields, and will be displayed above the dataset. It can have branch lengths defined.
+#All newlines and spaces should be stripped from the tree, and COMMA cannot be used as the dataset separator if a FIELD_TREE is provided.
+#FIELD_TREE (((f1:0.2,f5:0.5):1,(f2:0.2,f3:0.3):1.2):0.5,(f4:0.1,f6:0.5):0.8):1;
+
+
+
+#=================================================================#
+#     all other optional settings can be set or changed later     #
+#           in the web interface (under 'Datasets' tab)           #
+#=================================================================#
+
+#Each dataset can have a legend, which is defined using LEGEND_XXX fields below
+#For each row in the legend, there should be one shape, color and label.
+#Optionally, you can define an exact legend position using LEGEND_POSITION_X and LEGEND_POSITION_Y. To use automatic legend positioning, do NOT define these values
+#Optionally, shape scaling can be present (LEGEND_SHAPE_SCALES). For each shape, you can define a scaling factor between 0 and 1.
+#Shape should be a number between 1 and 6, or any protein domain shape definition.
+#1: square
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: checkmark
+
+#LEGEND_TITLE,Dataset legend
+#LEGEND_POSITION_X,100
+#LEGEND_POSITION_Y,100
+#LEGEND_SHAPES,1,2,3
+#LEGEND_COLORS,#ff0000,#00ff00,#0000ff
+#LEGEND_LABELS,value1,value2,value3
+#LEGEND_SHAPE_SCALES,1,1,0.5
+
+#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap.
+#MARGIN 0
+
+#width of the individual boxes
+#STRIP_WIDTH 25
+
+#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display.
+#SHOW_INTERNAL 0
+
+
+#show dashed lines between leaf labels and the dataset
+#DASHED_LINES 1
+
+#if a FIELD_TREE is present, it can be hidden by setting this option to 0
+#SHOW_TREE 1
+
+#define the color for the NULL values in the dataset. Use the letter X in the data to define the NULL values
+COLOR_NAN	#FFFFFF
+
+#automatically create and display a legend based on the color gradients and values defined below
+#AUTO_LEGEND 1
+
+
+#define the heatmap gradient colors. Values in the dataset will be mapped onto the corresponding color gradient.
+COLOR_MIN	#4575B4
+COLOR_MAX	#D73027
+
+#you can specify a gradient with three colors (e.g red to yellow to green) by setting 'USE_MID_COLOR' to 1, and specifying the midpoint color
+USE_MID_COLOR	1
+COLOR_MID	#FFFFBF
+
+#By default, color gradients will be calculated based on dataset values. You can force different values to use in the calculation by setting the values below:
+#USER_MIN_VALUE 0
+#USER_MID_VALUE 500
+#USER_MAX_VALUE 1000
+
+#border width; if set above 0, a border of specified width (in pixels) will be drawn around individual cells
+#BORDER_WIDTH,0
+
+#border color; used only when BORDER_WIDTH is above 0
+#BORDER_COLOR,#0000ff
+
+
+#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages
+#=================================================================#
+#       Actual data follows after the "DATA" keyword              #
+#=================================================================#
+DATA
+aciculoconidiumaculeatum	X
+alloascoidea_hylecoeti	X
+ambrosiozyma_ambrosiae	X
+ambrosiozyma_kashinagacola	X
+ambrosiozyma_maleeae	0.114615977
+ambrosiozyma_monospora	X
+ambrosiozyma_oregonensis	0.413391407
+ambrosiozyma_philentoma	0.631136889
+ambrosiozyma_pseudovanderkliftii	X
+ambrosiozyma_vanderkliftii	X
+arxula_adeninivorans	0.769422595
+ascoidea_asiatica	X
+ascoidea_rubescens	X
+ashbya_aceri	X
+babjeviella_inositovora	1.083011408
+barnettozyma_californica	0.624399523
+barnettozyma_hawaiiensis	0.468311588
+barnettozyma_populi	0.941113457
+barnettozyma_pratensis	0.163506687
+barnettozyma_salicaria	2.036405683
+blastobotrys_americana	X
+blastobotrys_mokoenaii	X
+blastobotrys_muscicola	X
+blastobotrys_nivea	X
+blastobotrys_peoriensis	0.482574135
+blastobotrys_proliferans	X
+blastobotrys_raffinofermentans	0.552371801
+blastobotrys_serpentis	X
+botryozyma_nematodophila	X
+brettanomyces_anomalus	X
+brettanomyces_custersianus	X
+candida_albicans	X
+candida_arabinofermentans	0.240637933
+candida_ascalaphidarum	0.491215432
+candida_athensensis	X
+candida_auris	X
+candida_azyma	0.351084261
+candida_blattae	0.150390792
+candida_boidinii	0.507395715
+candida_canberraensis	0.18226014
+candida_carpophila	0.521456343
+candida_corydali	X
+candida_cretensis	0.217685599
+candida_dubliniensis	X
+candida_emberorum	X
+candida_fragi	X
+candida_freyschussii	0.15399635
+candida_fructus	X
+candida_gatunensis	X
+candida_glabrata	X
+candida_golubevii	X
+candida_gorgasii	0.407356458
+candida_gotoi	0.134529532
+candida_hawaiiana	0.372397298
+candida_heveicola	X
+candida_hispaniensis	X
+candida_homilentoma	0.3715146
+candida_incommunis	0.219902048
+candida_intermedia	0.395809496
+candida_kruisii	0.210634729
+candida_montana	X
+candida_mycetangii	0.227010724
+candida_orba	X
+candida_oregonensis	0.800973756
+candida_orthopsilosis	0.164639414
+candida_parapsilosis	0.618039941
+candida_ponderosae	X
+candida_pyralidae	0.379483897
+candida_restingae	0.301896493
+candida_rhagii	0.384751819
+candida_salmanticensis	X
+candida_schatavii	X
+candida_sojae	0.234378605
+candida_sorboxylosa	0.159208062
+candida_stellimalicola	X
+candida_succiphila	0.393804245
+candida_tammaniensis	0.56179672
+candida_tanzawaensis	X
+candida_tenuis	0.357583687
+candida_tropicalis	0.173575505
+candida_vartiovaarae	X
+candida_versatilis	X
+candida_wancherniae	X
+cephaloascus_albidus	0.361234779
+cephaloascus_fragrans	X
+citeromyces_hawaiiensis	X
+citeromyces_matritensis	X
+citeromyces_siamensis	X
+clavispora_lusitaniae	0.20085219
+cyberlindnera_americana	0.695865394
+cyberlindnera_fabianii	0.211013736
+cyberlindnera_jadinii	0.15288162
+cyberlindnera_maclurae	X
+cyberlindnera_misumaiensis	0.330916567
+cyberlindnera_mrakii	0.173722652
+cyberlindnera_petersonii	0.222794836
+cyberlindnera_saturnus	0.138286886
+cyberlindnera_suaveolens	0.311985854
+cyberlindnera_xylosilytica	0.384959885
+danielozyma_ontarioensis	X
+deakozyma_indianensis	0.610861411
+debaryomyces_fabryi	0.41348061
+debaryomyces_hansenii	0.531917629
+debaryomyces_maramus	0.16481472
+debaryomyces_nepalensis	0.580325312
+debaryomyces_prosopidis	0.370437394
+debaryomyces_subglobosus	0.240921448
+dekkera_bruxellensis	X
+diddensiella_caesifluorescens	0.325621165
+dipodascus_albidus	1.644636283
+dipodascus_geniculatus	X
+eremothecium_coryli	X
+eremothecium_cymbalariae	X
+eremothecium_gossypii	X
+eremothecium_sinecaudum	X
+geotrichum_candidum	X
+hanseniaspora_clermontiae	X
+hanseniaspora_osmophila	X
+hanseniaspora_pseudoguilliermondii	X
+hanseniaspora_singularis	X
+hanseniaspora_uvarum	X
+hanseniaspora_valbyensis	X
+hanseniaspora_vinae	X
+hyphopichia_burtonii	X
+hyphopichia_heimii	0.445830977
+kazachstania_aerobia	X
+kazachstania_aerobia	X
+kazachstania_africana	X
+kazachstania_bromeliacearum	X
+kazachstania_bromeliacearum	X
+kazachstania_intestinalis	X
+kazachstania_intestinalis	X
+kazachstania_kunashirensis	X
+kazachstania_kunashirensis	X
+kazachstania_martiniae	X
+kazachstania_martiniae	X
+kazachstania_naganishii	X
+kazachstania_rosinii	X
+kazachstania_siamensis	X
+kazachstania_siamensis	X
+kazachstania_solicola	X
+kazachstania_solicola	X
+kazachstania_spencerorum	X
+kazachstania_spencerorum	X
+kazachstania_taianensis	X
+kazachstania_transvaalensis	X
+kazachstania_transvaalensis	X
+kazachstania_turicensis	X
+kazachstania_unispora	X
+kazachstania_unispora	X
+kazachstania_viticola	X
+kazachstania_yakushimaensis	X
+kloeckera_hatyaiensis	X
+kluyveromyces_aestuarii	X
+kluyveromyces_dobzhanskii	X
+kluyveromyces_lactis	X
+kluyveromyces_marxianus	X
+kodamaea_laetipori	0.364211383
+kodamaea_ohmeri	X
+komagataella_pastoris	0.166347026
+komagataella_populi	X
+komagataella_pseudopastoris	X
+kregervanrija_delftensis	X
+kregervanrija_fluxuum	X
+kuraishia_capsulata	0.217562796
+kuraishia_molischiana	0.25353123
+kuraishia_ogatae	0.250078689
+kurtzmaniella_cleridarum	0.176953225
+lachancea_cidri	X
+lachancea_dasiensis	X
+lachancea_fantastica	X
+lachancea_fermentati	X
+lachancea_kluyveri	X
+lachancea_lanzarotensis	X
+lachancea_meyersii	X
+lachancea_mirantina	X
+lachancea_nothofagi	X
+lachancea_quebecensis	X
+lachancea_thermotolerans	X
+lachancea_waltii	X
+lipomyces_arxii	1.144972613
+lipomyces_doorenjongii	X
+lipomyces_japonicus	1.202911662
+lipomyces_kononenkoae	X
+lipomyces_lipofer	X
+lipomyces_mesembrius	X
+lipomyces_oligophaga	X
+lipomyces_starkeyi	1.046347267
+lipomyces_suomiensis	X
+lodderomyces_elongisporus	X
+magnusiomyces_tetrasperma	X
+martiniozyma_abiesophila	X
+metschnikowia_aberdeeniae	0.519784198
+metschnikowia_arizonensis	X
+metschnikowia_bicuspidata	X
+metschnikowia_borealis	0.701329033
+metschnikowia_bowlesiae	X
+metschnikowia_cerradonensis	0.732856565
+metschnikowia_continentalis	0.394420359
+metschnikowia_dekortum	X
+metschnikowia_drakensbergensis	X
+metschnikowia_hamakuensis	0.324586223
+metschnikowia_hawaiiensis	0.441732364
+metschnikowia_hibisci	0.431284169
+metschnikowia_ipomoeae	X
+metschnikowia_kamakouana	X
+metschnikowia_kipukae	X
+metschnikowia_lockheadii	0.710995601
+metschnikowia_matae	1.077972967
+metschnikowia_matae_maris	0.392960435
+metschnikowia_mauinuiana	X
+metschnikowia_proteae	X
+metschnikowia_santaceciliae	X
+metschnikowia_shivogae	0.282336899
+metschnikowia_similis	0.227538067
+meyerozyma_caribbica	0.369100472
+meyerozyma_guilliermondii	X
+middelhovenomyces_tepae	1.300924713
+millerozyma_acaciae	0.070625666
+nadsonia_fulvescens	X
+nakaseomyces_bacillisporus	X
+nakaseomyces_bracarensis	X
+nakaseomyces_castellii	X
+nakaseomyces_delphensis	X
+nakaseomyces_nivariensis	X
+nakazawaea_holstii	X
+nakazawaea_peltata	0.457573847
+naumovozyma_castellii	X
+naumovozyma_dairenensis	X
+ogataea_glucozyma	X
+ogataea_henricii	X
+ogataea_kodamae	X
+ogataea_methanolica	0.112284546
+ogataea_methylivora	0.49543014
+ogataea_minuta	X
+ogataea_naganishii	0.406096817
+ogataea_nitratoaversa	0.528883368
+ogataea_nonfermentans	X
+ogataea_parapolymorpha	X
+ogataea_philodendra	X
+ogataea_pilisensis	X
+ogataea_pini	X
+ogataea_polymorpha	X
+ogataea_populiabae	X
+ogataea_ramenticola	0.420175779
+ogataea_trehaloabstinens	2.146021726
+ogataea_trehalophila	0.055391381
+ogataea_zsoltii	0.338411329
+pachysolen_tannophilus	0.313437257
+peterozyma_toletana	0.195277046
+peterozyma_xylosa	X
+phaffomyces_antillensis	X
+phaffomyces_opuntiae	X
+phaffomyces_thermotolerans	X
+pichia_exigua	X
+pichia_heedii	0.522594544
+pichia_kudriavzevii	X
+pichia_membranifaciens	X
+pichia_nakasei	X
+pichia_norvegensis	X
+pichia_occidentalis	X
+pichia_terricola	X
+priceomyces_carsonii	0.306334006
+priceomyces_castillae	0.339677301
+priceomyces_haplophilus	0.234133802
+priceomyces_medius	0.95994681
+saccharomyces_arboricola	X
+saccharomyces_cerevisiae	X
+saccharomyces_eubayanus	X
+saccharomyces_kudriavzevii	X
+saccharomyces_mikatae	X
+saccharomyces_paradoxus	X
+saccharomyces_uvarum	X
+saccharomycopsis_capsularis	X
+saccharomycopsis_malanga	X
+saprochaete_clavata	X
+saturnispora_dispora	X
+saturnispora_hagleri	X
+saturnispora_mendoncae	X
+saturnispora_saitoi	X
+saturnispora_serradocipensis	X
+saturnispora_silvae	X
+saturnispora_zaruensis	X
+scheffersomyces_lignosus	0.481634779
+scheffersomyces_stipitis	0.712437802
+spathaspora_arborariae	0.461539829
+spathaspora_girioi	X
+spathaspora_gorwiae	X
+spathaspora_hagerdaliae	X
+spathaspora_passalidarum	0.58107421
+spencermartinsiella_europaea	X
+sporopachydermia_lactativora	X
+sporopachydermia_quercuum	0.925854645
+starmera_amethionina	X
+starmera_quercuum	X
+starmerella_bombicola	X
+sugiyamaella_lignohabitans	0.697917242
+tetrapisispora_blattae	X
+tetrapisispora_fleetii	X
+tetrapisispora_iriomotensis	X
+tetrapisispora_namnaonensis	X
+tetrapisispora_phaffii	X
+tortispora_caseinolytica	1.51032555
+tortispora_ganteri	X
+tortispora_starmeri	X
+torulaspora_delbrueckii	X
+torulaspora_franciscae	X
+torulaspora_maleeae	X
+torulaspora_microellipsoides	X
+torulaspora_pretoriensis	X
+trigonopsis_variabilis	X
+trigonopsis_vinaria	X
+vanderwaltozyma_polyspora	X
+wickerhamia_fluorescens	X
+wickerhamiella_cacticola	X
+wickerhamiella_domercqiae	X
+wickerhamiella_infanticola	X
+wickerhamomyces_alni	0.598666945
+wickerhamomyces_anomalus	X
+wickerhamomyces_bovis	0.204896106
+wickerhamomyces_canadensis	0.265695786
+wickerhamomyces_ciferrii	X
+wickerhamomyces_hampshirensis	0.216538714
+yamadazyma_nakazawae	0.330661156
+yamadazyma_philogaea	0.620596812
+yamadazyma_scolyti	1.032050583
+yarrowia_bubula	X
+yarrowia_deformans	X
+yarrowia_divulgata	X
+yarrowia_keelungensis	X
+yarrowia_lipolytica	X
+yueomyces_sinensis	X
+zygoascus_meyerae	X
+zygoascus_ofunaensis	0.498346357
+zygosaccharomyces_bailii	X
+zygosaccharomyces_bisporus	X
+zygosaccharomyces_kombuchaensis	X
+zygosaccharomyces_rouxii	X
+zygotorulaspora_florentina	X
+zygotorulaspora_mrakii	X
