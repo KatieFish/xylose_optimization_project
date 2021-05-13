@@ -8,9 +8,11 @@ Xylose_optim_project-KJF-spring2021.html
 
 Scripts: 
 
-Processing_xylose_MSA_tsvs-KJF-spring2021.R - R script that reads in a multiple sequence file (fasta file) and converts to a dataframe in R in which rows are seqeunces and columns are base positions of sequene. Gaps are converted to NAs. 
+convert_MSA_to_matrices.R- - R script that reads in a multiple sequence file (fasta file) and converts to a dataframe in R in which rows are seqeunces and columns are base positions of sequene. Gaps are converted to NAs. 
 
-Processing_xylose_MSA_tsvs.R - older version of above script. Difference is in how sequence names are processed. Use newer version. 
+Processing_xylose_MSA_tsvs-KJF-spring2021.R - contains almost all the CO pipeline code. PIC code is found in .Rmd file above. 
+
+Processing_xylose_MSA_tsvs.R -Use newer version. 
 
 Pull_out_subgroup_cds_from_orffidner.sh - script I wrote to pull out the corresponding coding sequences from orfFinder annotations.
 
@@ -25,4 +27,4 @@ Quality_control_homologs_in_subgroups.R
 Round1_treeprocessing_for_iTOL.R
 Xylose_optim_project.Rmd
 Xylose_optim_project.html
-convert_MSA_to_matrices.R
+
