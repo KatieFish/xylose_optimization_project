@@ -1,0 +1,52 @@
+##### 
+# RaxML submit script
+#
+#  updated: 2021-05-13
+# KJF for RLN
+
+#update with your username
+MYUSERNAME = kjfisher5
+#update with a jobname
+JOBNAME = xyl1Raxml
+
+
+###You don't need to touch anything below
+## ENVIRONMENT INFO
+UNIVERSE = vanilla
+GETENV = true
+#environment = "PYTHONPATH=/opt/bifxapps/python/lib/python2.7/site-packages/"
+requirements = OpSysandVer == "CentOS6"
+## JOB EXECUTION 
+#INITIALDIR = /home/glbrc.org/$(MYUSERNAME)/htcondor_demo/align/
+###
+
+
+EXECUTABLE = /opt/bifxapps/raxml-8.2.11/raxmlHPC-SSE3
+
+### Update ARGUMENTS 
+#I have it set for 100 bootstraps. 
+#To change this, change the 100 following the number sign
+
+#update the arguments for the full path to the aa alignment
+#and what you are naming your output. 
+
+ARGUMENTS = -f a -m PROTGAMMAAUTO  -p 12345 -x 12345 -# 100 -s #FULL/PATH/TO/AMINO/ACID/ALIGNMENT/YOU/ARE/USING  -n #WHAT_YOU_WANT_TO_NAME_THE_OUTPUT.tree
+
+#These files will be created while your job is running. 
+LOG = $(JOBNAME).log
+# "output" logs any STDOUT from execution
+OUTPUT = $(JOBNAME).output
+# "error" logs any STDERR from execution
+ERROR = $(JOBNAME).error
+
+## COMPUTE REQUIREMENTS
+REQUEST_CPUS = 2
+# overrequesting memory makes a job harder to place, takes longer to do so, and blocks that memory from being available to other jobs
+REQUEST_MEMORY = 2000MB
+# tells htcondor to prefer, if available, a machine with more than 500MB of memory available
+RANK = Memory > 2000
+
+
+## SUBMIT JOB
+
+QUEUE
