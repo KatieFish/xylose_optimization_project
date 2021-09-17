@@ -1,58 +1,52 @@
 
-#Code adjusted by KJF 4-21-21 
+#Code adjusted by KJF 8-24-21
 
-#names of sequences from ORFfinder different from orginal maker annotations, so I needed
-#to adjust the way I cleaned up the names. I will need to re-assure that these correspond 
-#to the names used in the Labella et al data we use. 
+#No need to fix names - Rishitha has already done that in the input file.
 
-#Since the new approach is based on a codon-aware alignment, I replaced all
-#gaps with NA values. 
-
-#I made all taxon names lower case to match Opulente data and Labella data. 
-
+#No need to replace gaps with NAs - no longer worried about codon occupancy.
 
 
 require("seqinr")
 
-alnmnt<-read.alignment("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/subgroup/xyl3_subgroup-codon_aligned_cds-cleaned.fasta", format="fasta")
+alnmnt<-read.alignment("~/Xyl_project_Fall_2021/xyl3/xyl3_cds.fasta", format="fasta")
 #also reading in fasta
-fs<- read.fasta("~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/subgroup/xyl3_subgroup-codon_aligned_cds-cleaned.fasta")
+fs<- read.fasta("~/Xyl_project_Fall_2021/xyl3/xyl3_cds.fasta")
 
 bp<-max(getLength(fs))
 
 ##conversion of alnmnt into matrix
 
-alnmnt_matrix<-matrix(nrow=length(alnmnt[[2]]), ncol=bp+1)
+alnmnt_matrix<-matrix(nrow=length(alnmnt[[2]]), ncol=bp+3)
 alnmnt_matrix[,1]<-unlist(alnmnt[[2]])
 for (i in 1:length(alnmnt[[2]])){
   j<-(getLength(fs)[i])
   alnmnt_matrix[i,(2:(j+1))]<-unlist(strsplit(alnmnt$seq[[i]], split=""))
 }
 
-#######fix taxa names
-x<-alnmnt_matrix[,1]
-taxa_IDs<-x
-for (i in 1:length(x)){
-  if(grepl("\\d",strsplit(x[i], "_")[[1]][3])){
-    name<-paste(strsplit(x[i], "_")[[1]][1], strsplit(x[i], "_")[[1]][2], sep=" ")
-  } else if (grepl("_var_", x[i])){
-   name<-paste(strsplit(x[i], "_")[[1]][1], strsplit(x[i], "_")[[1]][2],
-               strsplit(x[i], "_")[[1]][3], strsplit(x[i], "_")[[1]][4], sep=" ")
-  } else {
-    xchar<-which(strsplit(x[i], "_")[[1]]=="x")
-    name<-paste(strsplit(x[i], "_")[[1]][1:(xchar-1)], collapse=" ")
-  }   
-taxa_IDs[i]<-name
-}
-####
-alnmnt_matrix[,1]<-taxa_IDs
-
 ########
-alnmnt_matrix[ alnmnt_matrix == "-" ] <- NA
+###
+#Fix names - one column for genus species and one column for copy #
+##
 
-alnmnt_matrix[,1]<-tolower(alnmnt_matrix[,1])
 
-write.table(alnmnt_matrix, "~/xylose_optimization_project/spring_2021/subgroup_consensus/xyl3/subgroup/xyl3_subgroup-codon_aligned_cds-cleaned.txt",
+names<-alnmnt_matrix[,1]
+taxon<-names
+copy_no.<-names
+for(i in 1:length(names)){
+  x<-strsplit(names[i], split = "_")
+  taxon[i]<-paste(x[[1]][1:length(x[[1]])-1], collapse = " ")
+  copy_no.[i]<-as.integer(x[[1]][length(x[[1]])]) 
+}
+  
+alnmnt_matrix[,bp+2]<-taxon
+alnmnt_matrix[,bp+3]<-copy_no.
+
+alnmnt_df<-data.frame(alnmnt_matrix)
+alnmnt_df<-alnmnt_df[c((bp+2), (bp+3), 2:(bp+1))]
+
+colnames(alnmnt_df)[1:2]<-c("taxon", "copy.no")
+
+write.table(alnmnt_df, "~/Xyl_project_Fall_2021/xyl3/xyl3_cds_matrix_forR.txt",
             sep="\t", quote=FALSE, row.names=FALSE)
 
 
