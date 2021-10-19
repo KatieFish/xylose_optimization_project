@@ -1,17 +1,17 @@
 # xylose_optimization_project
 
-Rishitha summer '21 - 
+Updated 10-19-2021
 
-All of the data you should need (sequences pulled out by HMMER, alignments and fast trees for all sequences, cds sequences of XYL gene groups, amino acid alignments of XYL gene proteins, & codon aware alignments of XYL gene cds sequences are in the Rishitha_summer_21 directory. The readme file explains what all the files are in case you forget how we named things. 
+Summary: 
 
-In the scripts folder you'll find all the scripts and the most recent markdown that we used to push the data through our R pipeline. 
+##1) Gene families for XYL1, XYL2, XYL3 were pulled out of 332 assemblies using an ORF-Finder -> HMMER pipeline written by JW and executed on scarcity (code not part of repo). 
+- All sequences were assigned KEGG orothology using BLASTkoala. Phylogenetic trees of gene families were constructed using FastTree with KEGG orthology overlaied. The monophyletic clade containing all XYL homologs was id'd and XYL sequences were pulled out for further analysis. 
+- Abbe and Rishitha worked with sequences to eliminate dubious sequences and ensure quality start sites and accurate lengths. 
+- IQtree ML phylogenies of protein sequence were built. 
+- Analysis for duplication events?
 
-I think the outstanding work to be done first, however, is curating our set of XYL homologs and spending some time understanding their patterns of evolution. Abbe will certainly have much better thoughts on this than I do. 
+##2) Growth rate data was obtained from Dana and compared to gene content.
+-Qualitative growth data for species not assayed by D.O. were retrieved from Opulente et. al BMC Biology 2018.
 
-I think the weakness of our ORF-finder pipeline was that it pulled out more paralogs per genome than I think are really there. This might be because it pulls out fragments of genes that are there because of assembly errors. I think you should spend the first few weeks building good maximum liklihood XYL trees and using these to identify sequences that don't belong. Maybe Abbe has some thoughts on how to best do this. 
-
-*A note of caution here - the SOR1 and SOR2 genes of S. cerevisiae cluster within the XYL2 clade on our larger tree. I think we need to exercise some caution with removing genes from XYL2 until we understand the evolutionary relationships between these genes.*
-
-Once you have a list of sequences that you are confident in - I think the next step would be again to build ML trees with these sequences and look at tree topology and compare it to the whole genome 332 topology in the Shen et al. paper. Can we test the gene trees against the species tree and find anything interesting? What is going on with XYL gene evolution in the Saccharomycetaceae?
-
-I put a modifiable RAxML script in the /scripts directory. Rishitha should be able to run this script on scarcity, download her tree files (remember the scp command!) and visualize them on iTOL. 
+##3) Codon optimization was assessed as in Labella et al. PLoS Bio 2021 using data from Labella et al. PLoS Gen 2019
+-
