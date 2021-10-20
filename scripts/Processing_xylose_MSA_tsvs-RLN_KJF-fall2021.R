@@ -3,11 +3,11 @@
 
 require(stringr)
 #read in ortholog cds matrices
-xyl1<- read.delim("~/Xyl_project_Fall_2021/xyl1/xyl1_cds_matrix_forR.txt",
+xyl1<- read.delim("~/xylose_optimization_project/fall_2021/data/xyl1/xyl1_cds_matrix_forR.txt",
                   stringsAsFactors=FALSE)
-xyl2<- read.delim("~/Xyl_project_Fall_2021/xyl2/xyl2_cds_matrix_forR.txt", 
+xyl2<- read.delim("~/xylose_optimization_project/fall_2021/data/xyl2/xyl2_cds_matrix_forR.txt", 
                   stringsAsFactors=FALSE)
-xyl3<- read.delim("~/Xyl_project_Fall_2021/xyl3/xyl3_cds_matrix_forR.txt", 
+xyl3<- read.delim("~/xylose_optimization_project/fall_2021/data/xyl3/xyl3_cds_matrix_forR.txt", 
                   stringsAsFactors=FALSE)
 
 xyl1[,1]<-tolower(xyl1[,1])
@@ -38,7 +38,7 @@ colnames(xyl3cn)<-c("taxon", "xyl3_copies")
 presence_absence<-merge(xyl1cn, xyl2cn, by="taxon", all=TRUE)
 presence_absence<-merge(presence_absence, xyl3cn, by="taxon", all=TRUE)
 presence_absence[is.na(presence_absence)]<-0
-write.table(presence_absence, "~/Xyl_project_Fall_2021/data tables/pathway_presence_absence.txt", sep="\t", quote=FALSE, row.names=FALSE)
+write.table(presence_absence, "~/xylose_optimization_project/fall_2021/data tables/pathway_presence_absence.txt", sep="\t", quote=FALSE, row.names=FALSE)
 ##
 
 
@@ -158,7 +158,7 @@ rm(all_taxa,taxa_to_remove, codon, codon_column, codon_wi_val, gene_x, gene_x_wi
 ##########
 #Combine all 3 gene dataframes into Master dataset 
 xyl_master_df<-rbind(xyl1.stAI_dataframe, xyl2.stAI_dataframe, xyl3.stAI_dataframe)
-write.table(xyl_master_df, "~/Xyl_project_Fall_2021/stAI_dataframe-09-16-2021.txt", 
+write.table(xyl_master_df, "~/xylose_optimization_project/fall_2021/data tables/stAI_dataframe-09-16-2021.txt", 
             row.names=FALSE, quote=FALSE, sep="\t")
 
 
@@ -187,7 +187,7 @@ xyl_master_df$estAI<-NA
 rm(ecdf_func, j, species_tAI_vals)
 
 ####writing estAI results as tables to import
-write.table(xyl_master_df, "Xyl_project_Fall_2021/estAI_dataframe-09-16-2021.txt", sep="\t", quote=FALSE, row.name=FALSE)
+write.table(xyl_master_df, "~/xylose_optimization_project/fall_2021/data tables/estAI_dataframe-09-16-2021.txt", sep="\t", quote=FALSE, row.name=FALSE)
 ########################
 
 
@@ -198,7 +198,7 @@ write.table(xyl_master_df, "Xyl_project_Fall_2021/estAI_dataframe-09-16-2021.txt
 #create a max estAI_dataframe
 max_estAI_df<-data.frame(aggregate(estAI ~ gene + taxon, data=xyl_master_df, FUN=max))
 
-write.table(max_estAI_df, "~/Xyl_project_Fall_2021/maximum_estAI_vals.txt", sep="\t", quote=FALSE, row.names=FALSE)
+write.table(max_estAI_df, "~/xylose_optimization_project/fall_2021/data tables/maximum_estAI_vals.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
 
 #####################
@@ -221,7 +221,7 @@ for (i in 1:length(genes)){
 
 rm(spp, rows, i, keep, spp, vec, genes)
 
-write.table(toptens, "~/Xyl_project_Fall_2021/spp_in_90th_percentile_codon_opt-all_genes.txt",
+write.table(toptens, "~/xylose_optimization_project/fall_2021/data tables/spp_in_90th_percentile_codon_opt-all_genes.txt",
             sep="\t", row.names=FALSE, quote=FALSE)
 ## 8 spp in 90th percentile for xyl1, xyl2, xyl3: 
 
