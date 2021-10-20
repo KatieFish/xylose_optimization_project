@@ -1,0 +1,31 @@
+tree_name	data_name	Notes
+blastobotrys adeninivorans	arxula adeninivorans	
+blastobotrys raffinosifermentans	blastobotrys raffinofermentans	
+suhomyces canberraensis	candida canberraensis	
+teunomyces cretensis	candida cretensis	
+hyphopichia homilentoma	candida homilentoma	
+teunomyces kruisii	candida kruisii	
+suhomyces pyralidae	candida pyralidae	
+groenewaldozyma salmanticensis	candida salmanticensis	
+suhomyces tanzawaensis	candida tanzawaensis	
+yamadazyma tenuis	candida tenuis	
+hanseniaspora vineae	hanseniaspora vinae	
+lachancea fantastica_nom_nud	lachancea fantastica	
+magnusiomyces tetraspermus	magnusiomyces tetrasperma	
+metschnikowia bicuspidata_var._bicuspidata	metschnikowia bicuspidata	
+metschnikowia dekortorum	metschnikowia dekortum	
+metschnikowia lochheadii	metschnikowia lockheadii	
+metschnikowia matae_var._matae	metschnikowia matae	
+metschnikowia matae_var._maris	metschnikowia matae maris	
+candida bracarensis	nakaseomyces bracarensis	
+candida castellii	nakaseomyces castellii	
+candida nivariensis	nakaseomyces nivariensis	
+ogataea philodendri	ogataea philodendra	
+ogataea populialbae	ogataea populiabae	
+brettanomyces bruxellensis	dekkera bruxellensis	
+middelhovenomyces tepae	middelhovenomyces tepae	possesses full pathway. Not in Abbe's wi vals files so cannot be analyzed for CO
+NA	kazachstania humatica	Not part of 332 - not sure why in data other than maybe added by JW? Will just eliminate from analysis
+spencermartinsiella europaea	spencermartinsiella europaea	
+nadsonia fulvesens	nadsonia_fulvescens_var._fulvescens	possesses full pathway. Not in Abbe's wi vals files so cannot be analyzed for CO
+saprochaete clavata	NA	possess xyl2 and xyl3. 
+ickerhamomyces sp. yb 2243	candida azyma	

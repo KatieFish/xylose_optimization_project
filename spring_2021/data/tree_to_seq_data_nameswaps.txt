@@ -22,3 +22,5 @@ candida castellii	nakaseomyces castellii
 candida nivariensis	nakaseomyces nivariensis
 ogataea philodendri	ogataea philodendra
 ogataea populialbae	ogataea populiabae
+brettanomyces bruxellensis	dekkera bruxellensis
+wickerhamomyces sp. yb 2243	candida azyma
