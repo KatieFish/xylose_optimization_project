@@ -1,0 +1,525 @@
+---
+title: "Xylose codon optimization project"
+output: html_document
+---
+**Project updated 10-01-21 by KJF to reflect new homologs curated by Abbe and Rishitha**
+
+WORKFLOW: 
+
+
+Part 1: Isolation of homologs
+
+We used a pipeline in which we first took the assemblies of the 332 genomes in Shen et al. 2018 Cell and generated gene annotations using orfFinder. HMMR (http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) was used to identify homologs for XYL1 (xylose reducase), XYL2 (Xylitol dehydrogenase), and XYL3 (xylulokinase) from those annotations. 
+
+We then used phylogenetic trees (https://bio.tools/fasttree) combined with KEGG orthology (https://www.kegg.jp/blastkoala/) to isolate clades of XYL1, XYL2, and XYL3 homologs. 
+
+Abbe and Rishtha then curated these sequences ... methods... ?
+
+Part 2: 
+Calculating the codon optimization index for each gene. 
+
+Step 1: We used Abbe's "wi values" (Labella et al. 2019 Plos Gen.). For each gene, we took the geometric mean of all codon's wi values (minus the start codon). This value was called the stAI value.
+
+**This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
+
+Step 2: We cannot compare the stAI values of genes between species without normalizing those stAI values to the rest of the genome for each species. We (again) used Abbe's data (Labella et al. 2019 Plos Gen.) to retrieve the distribution of tAI values for each species. 
+
+**This code found in Processing_xylose_MSA_tsvs-KJF-spring2021.R
+
+
+```{r, echo=FALSE, message=FALSE}
+#setting some color variables for plotting later
+require(ggplot2)
+pal<-rainbow(10)
+#barplot(1:10, col=rainbow(10))
+growth_color<-pal[3]
+no_growth_color<-pal[1]
+variable_color<-pal[6]
+xyl1_color<-pal[8]
+xyl2_color<-pal[9]
+xyl3_color<-pal[10]
+
+```
+
+Distributions of XYL1 and XYL2 are right shifted with most species having highly optimized genes. Distribution of XYL3 is more bell shaped. 
+
+Colored in blue is the 90th percentile. Eight species are in this regions for all three curves. 
+
+```{r}
+#read in dataframes from CO pipeline 
+
+spp_by_maximum_estAI<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/maximum_estAI_vals.txt")
+
+toptens<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/spp_in_90th_percentile_codon_opt-all_genes.txt")
+
+##
+require(ggridges)
+densities<-ggplot(spp_by_maximum_estAI, aes(x = estAI, y = gene,fill = factor(stat(quantile)), col=gene))+
+  stat_density_ridges( 
+    geom = "density_ridges_gradient",
+    calc_ecdf = TRUE,
+    quantiles = c(0.90),
+    scale=1) +
+  scale_fill_manual(values = c("#A0A0A0A0", pal[6] ))+
+  scale_color_manual(values=c(xyl1_color, xyl2_color, xyl3_color))+
+  theme_bw()+
+  theme_ridges(center_axis_labels = TRUE, grid = FALSE)+
+  theme(legend.position = "none")
+
+print(densities)
+
+#quartz.save("density_plots_distributions.pdf", type="pdf")
+  
+##
+#OR
+##
+
+#ggplot(data=spp_by_maximum_estAI, aes(x=estAI))+
+ # geom_histogram(aes(fill=gene), bins=30)+
+#  scale_fill_manual(values=c(xyl1_color, xyl2_color, xyl3_color))+
+ # xlab("maximum estAI value")+
+  #  theme_bw(10)+
+  #theme(legend.position = "none",
+   #     strip.background = element_rect(colour="black",
+    #                                    fill="white"),
+  #panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  #facet_wrap(~gene, scales="free")
+rm(densities)
+```
+
+Of 270 species with complete pathways, we have data for qualitative growth for 255. 
+
+Complete pathways do not predict growth. 
+
+```{r}
+#growth_data df was put together manually by RLN in excel. 
+#KJF fleshed out spp. with no XYL homologs 10-19-21
+#growth_data df ONLY contains estAI vals for xyl homologs and therefore the spp. 
+#that had to be removed due to no wi vals are not represented. These species ARE in presence absence file.
+#
+growth_data<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/growth_data_df-10-19-21.txt")
+presence_absence<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/pathway_presence_absence.txt", stringsAsFactors = FALSE)
+colnames(presence_absence)[1]<-"all_taxa"
+
+#merge to generate file with presence absence and growth rate data for full dataset
+all_data_growth<-merge(growth_data[1:2], presence_absence, by="all_taxa", all=TRUE)
+all_data_growth$xyl1_copies[is.na(all_data_growth$xyl1_copies)]<-0
+all_data_growth$xyl2_copies[is.na(all_data_growth$xyl2_copies)]<-0
+all_data_growth$xyl3_copies[is.na(all_data_growth$xyl3_copies)]<-0
+
+length(which(all_data_growth$xyl1_copies>0))
+#310 spp. posses at least one copy of xyl1
+length(which(all_data_growth$xyl2_copies>0))
+#285 spp. possess at least 2 copy of xyl2
+length(which(all_data_growth$xyl3_copies>0))
+#311 spp. possess at least one copy of xyl3
+
+###################
+#retain only COMPLETE PATHWAYS
+###################
+removes<-which(all_data_growth$xyl1_copies==0 | all_data_growth$xyl2_copies==0 | all_data_growth$xyl3_copies==0)
+all_data_growth<-all_data_growth[-removes, ]
+
+nrow(all_data_growth)
+#270 complete pathways
+
+########################
+#growth_binary file contains a column aggregated from D.O. unpublished growth rates and published qualitative data cureated from the Yeasts in Opulente et al BMC bio 2018 - processed in processing_and_aggregating_growth_data.R
+growth_binary_file<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/Pathway_growthrate_growthbinary.txt")
+#merge binary column into growth_data dataframe
+all_data_growth<-merge(all_data_growth, growth_binary_file[c(1,3)], by="all_taxa")
+
+x<-all_data_growth[which(!is.na(all_data_growth$growth.binary)),]
+nrow(x)
+growth_pathways<-ggplot(x, aes(x=factor(growth.binary), fill=factor(growth.binary)))+
+  geom_bar()+
+  scale_fill_manual(values=c(no_growth_color, growth_color, variable_color))+
+  scale_x_discrete(breaks=c("0","1","v"),
+        labels=c("No growth", "Growth", "Variable"))+
+  xlab("")+
+  ggtitle("Growth on xylose\nfor 255 spp. with complete pathways")+
+  theme_bw()+
+  theme(panel.grid = element_blank(),
+        legend.position="none")
+print(growth_pathways)
+#quartz.save("complete_pathway_growth.pdf", type="pdf")
+
+#10-12-21 KJF double checked Abbe's PLoS Bio GAL paper and she did not remove S<.5 spp before qualitative comparisons. 
+
+rm(x, all_data_growth, removes)
+```
+
+
+estAI distributions for all 3 genes are significantly different for growers and nongrowers.
+
+```{r}
+growth_data<-merge(growth_data, growth_binary_file[c(1,3)], by="all_taxa")
+#growth file with max estAI vals for each spp along with growth data
+growth_data<-growth_data[which(!is.na(growth_data$growth.binary)),]
+#keep only complete pathways
+removes<-which(is.na(growth_data$max_xyl1_estAI) | is.na(growth_data$max_xyl2_estAI) | is.na(growth_data$max_xyl3_estAI))
+growth_data<-growth_data[-removes, ]
+
+#remove variable growth and test between growth and no growth only
+growth_data<-growth_data[which(!growth_data$growth.binary=="v"),]
+
+
+xyl1.test<-wilcox.test(data=growth_data, max_xyl1_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl2.test<-wilcox.test(data=growth_data, max_xyl2_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+xyl3.test<-wilcox.test(data=growth_data, max_xyl3_estAI~growth.binary,
+            alternative = "two.sided", conf.int=TRUE)
+
+
+x1p<-ggplot(growth_data, aes(x=as.factor(growth.binary), y=max_xyl1_estAI))+
+  geom_boxplot(fill=xyl1_color)+
+  xlab("")+
+  ylab("Codon optimization index (estAI)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No growth", "Growth"))+
+  ggtitle("XYL1 (Xylose Reductase)", subtitle=(paste("p=",formatC(xyl1.test$p.value, format = "e", digits = 4))))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+
+x2p<-ggplot(growth_data, aes(x=as.factor(growth.binary), y=max_xyl2_estAI))+
+  geom_boxplot(fill=xyl2_color)+
+  xlab("")+
+  ylab("Codon optimization index (estAI)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No growth", "Growth"))+
+  ggtitle("XYL2 (Xylitol Dehydrogenase)", subtitle=(paste("p=",formatC(xyl2.test$p.value, format = "e", digits = 4))))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+
+x3p<-ggplot(growth_data, aes(x=as.factor(growth.binary), y=max_xyl3_estAI))+
+  geom_boxplot(fill=xyl3_color)+
+  xlab("")+
+  ylab("Codon optimization index (estAI)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No growth", "Growth"))+
+  ggtitle("XYL3 (Xylulose Kinase)", subtitle=(paste("p=",formatC(xyl3.test$p.value, format = "e", digits = 4))))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+
+require(ggpubr)
+ggarrange(x1p, x2p, x3p, ncol = 3, nrow=1, labels=c("A", "B", "C"))
+
+#quartz.save("qualitative_growth_boxplots.pdf", type="pdf")
+
+rm(x1p, x2p, x3p, xyl1.test, xyl2.test, xyl3.test, removes)
+```
+
+10-12-21 - adding a quick test - Are estAI vals different for xyl1 btw spp. that have multiple paralogs and those that do not? 
+
+```{r}
+estAI_vals<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/estAI_dataframe-09-16-2021.txt")
+
+xyl1subset<-estAI_vals[which(estAI_vals$gene=="xyl1"),]
+spp_w_paralogs<-as.character(unique(xyl1subset$taxon[which(xyl1subset$copy.no>1)]))
+#50 spp. are multi copy for xyl1
+
+xyl1subset$multiple_copies<-NA
+xyl1subset$multiple_copies[which(xyl1subset$taxon %in% spp_w_paralogs)]<-1
+xyl1subset$multiple_copies[which(!xyl1subset$taxon %in% spp_w_paralogs)]<-0
+
+colnames(xyl1subset)[1]<-"all_taxa"
+xyl1subset<-merge(xyl1subset, growth_data[c(1,2,6)], by="all_taxa", all=TRUE)
+
+xyl1.test<-wilcox.test(data=xyl1subset, estAI~multiple_copies,
+            alternative = "two.sided", conf.int=TRUE)
+
+multi_copy_test<-ggplot(xyl1subset, aes(x=factor(multiple_copies), y=estAI))+
+         geom_boxplot(fill=xyl1_color)+
+  xlab("")+
+  ylab("Codon optimization index (estAI)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("Single copy", "Multi copy"))+
+  ggtitle("Multi-copy XYL1 spp. have lower XYL1 estAI values", subtitle=(paste("p=",formatC(xyl1.test$p.value, format = "e", digits = 4))))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+
+print(multi_copy_test)
+
+rm(xyl1.test, spp_w_paralogs, multi_copy_test)
+```
+ 
+Are strains with multiple copies more likely to grow?
+
+```{r}
+xyl1subset<-unique(xyl1subset[c(1,6,7,8)])
+
+mult_copies_no_growth<-length(which(xyl1subset$multiple_copies==1 & xyl1subset$growth.binary==0))
+mult_copies_growth<-length(which(xyl1subset$multiple_copies==1 & xyl1subset$growth.binary==1))
+single_copies_no_growth<-length(which(xyl1subset$multiple_copies==0 & xyl1subset$growth.binary==0))
+single_copies_growth<-length(which(xyl1subset$multiple_copies==0 & xyl1subset$growth.binary==1))
+
+no_growth_total<-c(mult_copies_no_growth, single_copies_no_growth)
+growth_total<-c(mult_copies_growth, single_copies_growth)
+mat<-as.matrix(data.frame(growth_total, no_growth_total))
+rownames(mat)<-c("multi-copy", "single copy")
+
+fishertestp<-fisher.test(mat, alternative="greater" )$p.value
+#one tailed Fisher's exact spp. with multiple xyl1 genes are not more likely to grow than single copy spp. 
+#p=0.4627
+require(reshape2)
+
+toplot<-as.data.frame(mat)
+toplot$group<-row.names(toplot)
+x<-melt(toplot)
+growth_by_multi<-ggplot(data=x, aes(x=group, y=value, fill=variable))+
+  geom_col(position="dodge")+
+  scale_fill_manual(name = "", labels = c("Growth", "No growth"), values=c(growth_color, no_growth_color))+
+  ylab("No. species")+
+  xlab("")+
+  ggtitle("spp. with multiple XYL1 copies are not more\nlikely to grow than single copy spp.", subtitle = paste("p=", round(fishertestp, 4)))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+print(growth_by_multi)
+
+rm(toplot, x, fishertestp, growth_total, no_growth_color, mult_copies_growth, mult_copies_no_growth, single_copies_growth, single_copies_no_growth, mat)
+#quartz.save("mutliple_copies_growth_fishertest.pdf", type="pdf")
+```
+
+Do spp. with multiple copies have higher growth rates?
+
+```{r}
+
+data<-xyl1subset[which(xyl1subset$Growth.Rate>0),]
+
+xyl1.test<-wilcox.test(data=data, Growth.Rate~multiple_copies,
+            alternative="less" , conf.int=TRUE)
+
+growth_rates_cn<-ggplot(data, aes(x=as.factor(multiple_copies), y=Growth.Rate))+
+  geom_boxplot(fill=xyl1_color)+
+  xlab("")+
+  ylab("Xylose Growth Rate")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("Single copy", "Multi-copy"))+
+  ggtitle("Multi-copy and single copy XYL1 spp. growth rates not different", subtitle=(paste("p=",formatC(xyl1.test$p.value, format = "e", digits = 3))))+
+  theme_bw()+
+  theme(panel.grid = element_blank(), 
+        text=element_text(size=9))
+
+print(growth_rates_cn)
+
+rm(growth_rates_cn, data)
+
+#quartz.save("multi_copy_growth_rate.pdf", type="pdf")
+
+#effect is entirely dependent on outlier growth rates
+
+```
+
+
+## Do growth rates correlate with estAI values? 
+
+Steps in this analysis 
+
+1 - get rid of all species with growth rates of 0. 
+
+2 - get rid of all species that do not have at least 1 copy of all 3 genes.
+
+3 - using the S-values reported in Labella et al., get rid of all spp. with s values lower than .5. (This keeps only those species for which we are confident selection and not other processes are responsible for estAI values)
+
+4 - create trees for each gene that contain just those species that have the gene.
+
+5 - use the trees to create phylogenetically independent contrast (PIC) vectors for our values of growth and of estAI.
+
+6 - perform a corellation with the PIC vectors.
+
+
+```{r}
+growth_data<-read.delim("~/xylose_optimization_project/fall_2021/data/data tables/growth_data_df-10-19-21.txt", stringsAsFactors = FALSE)
+
+#Step 1
+growth_data<-growth_data[which(!is.na(growth_data$Growth.Rate)), ]
+growth_data<-growth_data[which(growth_data$Growth.Rate>0), ]
+#need to remove incomplete pathways -candida sojae - no detected XYL genes
+#middelhovenomyces tepae - no wi vals
+growth_data<-growth_data[which(!is.na(growth_data$max_xyl1_estAI)),]
+
+#Step 3
+s_values<-read.delim("~/xylose_optimization_project/fall_2020/data/labella_et_al/s_values.txt", stringsAsFactors = FALSE)
+
+s_values<-s_values[which(s_values$species.name %in% growth_data$all_taxa), ]
+colnames(s_values)<-c("all_taxa", "s_value")
+#"candida azyma","komagataella pastoris" - not in S values
+#automatically dropped below
+growth_data<-merge(growth_data, s_values, by="all_taxa")
+growth_data<-growth_data[which(growth_data$s_value > .5),]
+
+#84 species remaining with s_values greater than .5
+
+#Step 4
+library(ape)
+require(stringr)
+require(ggpubr)
+require(ade4)
+require(adephylo)
+require(nlme)
+#332 tree
+tree<-read.tree("~/xylose_optimization_project/fall_2020/data/iTol_files/332_Newick_tree.txt")
+tree$tip.label<-str_replace(string = tree$tip.label, pattern = "_", replacement = " ")
+tree$tip.label<-tolower(tree$tip.label)
+#correct name differences btw tree and the rest of the data
+name_swaps<-read.delim("~/xylose_optimization_project/spring_2021/data/tree_to_seq_data_nameswaps.txt", stringsAsFactors = FALSE, header=TRUE)
+#setting the tree taxa names to the names of our sequence data, which will differ from the 332 paper and their correct names. We can fix that later. 
+for (i in 1:length(growth_data$all_taxa)){
+    if(growth_data$all_taxa[i] %in% name_swaps$data_name){
+      growth_data$all_taxa[i]<-name_swaps$tree_name[which(name_swaps$data_name == growth_data$all_taxa[i])]
+  }
+}
+#fixing the taxa name in our data - all cases were minor mispellings.
+
+###NOTE - 
+##getting rid of "metschnikowia matae_var._matae" - Abbe also had to remove 
+# in GAL paper - very high GR relative to glucose (probably just grows super slow on glucose) relative to sister "metschnikowia matae_var._maris"
+growth_data<-growth_data[-which(growth_data$all_taxa=="metschnikowia matae_var._matae"),]
+
+#putting data in order of tree tips
+phylo_order_df<-data.frame(tree$tip.label)
+phylo_order_df$phylo_order<-c(1:nrow(phylo_order_df))
+colnames(phylo_order_df)<-c("all_taxa", "phylo_order")
+growth_data<-merge(growth_data, phylo_order_df, by="all_taxa")
+df<-growth_data[order(growth_data$phylo_order), ]
+row.names(df)<-df$all_taxa
+
+
+#remove taxa from tree that are not present in our data 
+removes<-which(!tree$tip.label %in% df$all_taxa)
+PICtree<-drop.tip(tree, tree$tip.label[removes])
+#
+
+#Step 5
+fit1 <- gls(max_xyl1_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL2
+fit2 <- gls(max_xyl2_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+#looking for outliers with pgls in XYL3
+fit3 <- gls(max_xyl3_estAI ~ Growth.Rate, correlation=corBrownian(phy=PICtree), data=df)
+
+plot(fit1, resid(., type="n")~fitted(.), main="XYL1 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+
+```{r}
+plot(fit2, resid(., type="n")~fitted(.), main="XYL2 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+
+```{r}
+plot(fit3, resid(., type="n")~fitted(.), main="XYL3 Normalized Residuals v Fitted Values",
+abline=c(0,0))
+```
+
+
+We did not have to remove any outliers. Now we can do correlation tests on the PIC vectors for each gene. 
+
+  
+```{r}
+growthRate<-df$Growth.Rate
+names(growthRate)<-row.names(df)
+PIC.growth<-pic(growthRate, PICtree)
+
+#Step 6
+xyl1_estAI<-df$max_xyl1_estAI
+names(xyl1_estAI)<-row.names(df)
+PIC.xyl1<-pic(xyl1_estAI, PICtree)
+#ctest<-cor.test(PIC.xyl1, PIC.growth, method="pearson")
+#ctest
+linmod<-lm(PIC.growth ~ PIC.xyl1)
+f <- summary(linmod)$fstatistic
+x1pval <- pf(f[1],f[2],f[3],lower.tail=F)
+x1r2<-summary(linmod)$adj.r.squared
+
+###################
+#XYL2
+##
+xyl2_estAI<-df$max_xyl2_estAI
+names(xyl2_estAI)<-row.names(df)
+PIC.xyl2<-pic(xyl2_estAI, PICtree)
+#ctest<-cor.test(PIC.xyl2, PIC.growth, method="pearson")
+#ctest
+linmod<-lm(PIC.growth ~ PIC.xyl2)
+f <- summary(linmod)$fstatistic
+x2pval <- pf(f[1],f[2],f[3],lower.tail=F)
+x2r2<-summary(linmod)$adj.r.squared
+
+###############
+#XYL3
+################
+
+#calculate and compare PIC values
+xyl3_estAI<-df$max_xyl3_estAI
+names(xyl3_estAI)<-row.names(df)
+PIC.xyl3<-pic(xyl3_estAI, PICtree)
+
+#
+#ctest<-cor.test(PIC.xyl3, PIC.growth, method="pearson")
+#ctest
+linmod<-lm(PIC.growth ~ PIC.xyl3)
+f <- summary(linmod)$fstatistic
+x3pval <- pf(f[1],f[2],f[3],lower.tail=F)
+x3r2<-summary(linmod)$adj.r.squared
+
+#Combining all into dataframe for ggplot
+
+
+toplot<-data.frame(PIC.growth)
+toplot<-merge(toplot, as.data.frame(PIC.xyl1), by=0)
+row.names(toplot)<-toplot$Row.names
+toplot<-merge(toplot, as.data.frame(PIC.xyl2), by=0)
+row.names(toplot)<-toplot$Row.names
+toplot<-merge(toplot, as.data.frame(PIC.xyl3), by=0)
+toplot<-toplot[3:7]
+
+x1subtitle=paste("p=",round(x1pval, 4), "\nr2=", round(x1r2,4))
+x1plot<-ggplot(toplot, aes(x=PIC.xyl1, y=PIC.growth))+
+  geom_point(size=2, col=xyl1_color)+
+  xlab("PIC codon optimization index (estAI)")+
+  ylab("PIC xylose growth rate")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        text=element_text(size=9))+
+  geom_smooth(method='lm', se=FALSE, col="gray")+
+  ggtitle("XYL1 (Xylose Reductase)",
+          subtitle=x1subtitle)
+
+x2subtitle=paste("p=",round(x2pval, 4), "\nr2=", round(x2r2,4))
+x2plot<-ggplot(toplot, aes(x=PIC.xyl2, y=PIC.growth))+
+  geom_point(size=2, col=xyl2_color)+
+  xlab("PIC codon optimization index (estAI)")+
+  ylab("PIC xylose growth rate")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        text=element_text(size=9))+
+  geom_smooth(method='lm', se=FALSE, col="gray")+
+  ggtitle("XYL2 (Xylitol Dehydrogenase)",
+          subtitle=x2subtitle)
+
+x3subtitle=paste("p=",round(x3pval, 4), "\nr2=", round(x3r2,4))
+x3plot<-ggplot(toplot, aes(x=PIC.xyl3, y=PIC.growth))+
+  geom_point(size=2, col=xyl3_color)+
+  xlab("PIC codon optimization index (estAI)")+
+  ylab("PIC xylose growth rate")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        text=element_text(size=9))+
+  geom_smooth(method='lm', se=FALSE, col="gray")+
+  ggtitle("XYL3 (Xylulose Kinase)",
+          subtitle=x3subtitle)
+
+ggarrange(x1plot, x2plot, x3plot, ncol=3, nrow=1)
+#quartz.save(file="xyl_lm_plots.pdf", type="pdf")
+
+#pdf(height=9, width=4, file="xyl_lm_plots.pdf")
+#ggarrange(x1plot, x2plot, x3plot, ncol=1, nrow=3, labels = c("A", "B", "C"))
+#dev.off()
+```
+
+
